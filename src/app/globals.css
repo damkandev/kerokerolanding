@@ -12,3 +12,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
+:root {
+  background-color: #030B07;
+}
