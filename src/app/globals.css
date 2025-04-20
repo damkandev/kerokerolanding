@@ -27,3 +27,8 @@
 :root {
   background-color: #030B07;
 }
+
+::selection{
+  color: #030B07;
+  background-color: #9BFFB1;
+}
