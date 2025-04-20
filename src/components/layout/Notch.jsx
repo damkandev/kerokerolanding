@@ -10,12 +10,24 @@ export default function Notch() {
   
   const iconRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
   
+  // Define the sections that correspond to each navigation icon
+  const sections = [
+    { id: "header", index: 0 },
+    { id: "services", index: 1 },
+    // Add more sections as they become available in your page
+    { id: "projects", index: 2 },
+    { id: "about", index: 3 },
+    { id: "team", index: 4 },
+  ];
+
   useEffect(() => {
     // Register ScrollToPlugin
     gsap.registerPlugin(ScrollToPlugin);
 
+    // Set up animation for icons
     iconRefs.forEach((ref, index) => {
       const iconElement = ref.current;
+      if (!iconElement) return;
       
       const enterAnimation = gsap.timeline({ 
         paused: true,
@@ -35,18 +47,55 @@ export default function Notch() {
       
       iconElement.addEventListener("mouseenter", () => enterAnimation.restart());
     });
+
+    // Set up Intersection Observer to detect which section is in view
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -20% 0px',
+      threshold: 0.3, // Lower threshold for easier detection
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Find which navigation index this section corresponds to
+          const sectionId = entry.target.id;
+          const sectionData = sections.find(section => section.id === sectionId);
+          
+          if (sectionData) {
+            setActiveLink(sectionData.index);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Observe all sections
+    sections.forEach(section => {
+      const element = document.getElementById(section.id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      // Clean up the observer
+      observer.disconnect();
+    };
   }, []);
 
   const handleLinkClick = (index, e) => {
     e.preventDefault(); 
     setActiveLink(index);
     
-    // Scroll to header if home icon is clicked
-    if (index === 0) {
+    // Get the section ID that corresponds to this index
+    const targetSection = sections.find(section => section.index === index);
+    if (targetSection) {
       gsap.to(window, {
         duration: 1.2,
         scrollTo: {
-          y: "#header",
+          y: `#${targetSection.id}`,
           offsetY: 0
         },
         ease: "power3.inOut"
@@ -65,7 +114,7 @@ export default function Notch() {
         <House size={25} color={activeLink === 0 ? "#142418" : "#9BFFB1"} />
       </Link>
       <Link 
-        href="#" 
+        href="#services" 
         ref={iconRefs[1]} 
         className={`border border-white/25 p-4 rounded-md transition-colors ${activeLink === 1 ? 'bg-[#9BFFB1]' : ''}`}
         onClick={(e) => handleLinkClick(1, e)}
@@ -73,7 +122,7 @@ export default function Notch() {
         <Box size={25} color={activeLink === 1 ? "#142418" : "#9BFFB1"} />
       </Link>
       <Link 
-        href="#" 
+        href="#projects" 
         ref={iconRefs[2]} 
         className={`border border-white/25 p-4 rounded-md transition-colors ${activeLink === 2 ? 'bg-[#9BFFB1]' : ''}`}
         onClick={(e) => handleLinkClick(2, e)}
@@ -81,7 +130,7 @@ export default function Notch() {
         <BriefcaseBusiness size={25} color={activeLink === 2 ? "#142418" : "#9BFFB1"} />
       </Link>
       <Link 
-        href="#" 
+        href="#about" 
         ref={iconRefs[3]} 
         className={`border border-white/25 p-4 rounded-md transition-colors ${activeLink === 3 ? 'bg-[#9BFFB1]' : ''}`}
         onClick={(e) => handleLinkClick(3, e)}
@@ -89,7 +138,7 @@ export default function Notch() {
         <BookUser size={25} color={activeLink === 3 ? "#142418" : "#9BFFB1"} />
       </Link>
       <Link 
-        href="#" 
+        href="#team" 
         ref={iconRefs[4]} 
         className={`border border-white/25 p-4 rounded-md transition-colors ${activeLink === 4 ? 'bg-[#9BFFB1]' : ''}`}
         onClick={(e) => handleLinkClick(4, e)}
