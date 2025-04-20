@@ -1,7 +1,7 @@
 "use client";
 import { ReactLenis } from "lenis/react";
-import { useEffect } from "react";
 import Header from "@/components/sections/Header";
+import Services from "@/components/sections/Services";
 
 export default function Home() {
   const lenisOptions = {
@@ -13,11 +13,7 @@ export default function Home() {
     <ReactLenis root options={lenisOptions}>
       <div className="h-screen">
         <Header />
-        <div className="h-full"></div>
-        <div className="h-full"></div>
-        <div className="h-full"></div>
-        <div className="h-full"></div>
-        <div className="h-full"></div>
+        <Services />
       </div>
     </ReactLenis>
   );
