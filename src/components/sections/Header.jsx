@@ -62,7 +62,7 @@ export default function Header() {
   
   return (
     <div>
-      <section className="header grid grid-cols-6 gap-4 h-full min-h-screen p-[5vw]">
+      <section className="header grid grid-cols-6 gap-4 h-full min-h-screen p-[5vw]" id="header">
         <div className="col-span-4 flex flex-col justify-between bg-[#030B07] border border-[#9BFFB1] rounded-[15px] p-6">
           <div ref={logoRef} className="inline-block w-fit cursor-pointer" style={{ perspective: "1000px" }}>
             <Image

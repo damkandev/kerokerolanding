@@ -13,7 +13,11 @@ export default function Home() {
     <ReactLenis root options={lenisOptions}>
       <div className="h-screen">
         <Header />
-        <Header />
+        <div className="h-full"></div>
+        <div className="h-full"></div>
+        <div className="h-full"></div>
+        <div className="h-full"></div>
+        <div className="h-full"></div>
       </div>
     </ReactLenis>
   );
