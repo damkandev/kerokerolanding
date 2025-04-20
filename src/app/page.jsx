@@ -11,11 +11,11 @@ export default function Home() {
   };
   return (
     <ReactLenis root options={lenisOptions}>
-      <div className="h-screen">
+      <div className="h-fit">
         <Header />
         <Services />
         <Portfolio />
-        <div className="h-full" id="about"></div>
+        <div className="h-screen" id="about"></div>
         <div className="h-full" id="team"></div>
       </div>
     </ReactLenis>

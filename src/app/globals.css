@@ -11,6 +11,11 @@
 }
 
 @font-face {
+  font-family: "Clash Display Regular";
+  src: url("/fonts/ClashDisplay-Regular.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Clash Display Medium";
   src: url("/fonts/ClashDisplay-Medium.ttf") format("truetype");
 }
@@ -30,6 +35,10 @@
   src: url("/fonts/MrsSaintDelafield-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Gasoek One";
+  src: url("/fonts/GasoekOne-Regular.ttf") format("truetype");
+}
 
 
 @theme inline {
@@ -38,10 +47,12 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-clash-display-bold: "Clash Display Bold", sans-serif;
+  --font-clash-display-regular: "Clash Display Regular", sans-serif;
   --font-clash-display-medium: "Clash Display Medium", sans-serif;
   --font-clash-display-semibold: "Clash Display Semibold", sans-serif;
   --font-inter-regular: "Inter Regular", sans-serif;
   --font-mr-saint-delafied-regular: "Mr Saint Delafied Regular", sans-serif;
+  --font-gasoek-one: "Gasoek One", sans-serif;
 }
 
 :root {

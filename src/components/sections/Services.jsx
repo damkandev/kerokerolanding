@@ -2,7 +2,7 @@ import Button from "../ui/Button";
 
 export default function Services() {
   return (
-    <div className="h-full">
+    <div className="h-screen">
       <section
         id="services"
         className="services h-full flex flex-col justify-center items-center py-6 px-[5vw]"

@@ -61,7 +61,7 @@ export default function Header() {
   }, [lastMousePosition, lastMouseTime]);
   
   return (
-    <div className="h-full">
+    <div className="h-screen">
       <section className="header grid grid-cols-6 gap-4 h-full min-h-screen p-[5vw]" id="header">
         <div className="col-span-4 flex flex-col justify-between bg-[#030B07] border border-[#9BFFB1] rounded-[15px] p-6">
           <div ref={logoRef} className="inline-block w-fit cursor-pointer" style={{ perspective: "1000px" }}>
