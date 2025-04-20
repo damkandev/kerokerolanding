@@ -15,7 +15,7 @@ export default function Home() {
         <Header />
         <Services />
         <Portfolio />
-        <div className="h-screen" id="about"></div>
+        <div className="h-screen" id="contact"></div>
         <div className="h-screen" id="team"></div>
       </div>
     </ReactLenis>

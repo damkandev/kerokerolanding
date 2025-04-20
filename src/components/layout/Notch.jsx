@@ -16,7 +16,7 @@ export default function Notch() {
     { id: "services", index: 1 },
     // Add more sections as they become available in your page
     { id: "projects", index: 2 },
-    { id: "about", index: 3 },
+    { id: "contact", index: 3 },
     { id: "team", index: 4 },
   ];
 
@@ -130,7 +130,7 @@ export default function Notch() {
         <BriefcaseBusiness size={25} color={activeLink === 2 ? "#142418" : "#9BFFB1"} />
       </Link>
       <Link 
-        href="#about" 
+        href="#contact" 
         ref={iconRefs[3]} 
         className={`border border-white/25 p-4 rounded-md transition-colors ${activeLink === 3 ? 'bg-[#9BFFB1]' : ''}`}
         onClick={(e) => handleLinkClick(3, e)}
