@@ -2,6 +2,7 @@
 import { House, Box, BriefcaseBusiness, BookUser, Users } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Link from "next/link";
 
 export default function Notch() {
@@ -10,6 +11,9 @@ export default function Notch() {
   const iconRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
   
   useEffect(() => {
+    // Register ScrollToPlugin
+    gsap.registerPlugin(ScrollToPlugin);
+
     iconRefs.forEach((ref, index) => {
       const iconElement = ref.current;
       
@@ -36,6 +40,18 @@ export default function Notch() {
   const handleLinkClick = (index, e) => {
     e.preventDefault(); 
     setActiveLink(index);
+    
+    // Scroll to header if home icon is clicked
+    if (index === 0) {
+      gsap.to(window, {
+        duration: 1.2,
+        scrollTo: {
+          y: "#header",
+          offsetY: 0
+        },
+        ease: "power3.inOut"
+      });
+    }
   };
 
   return (
