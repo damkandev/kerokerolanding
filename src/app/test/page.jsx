@@ -1,10 +1,9 @@
-import React from 'react'
-import Notch from '@/components/layout/Notch'
+import Chat from "@/components/ui/Chat"
 
 export default function page() {
   return (
-    <div>
-        <Notch />
+    <div className="text-white flex  justify-center">
+      <Chat />
     </div>
   )
 }
