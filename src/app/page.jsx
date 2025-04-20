@@ -1,19 +1,20 @@
-import Image from "next/image";
+"use client";
+import { ReactLenis } from "lenis/react";
+import { useEffect } from "react";
+import Header from "@/components/sections/Header";
 
 export default function Home() {
+  const lenisOptions = {
+    lerp: 0.1,
+    smooth: true,
+    direction: "vertical",
+  };
   return (
-    <div className="header grid grid-cols-2 gap-4">
-      <section>
-        <div className="flex flex-col justify-center bg-[#030B07 border border-[#9BFFB1] rounded-[15px] ">
-          <h1 className="text-[#9BFFB1]">Whatever you need, we do it.</h1>
-          <p className="text-[#D3FFDD]">
-            We have been developing software tailored to your needs for years,
-            always trying to make your company's workflow much more efficient.
-          </p>
-          <div></div>
-        </div>
-        <div className="flex items-center justify-center">imagen</div>
-      </section>
-    </div>
+    <ReactLenis root options={lenisOptions}>
+      <div className="h-screen">
+        <Header />
+        <Header />
+      </div>
+    </ReactLenis>
   );
 }
