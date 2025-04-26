@@ -40,6 +40,20 @@
   src: url("/fonts/GasoekOne-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Nohemi Black";
+  src: url("/fonts/Nohemi-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Patrick Hand Regular";
+  src: url("/fonts/PatrickHand-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Special Elite Regular";
+  src: url("/fonts/SpecialElite-Regular.ttf") format("truetype");
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -53,6 +67,9 @@
   --font-inter-regular: "Inter Regular", sans-serif;
   --font-mr-saint-delafied-regular: "Mr Saint Delafied Regular", sans-serif;
   --font-gasoek-one: "Gasoek One", sans-serif;
+  --font-nohemi-black: "Nohemi Black", sans-serif;
+  --font-patrick-hand-regular: "Patrick Hand Regular", sans-serif;
+  --font-special-elite-regular: "Special Elite Regular", sans-serif;
 }
 
 :root {
