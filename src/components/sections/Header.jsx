@@ -63,7 +63,7 @@ export default function Header() {
   
   return (
     <div className="h-screen">
-      <section className="header grid grid-cols-6 gap-4 h-full min-h-screen p-[5vw]" id="header">
+      <section className="header grid grid-cols-1 lg:grid-cols-6 gap-4 h-full min-h-screen p-[5vw]" id="header">
         <div className="col-span-4 flex flex-col justify-between bg-[#030B07] border border-[#9BFFB1] rounded-[15px] p-6">
           <div ref={logoRef} className="inline-block w-fit cursor-pointer" style={{ perspective: "1000px" }}>
             <Image
@@ -77,7 +77,7 @@ export default function Header() {
             <h1 className="font-clash-display-bold text-[#9BFFB1] text-5xl">
               Whatever you need, we do it.
             </h1>
-            <p className="font-inter-regular text-[#D3FFDD] max-w-[37vw] text-lg">
+            <p className="font-inter-regular text-[#D3FFDD] max-w-[80vw] lg:max-w-[37vw] text-lg">
               We have been developing software tailored to your needs for years,
               always trying to make your company's workflow much more efficient.
             </p>
@@ -93,7 +93,7 @@ export default function Header() {
           <div></div>
         </div>
         <div
-          className="col-span-2 flex items-center justify-center bg-cover bg-center bg-no-repeat rounded-[15px]"
+          className="col-span-4 lg:col-span-2 flex items-center justify-center bg-cover bg-center bg-no-repeat rounded-[15px]"
           style={{ backgroundImage: "url('/images/green-waves.jpg')" }}
         ></div>
       </section>

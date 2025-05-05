@@ -7,23 +7,23 @@ export default function Portfolio() {
   return (
     <ClickSpark>
       <section className="h-fit px-[5vw] py-20" id="projects">
-        <div className="flex justify-between items-center text-justify">
-          <div className="flex items-center ">
+        <div className="flex lg:flex-row flex-col justify-between items-center text-justify">
+          <div className="flex lg:flex-row flex-col items-center ">
             <p className="text-[#9BFFB1] font-clash-display-bold text-[15vh] uppercase">
               Port
             </p>
-            <p className="text-[#F8FF9B] font-mr-saint-delafied-regular text-[15vh] mt-10 ml-2">
+            <p className="text-[#F8FF9B] font-mr-saint-delafied-regular text-[15vh] lg:mt-10 ml-2">
               Folio
             </p>
           </div>
-          <p className="font-inter-regular text-[#D3FFDD] max-w-[20vw]">
+          <p className="font-inter-regular text-[#D3FFDD] lg:max-w-[20vw] pb-10 lg:pb-0">
             We have worked on a variety of projects and take pride in every
             solution we have developed. We believe in close collaboration with
             our customers, understanding their needs and turning them into
             innovative and functional products.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-6 ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
           <div className="flex flex-col gap-6">
             <div className="bg-[#070B09] border border-[#9BFFB1]/60 p-12 rounded-xl text-white h-[80vh] relative">
               <div className="flex items-center">

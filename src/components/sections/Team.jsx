@@ -7,11 +7,11 @@ import { Instagram, Youtube, Github } from "lucide-react";
 export default function Team() {
   return (
     <div className="h-fit pb-[15vh] px-[5vw] py-20 bg-[#070707]" id="team">
-      <div className="text-white flex justify-between items-center">
-        <p className="font-nohemi-black text-[#9BFFB1] text-[15vh]">
+      <div className="text-white flex lg:flex-row flex-col px-5 lg:px-0 justify-between items-center">
+        <p className="font-nohemi-black text-[#9BFFB1] leading-36 text-[15vh]">
           THE <span className="text-[#FF6320]">CREW</span>
         </p>
-        <p className="font-inter-regular text-[#D3FFDD] max-w-[20vw] text-justify">
+        <p className="font-inter-regular text-[#D3FFDD] max-w-[100vw] pb-10 lg:pb-0 lg:max-w-[20vw] text-justify">
           Imagine you are assembling an elite team to carry out a flawless
           heist, but instead of a bank, the goal is the success of your project.
           Here, there is no margin for error: we provide you with the best
@@ -19,8 +19,8 @@ export default function Team() {
           expert.
         </p>
       </div>
-      <div className="grid grid-cols-2">
-        <div className="flex gap-8 text-white">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="flex flex-col lg:flex-row items-center gap-8 text-white">
           <div className="max-w-sm">
             <div className=" flex flex-col items-center -mb-5 rotate-2">
               <Image
@@ -133,7 +133,7 @@ export default function Team() {
           </div>
         </div>
         <div>
-          <div className="teamcards grid grid-cols-3 mt-6 gap-2 justify-center">
+          <div className="teamcards grid grid-cols-2 lg:grid-cols-3 mt-6 gap-2 justify-center">
             <TeamCard image="marilyncelis" name="Marilyn Celis" role="Backend" instagram="damian.panes" youtube="damianpanes" github="damkandev" />
             <TeamCard image="josuepalma" name="Josué Palma" role="Frontend" instagram="damian.panes" youtube="damianpanes" github="damkandev" />
             <TeamCard image="ivanbelasich" name="Ivan Belasich" role="Frontend" instagram="damian.panes" youtube="damianpanes" github="damkandev" />

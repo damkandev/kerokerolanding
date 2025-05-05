@@ -2,7 +2,7 @@ import Button from "../ui/Button";
 
 export default function Services() {
   return (
-    <div className="h-screen">
+    <div className="lg:h-screen">
       <section
         id="services"
         className="services h-full flex flex-col justify-center items-center py-6 px-[5vw]"
@@ -23,7 +23,7 @@ export default function Services() {
               Contact Us
             </Button>
           </div>
-          <div className="cards grid grid-cols-4 gap-4 flex-grow w-full mt-12">
+          <div className="cards grid grid-cols-1 lg:grid-cols-4 gap-4 flex-grow w-full mt-12">
             <div className="bg-[#030B07]/99 backdrop-blur-sm border border-[#9BFFB1] rounded-[15px] p-6 flex flex-col justify-end h-[60vh]">
               <p className="text-[#9BFFB1] text-3xl font-clash-display-bold text-left w-full">
                 Custom Software
