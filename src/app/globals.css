@@ -5,10 +5,78 @@
   --foreground: #171717;
 }
 
+@font-face {
+  font-family: "Clash Display Bold";
+  src: url("/fonts/ClashDisplay-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Clash Display Regular";
+  src: url("/fonts/ClashDisplay-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Clash Display Medium";
+  src: url("/fonts/ClashDisplay-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Clash Display Semibold";
+  src: url("/fonts/ClashDisplay-Semibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter Regular";
+  src: url("/fonts/Inter_18pt-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Mr Saint Delafied Regular";
+  src: url("/fonts/MrsSaintDelafield-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gasoek One";
+  src: url("/fonts/GasoekOne-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nohemi Black";
+  src: url("/fonts/Nohemi-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Patrick Hand Regular";
+  src: url("/fonts/PatrickHand-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Special Elite Regular";
+  src: url("/fonts/SpecialElite-Regular.ttf") format("truetype");
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-clash-display-bold: "Clash Display Bold", sans-serif;
+  --font-clash-display-regular: "Clash Display Regular", sans-serif;
+  --font-clash-display-medium: "Clash Display Medium", sans-serif;
+  --font-clash-display-semibold: "Clash Display Semibold", sans-serif;
+  --font-inter-regular: "Inter Regular", sans-serif;
+  --font-mr-saint-delafied-regular: "Mr Saint Delafied Regular", sans-serif;
+  --font-gasoek-one: "Gasoek One", sans-serif;
+  --font-nohemi-black: "Nohemi Black", sans-serif;
+  --font-patrick-hand-regular: "Patrick Hand Regular", sans-serif;
+  --font-special-elite-regular: "Special Elite Regular", sans-serif;
 }
 
+:root {
+  background-color: #030B07;
+}
+
+::selection{
+  color: #030B07;
+  background-color: #9BFFB1;
+}

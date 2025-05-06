@@ -1,4 +1,5 @@
 import "./globals.css";
+import Notch from "@/components/layout/Notch";
 
 export const metadata = {
   title: "KeroKero - Software Factory",
@@ -8,10 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={``}
-      >
-        {children}
+      <body className={``}>
+        <Notch />
+          {children}
       </body>
     </html>
   );
