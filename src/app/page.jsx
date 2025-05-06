@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <ReactLenis root options={lenisOptions}>
-      <div className="h-fit">
+      <div className="h-fit overflow-x-scroll">
         <Header />
         <Services />
         <Portfolio />

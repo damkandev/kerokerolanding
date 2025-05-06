@@ -16,7 +16,7 @@ export default function Services() {
       >
         <div className="w-full relative z-10">
           <div className="flex justify-between w-full mb-6">
-            <h2 className="text-4xl font-clash-display-bold text-[#9BFFB1]">
+            <h2 className="text-3xl lg:text-4xl font-clash-display-bold text-[#9BFFB1]">
               What we offer
             </h2>
             <Button link={true} href="" variant="primary">

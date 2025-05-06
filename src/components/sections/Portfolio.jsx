@@ -25,7 +25,7 @@ export default function Portfolio() {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
           <div className="flex flex-col gap-6">
-            <div className="bg-[#070B09] border border-[#9BFFB1]/60 p-12 rounded-xl text-white h-[80vh] relative">
+            <div className="bg-[#070B09] border border-[#9BFFB1]/60 p-12 rounded-xl text-white h-[90vh] lg:h-[80vh] relative">
               <div className="flex items-center">
                 <Image
                   src="/logos/themis.svg"
@@ -63,8 +63,8 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-[#030B07] p-12 rounded-xl text-white border border-[#00FF90] flex flex-col items-center justify-center gap-4 shadow-[0px_4px_34.3px_0px_rgba(0,255,144,0.33)]">
+            <div className="grid grid-cols-2 gap-3 lg:gap-6">
+              <div className="bg-[#030B07] p-4 lg:p-12 rounded-xl text-white border border-[#00FF90] flex flex-col items-center justify-center gap-4 shadow-[0px_4px_34.3px_0px_rgba(0,255,144,0.33)]">
                 <div className="flex items-center">
                   <Image
                     src="/logos/kitsulabs.svg"
@@ -82,12 +82,12 @@ export default function Portfolio() {
                 </div>
                 <p className="text-center font-clash-display-regular">Alianza con <span className=" font-clash-display-semibold">KitsuLabs</span></p>
               </div>
-              <div className="bg-[#0D0D0D] p-12 rounded-xl text-white border border-[#FF0051] flex flex-col items-center justify-center gap-4 shadow-[0px_4px_34.3px_0px_rgba(255,0,81,0.33)]">
+              <div className="bg-[#0D0D0D] p-1 lg:p-12 rounded-xl text-white border border-[#FF0051] flex flex-col items-center justify-center gap-4 shadow-[0px_4px_34.3px_0px_rgba(255,0,81,0.33)]">
                 <div className="flex items-center">
                   <Image
                     src="/logos/mts.svg"
-                    width={70}
-                    height={70}
+                    width={60}
+                    height={60}
                     alt="logo de MTS"
                   />
                   <p className="font-inter-regular text-4xl mx-2">+</p>
@@ -104,7 +104,7 @@ export default function Portfolio() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <div className="bg-[#09090B] border border-white/20 p-6 rounded-xl text-white relative h-[60vh]">
+            <div className="bg-[#09090B] border border-white/20 p-6 rounded-xl text-white relative h-[65vh] lg:h-[60vh]">
               <div>
                 <p className="text-4xl font-clash-display-semibold">
                   My Crypto Essence
@@ -136,7 +136,7 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <div className="bg-[#FFF8F3] p-6 rounded-xl h-[40vh] text-black flex flex-col justify-between">
+            <div className="bg-[#FFF8F3] p-6 rounded-xl h-[45vh] lg:h-[40vh] text-black flex flex-col justify-between">
               <div>
                 <Image
                   src="/logos/granmenu.svg"
