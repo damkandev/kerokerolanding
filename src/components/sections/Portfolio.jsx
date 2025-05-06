@@ -80,7 +80,7 @@ export default function Portfolio() {
                     alt="logo de KeroKero"
                   />
                 </div>
-                <p className="text-center font-clash-display-regular">Alianza con <span className=" font-clash-display-semibold">KitsuLabs</span></p>
+                <p className="text-center font-clash-display-regular">Alliance with <span className=" font-clash-display-semibold">KitsuLabs</span></p>
               </div>
               <div className="bg-[#0D0D0D] p-1 lg:p-12 rounded-xl text-white border border-[#FF0051] flex flex-col items-center justify-center gap-4 shadow-[0px_4px_34.3px_0px_rgba(255,0,81,0.33)]">
                 <div className="flex items-center">
@@ -98,7 +98,7 @@ export default function Portfolio() {
                     alt="logo de KeroKero"
                   />
                 </div>
-                <p className="text-center font-clash-display-regular">Alianza con <span className=" font-clash-display-semibold">MTS</span></p>
+                <p className="text-center font-clash-display-regular">Alliance with <span className=" font-clash-display-semibold">MTS</span></p>
               </div>
             </div>
           </div>

@@ -3,33 +3,35 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
+import { useLenis } from "lenis/react";
 
 export default function Header() {
   const logoRef = useRef(null);
   const [lastMousePosition, setLastMousePosition] = useState({ x: 0, y: 0 });
   const [lastMouseTime, setLastMouseTime] = useState(0);
-  
+  const lenis = useLenis();
+
   useEffect(() => {
     const logo = logoRef.current;
-    
+
     const trackMouseMovement = (e) => {
       setLastMousePosition({ x: e.clientX, y: e.clientY });
       setLastMouseTime(Date.now());
     };
-    
+
     const handleMouseEnter = (e) => {
       const currentTime = Date.now();
       const timeDiff = currentTime - lastMouseTime;
-      
+
       if (timeDiff > 0) {
         const xDiff = e.clientX - lastMousePosition.x;
         const yDiff = e.clientY - lastMousePosition.y;
         const distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-        
+
         const speed = distance / timeDiff;
-        
+
         const duration = Math.max(0.3, Math.min(2, 1.5 / (speed * 10 + 0.1)));
-        
+
         gsap.to(logo, {
           rotationY: 360,
           duration: duration,
@@ -49,18 +51,26 @@ export default function Header() {
         });
       }
     };
-    
+
     if (logo) {
       document.addEventListener("mousemove", trackMouseMovement);
       logo.addEventListener("mouseenter", handleMouseEnter);
-      
+
       return () => {
         document.removeEventListener("mousemove", trackMouseMovement);
         logo.removeEventListener("mouseenter", handleMouseEnter);
       };
     }
   }, [lastMousePosition, lastMouseTime]);
-  
+
+  const scrollToSection = (e, targetId) => {
+    e.preventDefault();
+    const target = document.querySelector(targetId);
+    if (target && lenis) {
+      lenis.scrollTo(target);
+    }
+  };
+
   return (
     <div className="h-screen">
       <section className="header grid grid-cols-1 lg:grid-cols-6 gap-4 h-full min-h-screen p-[5vw]" id="header">
@@ -82,10 +92,18 @@ export default function Header() {
               always trying to make your company's workflow much more efficient.
             </p>
             <div className="flex">
-              <Button link={true} href="" variant="primary">
+              <Button
+                link={false}
+                onClick={(e) => scrollToSection(e, "#contact")}
+                variant="primary"
+              >
                 Contact Us
               </Button>
-              <Button link={true} href="" className="ml-2">
+              <Button
+                link={false}
+                onClick={(e) => scrollToSection(e, "#projects")}
+                className="ml-2"
+              >
                 See More
               </Button>
             </div>
