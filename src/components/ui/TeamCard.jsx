@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Instagram, Youtube, Github } from "lucide-react";
 import Image from "next/image";
 
-export default function TeamCard({image, name, role, instagram, youtube, github}) {
+export default function TeamCard({image, name, role, github}) {
   return (
     <div className="bg-white p-4 w-fit mt-5">
       <Image src={`/images/team/${image}.png`} height={196} width={228} />
@@ -11,12 +11,6 @@ export default function TeamCard({image, name, role, instagram, youtube, github}
         {role}
       </p>
       <div className="flex gap-2 mt-2">
-        <Link href={`https://www.instagram.com/${instagram}`}>
-          <Instagram size={24} className="text-black" />
-        </Link>
-        <Link href={`https://www.youtube.com/${youtube}`}>
-          <Youtube size={24} className="text-black" />
-        </Link>
         <Link href={`https://github.com/${github}`}>
           <Github size={24} className="text-black" />
         </Link>

@@ -41,9 +41,7 @@ export default function Team() {
                 Damián Panes - CEO
               </p>
               <p className="text-md text-gray-700mt-2 font-inter-regular text-left mb-8">
-                Me apasiona liderar proyectos y desarrollar soluciones
-                innovadoras y personalizadas que impulsen el crecimiento de tu
-                empresa.
+              I am passionate about leading projects and developing innovative and customized solutions that drive your company's growth.
               </p>
             </div>
             <div className="p-4 -mt-8">
@@ -101,9 +99,7 @@ export default function Team() {
                 Jesús Rojas - CTO
               </p>
               <p className="text-md text-gray-700mt-2 font-inter-regular text-left mb-8">
-                Me apasiona liderar proyectos y desarrollar soluciones
-                innovadoras y personalizadas que impulsen el crecimiento de tu
-                empresa.
+                I am passionate about creating robust and scalable technology solutions, and leading development teams that turn ideas into high-impact digital products.
               </p>
             </div>
             <div className="p-4 -mt-8">
@@ -117,12 +113,6 @@ export default function Team() {
                     Social Networks
                   </p>
                   <div className="flex gap-2 mt-2">
-                    <Link href={"https://www.instagram.com/damian.panes/"}>
-                      <Instagram size={24} className="text-black" />
-                    </Link>
-                    <Link href={"https://www.youtube.com/@damianpanes"}>
-                      <Youtube size={24} className="text-black" />
-                    </Link>
                     <Link href={"https://github.com/damkandev"}>
                       <Github size={24} className="text-black" />
                     </Link>
@@ -134,12 +124,12 @@ export default function Team() {
         </div>
         <div>
           <div className="teamcards grid grid-cols-2 lg:grid-cols-3 mt-6 gap-2 justify-center">
-            <TeamCard image="marilyncelis" name="Marilyn Celis" role="Backend" instagram="damian.panes" youtube="damianpanes" github="damkandev" />
-            <TeamCard image="josuepalma" name="Josué Palma" role="Frontend" instagram="damian.panes" youtube="damianpanes" github="damkandev" />
-            <TeamCard image="ivanbelasich" name="Ivan Belasich" role="Frontend" instagram="damian.panes" youtube="damianpanes" github="damkandev" />
-            <TeamCard image="agustinaltamirano" name="Agustin Altamirano" role="Backend" instagram="damian.panes" youtube="damianpanes" github="damkandev" />
-            <TeamCard image="felipefigueroa" name="Felipe Figueroa" role="Backend" instagram="damian.panes" youtube="damianpanes" github="damkandev" />
-            <TeamCard image="kevinbriceño" name="Kevin Briceño" role="Backend" instagram="damian.panes" youtube="damianpanes" github="damkandev" />
+            <TeamCard image="marilyncelis" name="Marilyn Celis" role="Backend" github="marilyngc" />
+            <TeamCard image="josuepalma" name="Josué Palma" role="Frontend" github="JosueP0721" />
+            <TeamCard image="ivanbelasich" name="Ivan Belasich" role="Frontend" github="damkandev" />
+            <TeamCard image="agustinaltamirano" name="Agustin Altamirano" role="Backend" github="godtop" />
+            <TeamCard image="felipefigueroa" name="Felipe Figueroa" role="Backend" github="fqkeeh" />
+            <TeamCard image="kevinbriceño" name="Kevin Briceño" role="Backend" instagram="damian.panes" youtube="damianpanes" github="Kevin-BQ" />
           </div>
         </div>
       </div>

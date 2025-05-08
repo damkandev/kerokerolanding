@@ -19,7 +19,7 @@ export default function Services() {
             <h2 className="text-3xl lg:text-4xl font-clash-display-bold text-[#9BFFB1]">
               What we offer
             </h2>
-            <Button link={true} href="" variant="primary">
+            <Button link={true} href="#contact" variant="primary">
               Contact Us
             </Button>
           </div>

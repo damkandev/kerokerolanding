@@ -63,7 +63,7 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 lg:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-6">
               <div className="bg-[#030B07] p-4 lg:p-12 rounded-xl text-white border border-[#00FF90] flex flex-col items-center justify-center gap-4 shadow-[0px_4px_34.3px_0px_rgba(0,255,144,0.33)]">
                 <div className="flex items-center">
                   <Image
@@ -80,14 +80,14 @@ export default function Portfolio() {
                     alt="logo de KeroKero"
                   />
                 </div>
-                <p className="text-center font-clash-display-regular">Alianza con <span className=" font-clash-display-semibold">KitsuLabs</span></p>
+                <p className="text-center font-clash-display-regular">Alliance with <span className=" font-clash-display-semibold">KitsuLabs</span></p>
               </div>
-              <div className="bg-[#0D0D0D] p-1 lg:p-12 rounded-xl text-white border border-[#FF0051] flex flex-col items-center justify-center gap-4 shadow-[0px_4px_34.3px_0px_rgba(255,0,81,0.33)]">
+              <div className="bg-[#0D0D0D] p-4 lg:p-12 rounded-xl text-white border border-[#FF0051] flex flex-col items-center justify-center gap-4 shadow-[0px_4px_34.3px_0px_rgba(255,0,81,0.33)]">
                 <div className="flex items-center">
                   <Image
                     src="/logos/mts.svg"
-                    width={60}
-                    height={60}
+                    width={70}
+                    height={70}
                     alt="logo de MTS"
                   />
                   <p className="font-inter-regular text-4xl mx-2">+</p>
@@ -98,7 +98,7 @@ export default function Portfolio() {
                     alt="logo de KeroKero"
                   />
                 </div>
-                <p className="text-center font-clash-display-regular">Alianza con <span className=" font-clash-display-semibold">MTS</span></p>
+                <p className="text-center font-clash-display-regular">Alliance with <span className=" font-clash-display-semibold">MTS</span></p>
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <div className="bg-[#FFF8F3] p-6 rounded-xl h-[45vh] lg:h-[40vh] text-black flex flex-col justify-between">
+            <div className="bg-[#FFF8F3] p-6 rounded-xl h-[50vh] lg:h-[40vh] text-black flex flex-col justify-between">
               <div>
                 <Image
                   src="/logos/granmenu.svg"
