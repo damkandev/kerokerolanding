@@ -12,11 +12,7 @@ export default function Team() {
           THE <span className="text-[#FF6320]">CREW</span>
         </p>
         <p className="font-inter-regular text-[#D3FFDD] max-w-[100vw] pb-10 lg:pb-0 lg:max-w-[20vw] text-justify">
-          Imagine you are assembling an elite team to carry out a flawless
-          heist, but instead of a bank, the goal is the success of your project.
-          Here, there is no margin for error: we provide you with the best
-          programmers, because in our team, every developer is a highly trained
-          expert.
+          Imagine que está reuniendo a un equipo de élite para llevar a cabo un atraco impecable, pero en lugar de un banco, el objetivo es el éxito de su proyecto.
         </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -42,7 +38,7 @@ export default function Team() {
                 Damián Panes - CEO
               </p>
               <p className="text-md text-gray-700mt-2 font-inter-regular text-left mb-8">
-              I am passionate about leading projects and developing innovative and customized solutions that drive your company's growth.
+                Me apasiona liderar proyectos y desarrollar soluciones innovadoras y personalizadas que impulsen el crecimiento de su empresa.
               </p>
             </div>
             <div className="p-4 -mt-8">
@@ -50,7 +46,7 @@ export default function Team() {
                 <div className="bg-[#FFD667] w-full flex flex-col h-[12vh] items-center -mt-4 -rotate-4 mb-4">
                   <span className="flex w-full h-[3vh] bg-[#E0BD5C] "></span>
                   <p className="text-black font-medium mt-2 font-patrick-hand-regular text-2xl ">
-                    Social Networks
+                    Redes Sociales
                   </p>
                   <div className="flex gap-2 mt-2">
                     <Link href={"https://www.instagram.com/damian.panes/"}>
@@ -67,7 +63,7 @@ export default function Team() {
                 <div className="bg-[#F2B9FE] flex flex-col h-[12vh] rotate-2 items-center -mt-10 w-full ">
                   <span className="flex w-full h-[3vh] bg-[#D397DF] "></span>
                   <p className="text-black font-medium mt-2 font-patrick-hand-regular text-2xl ">
-                    The Portfolio
+                    El Portfolio
                   </p>
                   <Link href={"https://damianpan.es"}>
                     <Image
@@ -102,7 +98,7 @@ export default function Team() {
                 Jesús Rojas - CTO
               </p>
               <p className="text-md text-gray-700mt-2 font-inter-regular text-left mb-8">
-                I am passionate about creating robust and scalable technology solutions, and leading development teams that turn ideas into high-impact digital products.
+                Me apasiona crear soluciones tecnológicas sólidas y escalables, y dirigir equipos de desarrollo que conviertan las ideas en productos digitales de gran impacto.
               </p>
             </div>
             <div className="p-4 -mt-8">
@@ -113,7 +109,7 @@ export default function Team() {
                 <div className="bg-[#FFD667] w-full flex flex-col h-[12vh] items-center -mt-6 rotate-4 mb-4">
                   <span className="flex w-full h-[3vh] bg-[#E0BD5C] "></span>
                   <p className="text-black font-medium mt-2 font-patrick-hand-regular text-2xl ">
-                    Social Networks
+                    Redes Sociales
                   </p>
                   <div className="flex gap-2 mt-2">
                     <Link href={"https://github.com/damkandev"}>

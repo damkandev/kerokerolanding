@@ -17,10 +17,7 @@ export default function Portfolio() {
             </p>
           </div>
           <p className="font-inter-regular text-[#D3FFDD] lg:max-w-[20vw] pb-10 lg:pb-0">
-            We have worked on a variety of projects and take pride in every
-            solution we have developed. We believe in close collaboration with
-            our customers, understanding their needs and turning them into
-            innovative and functional products.
+            Hemos trabajado en una gran variedad de proyectos y estamos orgullosos de todas las soluciones que hemos desarrollado. Creemos en la estrecha colaboración con nuestros clientes.
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
@@ -38,18 +35,14 @@ export default function Portfolio() {
                 </p>
               </div>
               <p className="font-inter-regular text-[#D3FFDD] mt-4">
-                We designed and developed the base infrastructure of a CRM fully
-                adapted to the specific needs of our clients.
+                Diseñamos y desarrollamos la infraestructura base de un CRM totalmente adaptado.
               </p>
               <p className="font-inter-regular text-[#D3FFDD] mt-4">
-                Subsequently, this platform served as a starting point for the
-                creation of a CRM powered by artificial intelligence, developed
-                in strategic alliance with MTS for the company BDK, among other
-                companies that have relied on our technology.
+                Posteriormente, esta plataforma sirvió como punto de partida para la creación de un CRM potenciado por inteligencia artificial, desarrollado en alianza estratégica con MTS para la empresa BDK, entre otras empresas que han confiado en nuestra tecnología.
               </p>
 
               <Button variant="primary" className="mt-4">
-                View Website
+                Ver sitio web
               </Button>
 
               <div className="absolute bottom-0 right-0 overflow-hidden rounded-br-xl">
@@ -80,7 +73,7 @@ export default function Portfolio() {
                     alt="logo de KeroKero"
                   />
                 </div>
-                <p className="text-center font-clash-display-regular">Alliance with <span className=" font-clash-display-semibold">KitsuLabs</span></p>
+                <p className="text-center font-clash-display-regular">Alianza con <span className=" font-clash-display-semibold">KitsuLabs</span></p>
               </div>
               <div className="bg-[#0D0D0D] p-4 lg:p-12 rounded-xl text-white border border-[#FF0051] flex flex-col items-center justify-center gap-4 shadow-[0px_4px_34.3px_0px_rgba(255,0,81,0.33)]">
                 <div className="flex items-center">
@@ -98,7 +91,7 @@ export default function Portfolio() {
                     alt="logo de KeroKero"
                   />
                 </div>
-                <p className="text-center font-clash-display-regular">Alliance with <span className=" font-clash-display-semibold">MTS</span></p>
+                <p className="text-center font-clash-display-regular">Alianza con <span className=" font-clash-display-semibold">MTS</span></p>
               </div>
             </div>
           </div>
@@ -110,17 +103,13 @@ export default function Portfolio() {
                   My Crypto Essence
                 </p>
                 <p className="font-inter-regular mt-4">
-                  We were in charge of the complete development of the dashboard
-                  and landing page for our client My Crypto Essence, creating an
-                  intuitive and functional digital experience.
+                  Nos encargamos del desarrollo completo del dashboard y landing page para nuestro cliente My Crypto Essence, creando una experiencia digital intuitiva y funcional.
                 </p>
                 <p className="font-inter-regular mt-4">
-                  We also managed the logistics of perfume shipping, optimizing
-                  processes to ensure an efficient and reliable shopping
-                  experience.
+                  También gestionamos la logística del envío de perfumes, optimizando los procesos para garantizar una experiencia de compra eficaz y fiable.
                 </p>
                 <Button variant="primary" className="mt-4">
-                  View Website
+                  Ver sitio web
                 </Button>
                 <div className="absolute bottom-0 right-0 overflow-hidden rounded-br-xl">
                   <div className="border-l border-t rounded-lg border-white/20">
@@ -149,13 +138,9 @@ export default function Portfolio() {
               <div>
                 <p className="font-gasoek-one text-[#44372E] text-4xl">Gran Menú</p>
                 <p className="font-inter-regular text-[#44372E] my-4">
-                  We are in charge of the integral development of the startup Gran
-                  Menú, including the web application, the mobile application and
-                  the web landing page. In addition, we managed all the creative
-                  and design aspects, ensuring a coherent and attractive visual
-                  identity.
+                  Nos encargamos del desarrollo integral de la startup Gran Menú, incluyendo la aplicación web, la aplicación móvil y la landing page web. Además, gestionamos todos los aspectos creativos y de diseño, asegurando una identidad visual coherente y atractiva.
                 </p>
-                <Button variant="gran menu">View Website</Button>
+                <Button variant="gran menu">Ver sitio web</Button>
               </div>
             </div>
           </div>

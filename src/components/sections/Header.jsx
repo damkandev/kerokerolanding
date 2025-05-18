@@ -85,11 +85,10 @@ export default function Header() {
           </div>
           <div className="flex flex-col gap-4">
             <h1 className="font-clash-display-bold text-[#9BFFB1] text-5xl">
-              Whatever you need, we do it.
+              Lo que necesites, lo hacemos.
             </h1>
             <p className="font-inter-regular text-[#D3FFDD] max-w-[80vw] lg:max-w-[37vw] text-lg">
-              We have been developing software tailored to your needs for years,
-              always trying to make your company's workflow much more efficient.
+              Llevamos años desarrollando software a la medida de sus necesidades, siempre intentando que el flujo de trabajo de tu empresa sea mucho más eficiente.
             </p>
             <div className="flex">
               <Button
@@ -97,14 +96,14 @@ export default function Header() {
                 onClick={(e) => scrollToSection(e, "#contact")}
                 variant="primary"
               >
-                Contact Us
+                Contactanos
               </Button>
               <Button
                 link={false}
                 onClick={(e) => scrollToSection(e, "#projects")}
                 className="ml-2"
               >
-                See More
+                Ver más
               </Button>
             </div>
           </div>

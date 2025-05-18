@@ -23,14 +23,14 @@ export default function Contact() {
       </div>
       <div className="text-[#D3FFDD]/60 flex flex-col justify-center p-12 max-w-[100vw]  lg:max-w-[40vw]">
         <p className="font-clash-display-bold text-4xl text-[#9BFFB1]">
-          Contact Us
+          Contactanos
         </p>
         <p className="font-inter-regular text-lg max-w-[100vw] lg:max-w-[20vw]">
-          We are waiting for you, so do not hesitate and fill out this form.
+          Estamos esperandote, así que no dudes en llenar este formulario.
         </p>
         <form className="flex flex-col gap-4 mt-4">
           <label htmlFor="name" className="text-[#D3FFDD]">
-            First and last name
+            Primer y segundo nombre
           </label>
           <input
             type="text"
@@ -39,7 +39,7 @@ export default function Contact() {
             className="border focus:outline-none placeholder:text-[#9BFFB1]/40 text-[#9BFFB1] font-inter-regular border-[#9BFFB1]/40 rounded-md p-2"
           />
           <label htmlFor="pet" className="text-[#D3FFDD]">
-            What do you prefer?
+            ¿Que prefieres?
           </label>
           <select
             name="pet"
@@ -47,10 +47,10 @@ export default function Contact() {
             defaultValue={""}
             className="p-2 border border-[#9BFFB1]/40 rounded-md bg-[#030B07] focus:outline-none"
           >
-            <option value="">Choose an option</option>
-            <option value="Cat">🐈 Cat</option>
-            <option value="Dog">🐕 Dog</option>
-            <option value="Helicopter">🚁 Helicopter</option>
+            <option value="">Elige una opción:</option>
+            <option value="Cat">🐈 Gato</option>
+            <option value="Dog">🐕 Perro</option>
+            <option value="Helicopter">🚁 Helicoptero</option>
           </select>
           <label htmlFor="" className="text-[#D3FFDD]">
             Email
@@ -66,18 +66,17 @@ export default function Contact() {
           />
           {!isEmailValid && (
             <p className="font-inter-regular text-sm max-w-[20vw] text-red-500 flex">
-              <CircleAlert className="mr-2" size={20} /> Enter a valid email
-              address
+              <CircleAlert className="mr-2" size={20} /> Introduce un correo valido
             </p>
           )}
           <label htmlFor="" className="text-[#D3FFDD]">
-            Message
+            Mensaje
           </label>
           <textarea
-            placeholder="I would like to order a project and will pay $3M for it. 🥸"
+            placeholder="Quiero ordenar un proyecto, pagare 3 millones de dolares por el. 🥸"
             className="border focus:outline-none placeholder:text-[#9BFFB1]/40 text-[#9BFFB1] font-inter-regular border-[#9BFFB1]/40 rounded-md p-2 max-h-20"
           ></textarea>
-          <Button variant="primary" className="mt-4">Send</Button>
+          <Button variant="primary" className="mt-4">Enviar</Button>
         </form>
       </div>
     </div>
