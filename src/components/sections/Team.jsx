@@ -36,6 +36,7 @@ export default function Team() {
                 src="/images/damian.png"
                 width={342}
                 height={295}
+                alt="Damian Panes"
               />
               <p className="text-2xl font-bold text-left mt-4 font-special-elite-regular">
                 Damián Panes - CEO
@@ -73,6 +74,7 @@ export default function Team() {
                       height={39}
                       width={139}
                       src={"/images/damianpanes.svg"}
+                      alt="Damian Panes Portfolio"
                     />
                   </Link>
                 </div>
@@ -94,6 +96,7 @@ export default function Team() {
                 src="/images/jesus.png"
                 width={342}
                 height={295}
+                alt="Jesús Rojas"
               />
               <p className="text-2xl font-bold text-left mt-4 font-special-elite-regular">
                 Jesús Rojas - CTO
@@ -105,7 +108,7 @@ export default function Team() {
             <div className="p-4 -mt-8">
               <div className=" flex gap-2 w-full ">
                 <div className=" w-full flex flex-col h-[12vh] items-center -mt-6 -rotate-4 mb-4">
-                  <Image src={"/images/lineas.svg"} width={153} height={25} />
+                  <Image src={"/images/lineas.svg"} width={153} height={25} alt="lineas" />
                 </div>
                 <div className="bg-[#FFD667] w-full flex flex-col h-[12vh] items-center -mt-6 rotate-4 mb-4">
                   <span className="flex w-full h-[3vh] bg-[#E0BD5C] "></span>
