@@ -2,6 +2,11 @@ import { icons } from "lucide-react";
 import "./globals.css";
 import Notch from "@/components/layout/Notch";
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export const metadata = {
   title: "KeroKero - Desarrollo de Software Personalizado",
   icons: [
@@ -55,10 +60,6 @@ export const metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
   },
 };
 
