@@ -125,7 +125,7 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <div className="bg-[#FFF8F3] p-6 rounded-xl h-[50vh] lg:h-[40vh] text-black flex flex-col justify-between">
+            <div className="bg-[#FFF8F3] p-6 rounded-xl h-[50vh] md:h-[45vh] lg:h-[43vh] xl:h-[40.5vh] text-black flex flex-col justify-between">
               <div>
                 <Image
                   src="/logos/granmenu.svg"
