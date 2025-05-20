@@ -77,7 +77,7 @@ export default function Services() {
             </header>
             <div className="cards grid grid-cols-1 lg:grid-cols-4 gap-4 flex-grow w-full mt-12" role="list">
               <article className="bg-[#030B07]/99 backdrop-blur-sm border border-[#9BFFB1] rounded-[15px] p-6 flex flex-col justify-end h-[60vh]" role="listitem">
-                <h3 className="text-[#9BFFB1] text-3xl font-clash-display-bold text-left w-full">
+                <h3 className="text-[#9BFFB1] text-2xl xl:text-3xl font-clash-display-bold text-left w-full">
                   Software a Medida
                 </h3>
                 <p className="text-[#D3FFDD] font-inter-regular">
@@ -85,7 +85,7 @@ export default function Services() {
                 </p>
               </article>
               <article className="bg-[#030B07]/99 backdrop-blur-sm border border-[#9BFFB1] rounded-[15px] p-6 flex flex-col justify-end h-[60vh]" role="listitem">
-                <h3 className="text-[#9BFFB1] text-3xl font-clash-display-bold text-left w-full">
+                <h3 className="text-[#9BFFB1] text-2xl xl:text-3xl font-clash-display-bold text-left w-full">
                   Aplicaciones Web
                 </h3>
                 <p className="text-[#D3FFDD] font-inter-regular">
@@ -93,7 +93,7 @@ export default function Services() {
                 </p>
               </article>
               <article className="bg-[#030B07]/99 backdrop-blur-sm border border-[#9BFFB1] rounded-[15px] p-6 flex flex-col justify-end h-[60vh]" role="listitem">
-                <h3 className="text-[#9BFFB1] text-3xl font-clash-display-bold text-left w-full">
+                <h3 className="text-[#9BFFB1] text-2xl xl:text-3xl font-clash-display-bold text-left w-full">
                   E-commerce
                 </h3>
                 <p className="text-[#D3FFDD] font-inter-regular">
@@ -101,7 +101,7 @@ export default function Services() {
                 </p>
               </article>
               <article className="bg-[#030B07]/99 backdrop-blur-sm border border-[#9BFFB1] rounded-[15px] p-6 flex flex-col justify-end h-[60vh]" role="listitem">
-                <h3 className="text-[#9BFFB1] text-3xl font-clash-display-bold text-left w-full">
+                <h3 className="text-[#9BFFB1] text-2xl xl:text-3xl font-clash-display-bold text-left w-full">
                   Automatización con IA
                 </h3>
                 <p className="text-[#D3FFDD] font-inter-regular">

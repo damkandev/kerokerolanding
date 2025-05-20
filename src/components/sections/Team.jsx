@@ -15,7 +15,7 @@ export default function Team() {
           Imagine que está reuniendo a un equipo de élite para llevar a cabo un atraco impecable, pero en lugar de un banco, el objetivo es el éxito de su proyecto.
         </p>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div className="flex flex-col lg:flex-row items-center gap-8 text-white">
           <div className="max-w-sm">
             <div className=" flex flex-col items-center -mb-5 rotate-2">
@@ -126,9 +126,9 @@ export default function Team() {
             <TeamCard image="marilyncelis" name="Marilyn Celis" role="Backend" github="marilyngc" />
             <TeamCard image="josuepalma" name="Josué Palma" role="Frontend" github="JosueP0721" />
             <TeamCard image="ivanbelasich" name="Ivan Belasich" role="Frontend" github="damkandev" />
-            <TeamCard image="agustinaltamirano" name="Agustin Altamirano" role="Backend" github="godtop" />
             <TeamCard image="felipefigueroa" name="Felipe Figueroa" role="Backend" github="fqkeeh" />
             <TeamCard image="kevinbriceño" name="Kevin Briceño" role="Backend" instagram="damian.panes" youtube="damianpanes" github="Kevin-BQ" />
+            <TeamCard image="agustinaltamirano" name="Agustin Altamirano" role="Backend" github="godtop" />
           </div>
         </div>
       </div>

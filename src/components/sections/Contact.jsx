@@ -17,11 +17,11 @@ export default function Contact() {
     setIsEmailValid(emailRegex.test(value));
   };
   return (
-    <div className="lg:h-screen grid grid-cols-1 lg:grid-cols-2 items-center" id="contact">
+    <div className="lg:h-screen grid grid-cols-1 lg:grid-cols-2 items-center justify-center" id="contact">
       <div className="flex justify-center">
         <Image src={"/images/chat.png"} height={653} width={556} alt="chat" className="h-[60vh] w-auto"/>
       </div>
-      <div className="text-[#D3FFDD]/60 flex flex-col justify-center p-12 max-w-[100vw]  lg:max-w-[40vw]">
+      <div className="text-[#D3FFDD]/60 flex flex-col justify-center p-12 lg:max-w-[40vw]">
         <p className="font-clash-display-bold text-4xl text-[#9BFFB1]">
           Contactanos
         </p>

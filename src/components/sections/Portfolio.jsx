@@ -51,7 +51,7 @@ export default function Portfolio() {
                   alt="Captura de Themis"
                   height={440}
                   width={620}
-                  className="rounded-lg"
+                  className="rounded-lg xl:w-[500px] 2xl:w-[620px]"
                 />
               </div>
             </div>
