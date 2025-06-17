@@ -6,7 +6,7 @@ import WhatsappIcon from "../assets/icons/WhatsappIcon.png";
 import DollarIcon from "../assets/icons/DollarIcon.png";
 import DocumentIcon from "../assets/icons/DocumentIcon.png";
 import PlusIcon from "../assets/icons/PlusIcon.png";
-import StarIcon from "../assets/icons/StarIcon.png";
+import StarIcon from "../assets/icons/StarIcon.svg";
 import UnionIcon from "../assets/icons/UnionIcon.png";
 import Whatsapp2Icon from "../assets/icons/Whatsapp2Icon.png";
 import TelegramIcon from "../assets/icons/TelegramIcon.png";
@@ -27,170 +27,179 @@ import Chat4 from "../assets/icons/Chat4.png";
     Conoce cómo nuestro agente de IA puede ayudarte a automatizar tareas
     repetitivas, ahorrar tiempo y mejorar la eficiencia de tu negocio.
   </p>
-  <div
-    class="w-[346px] h-[357px] flex justify-center items-center bg-[#EDF8F6] rounded-lg border-[1px] border-[#1F714838] p-8"
-  >
-    <div class="grid grid-cols-3 gap-2">
-      <!-- Icon 1: Box -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-7xl">
+    <!-- Primer contenedor -->
+    <div class="flex flex-col">
       <div
-        class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
+        class="w-full min-h-[450px] flex justify-center items-center bg-[#EDF8F6] rounded-lg border-[1px] border-[#1F714838] p-8"
       >
-        <Image
-          src={BoxIcon}
-          alt="Módulo de Caja"
-          class="w-6 h-6 object-contain"
-        />
-      </div>
-      <!-- Icon 2: At -->
-      <div
-        class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
-      >
-        <Image
-          src={AtIcon}
-          alt="Módulo de Correo"
-          class="w-6 h-6 object-contain"
-        />
-      </div>
-      <!-- Icon 3: Whatsapp -->
-      <div
-        class="aspect-square bg-[#0C3D25] rounded-lg flex items-center justify-center p-6"
-      >
-        <Image
-          src={WhatsappIcon}
-          alt="Módulo de Whatsapp"
-          class="w-6 h-6 object-contain"
-        />
-      </div>
-      <!-- Icon 4: Dollar -->
-      <div
-        class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
-      >
-        <Image
-          src={DollarIcon}
-          alt="Módulo de Pagos"
-          class="w-6 h-6 object-contain"
-        />
-      </div>
-      <!-- Icon 5: Document -->
-      <div
-        class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
-      >
-        <Image
-          src={DocumentIcon}
-          alt="Módulo de Documentos"
-          class="w-6 h-6 object-contain"
-        />
-      </div>
-      <!-- Icon 6: Plus -->
-      <div
-        class="aspect-square rounded-lg border-2 border-dashed border-[#1F714838] flex items-center justify-center p-6"
-      >
-        <Image
-          src={PlusIcon}
-          alt="Añadir Módulo"
-          class="w-6 h-6 object-contain"
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    class="bg-[#0C3D25] px-5 py-8 grid mt-[15px] w-[346px] min-h-[121px] rounded-lg border-[1px] border-[#1F714838]"
-  >
-    <span class="text-[#DEFFC0] text-2xl">A tú medida</span>
-    <span class="text-[#D1E4DB] text-sm"
-      >Elige los módulos que más se adapten a tu negocio y tús necesidades y ve
-      armando tu sistema de IA.</span
-    >
-  </div>
-
-  <!-- Contenedor repetido vacío -->
-  <div
-    class="w-[346px] bg-[#EDF8F6] rounded-lg border-[1px] border-[#1F714838] mt-8"
-  >
-    <div>
-      <Image src={StarIcon} alt="Whatsapp" class="" />
-      <div class="mb-12 px-12">
-        <Image src={UnionIcon} alt="Union" class="mt-[-115px] px-9" />
         <div class="grid grid-cols-3 gap-2">
+          <!-- Icon 1: Box -->
           <div
             class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
           >
             <Image
-              src={Whatsapp2Icon}
+              src={BoxIcon}
+              alt="Módulo de Caja"
+              class="w-6 h-6 object-contain"
+            />
+          </div>
+          <!-- Icon 2: At -->
+          <div
+            class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
+          >
+            <Image
+              src={AtIcon}
+              alt="Módulo de Correo"
+              class="w-6 h-6 object-contain"
+            />
+          </div>
+          <!-- Icon 3: Whatsapp -->
+          <div
+            class="aspect-square bg-[#0C3D25] rounded-lg flex items-center justify-center p-6"
+          >
+            <Image
+              src={WhatsappIcon}
+              alt="Módulo de Whatsapp"
+              class="w-6 h-6 object-contain"
+            />
+          </div>
+          <!-- Icon 4: Dollar -->
+          <div
+            class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
+          >
+            <Image
+              src={DollarIcon}
+              alt="Módulo de Pagos"
+              class="w-6 h-6 object-contain"
+            />
+          </div>
+          <!-- Icon 5: Document -->
+          <div
+            class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
+          >
+            <Image
+              src={DocumentIcon}
               alt="Módulo de Documentos"
               class="w-6 h-6 object-contain"
             />
           </div>
+          <!-- Icon 6: Plus -->
           <div
-            class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
+            class="aspect-square rounded-lg border-2 border-dashed border-[#1F714838] flex items-center justify-center p-6"
           >
             <Image
-              src={TelegramIcon}
-              alt="Módulo de Documentos"
-              class="w-6 h-6 object-contain"
-            />
-          </div>
-          <div
-            class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
-          >
-            <Image
-              src={SlackIcon}
-              alt="Módulo de Documentos"
+              src={PlusIcon}
+              alt="Añadir Módulo"
               class="w-6 h-6 object-contain"
             />
           </div>
         </div>
       </div>
+      <div
+        class="bg-[#0C3D25] px-5 py-8 grid mt-[15px] w-full min-h-[121px] rounded-lg border-[1px] border-[#1F714838]"
+      >
+        <span class="text-[#DEFFC0] text-2xl">A tú medida</span>
+        <span class="text-[#D1E4DB] text-sm"
+          >Elige los módulos que más se adapten a tu negocio y tús necesidades y ve
+          armando tu sistema de IA.</span
+        >
+      </div>
+    </div>
+
+    <!-- Segundo contenedor -->
+    <div class="flex flex-col">
+      <div
+        class="w-full min-h-[450px] bg-[#EDF8F6] rounded-lg border-[1px] border-[#1F714838]"
+      >
+        <div>
+          <div class="flex justify-center mt-[-50px]">
+            <Image src={StarIcon} alt="Whatsapp" class="" />
+          </div>
+          <div class="mb-12 px-12 mt-[-115px]">
+            <Image src={UnionIcon} alt="Union" class="" />
+            <div class="grid grid-cols-3 gap-2">
+              <div
+                class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
+              >
+                <Image
+                  src={Whatsapp2Icon}
+                  alt="Módulo de Documentos"
+                  class="w-6 h-6 object-contain"
+                />
+              </div>
+              <div
+                class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
+              >
+                <Image
+                  src={TelegramIcon}
+                  alt="Módulo de Documentos"
+                  class="w-6 h-6 object-contain"
+                />
+              </div>
+              <div
+                class="aspect-square bg-white/80 rounded-lg border border-[#1F714838] flex items-center justify-center p-6"
+              >
+                <Image
+                  src={SlackIcon}
+                  alt="Módulo de Documentos"
+                  class="w-6 h-6 object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-[#0C3D25] px-5 py-8 grid mt-[15px] w-full min-h-[121px] rounded-lg border-[1px] border-[#1F714838]"
+      >
+        <span class="text-[#DEFFC0] text-2xl">Multicanal</span>
+        <span class="text-[#D1E4DB] text-sm"
+          >Usa WhatsApp, Telegram o Discord para hablar con tu asistente. Elige el
+          canal que más usas.</span
+        >
+      </div>
+    </div>
+
+    <!-- Tercer contenedor -->
+    <div class="flex flex-col">
+      <div
+        class="w-full min-h-[450px] bg-[#EDF8F6] rounded-lg border-[1px] border-[#1F714838]"
+      >
+        <div class="grid px-6 space-y-4 my-18">
+          <!-- Mensaje izquierda (Chat1) -->
+          <div class="flex justify-start">
+            <Image src={Chat1} alt="Chat 1" class="max-w-[70%] object-contain" />
+          </div>
+
+          <!-- Mensaje derecha (Chat2) -->
+          <div class="flex justify-end">
+            <Image src={Chat2} alt="Chat 2" class="max-w-[70%] object-contain" />
+          </div>
+
+          <!-- Mensaje izquierda (Chat3) -->
+          <div class="flex justify-start">
+            <Image src={Chat3} alt="Chat 3" class="max-w-[70%] object-contain" />
+          </div>
+
+          <!-- Mensaje derecha (Chat4) -->
+          <div class="flex justify-end">
+            <Image src={Chat4} alt="Chat 4" class="max-w-[70%] object-contain" />
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-[#0C3D25] px-5 py-8 grid mt-[15px] w-full min-h-[121px] rounded-lg border-[1px] border-[#1F714838]"
+      >
+        <span class="text-[#DEFFC0] text-2xl">IA entendible</span>
+        <span class="text-[#D1E4DB] text-sm"
+          >Interactúa con la IA sin comandos raros ni tecnicismos. Habla como si
+          chatearas.</span
+        >
+      </div>
     </div>
   </div>
 
-  <!-- Contenedor verde oscuro repetido (igual al original) -->
-  <div
-    class="bg-[#0C3D25] px-5 py-8 grid mt-[15px] w-[346px] min-h-[121px] rounded-lg border-[1px] border-[#1F714838]"
-  >
-    <span class="text-[#DEFFC0] text-2xl">Multicanal</span>
-    <span class="text-[#D1E4DB] text-sm"
-      >Usa WhatsApp, Telegram o Discord para hablar con tu asistente. Elige el
-      canal que más usas.</span
-    >
-  </div>
-
-  <div
-    class="w-[346px] bg-[#EDF8F6] rounded-lg border-[1px] border-[#1F714838] mt-8"
-  >
-    <div class="grid px-6 space-y-4 my-18">
-      <!-- Mensaje izquierda (Chat1) -->
-      <div class="flex justify-start">
-        <Image src={Chat1} alt="Chat 1" class="max-w-[70%] object-contain" />
-      </div>
-
-      <!-- Mensaje derecha (Chat2) -->
-      <div class="flex justify-end">
-        <Image src={Chat2} alt="Chat 2" class="max-w-[70%] object-contain" />
-      </div>
-
-      <!-- Mensaje izquierda (Chat3) -->
-      <div class="flex justify-start">
-        <Image src={Chat3} alt="Chat 3" class="max-w-[70%] object-contain" />
-      </div>
-
-      <!-- Mensaje derecha (Chat4) -->
-      <div class="flex justify-end">
-        <Image src={Chat4} alt="Chat 4" class="max-w-[70%] object-contain" />
-      </div>
-    </div>
-  </div>
-
-  <!-- Contenedor verde oscuro repetido (igual al original) -->
-  <div
-    class="bg-[#0C3D25] px-5 py-8 grid mx-auto w-[346px] min-h-[121px] rounded-lg border-[1px] border-[#1F714838] mt-4"
-  >
-    <span class="text-[#DEFFC0] text-2xl">IA entendible</span>
-    <span class="text-[#D1E4DB] text-sm"
-      >Interactúa con la IA sin comandos raros ni tecnicismos. Habla como si
-      chatearas.</span
-    >
-  </div>
   <div class="flex lg:flex-row gap-4 mt-12">
     <a
       href="#"
