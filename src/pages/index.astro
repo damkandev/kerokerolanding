@@ -4,10 +4,12 @@ import Hero from "../components/Hero.astro";
 import Soluciones from "../components/Soluciones.astro";
 import Portafolio from "../components/Portafolio.astro";
 import Caracteristicas from "../components/Caracteristicas.astro";
+import Navbar from "../components/Navbar.jsx";
 import "../styles/global.css";
 ---
 
 <Layout>
+  <Navbar client:load/>
   <Hero />
   <Caracteristicas />
   <Soluciones />
