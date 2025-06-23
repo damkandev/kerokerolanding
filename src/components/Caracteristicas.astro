@@ -13,8 +13,6 @@ import TelegramIcon from "../assets/icons/TelegramIcon.png";
 import SlackIcon from "../assets/icons/SlackIcon.png";
 import Chat1 from "../assets/icons/Chat1.png";
 import Chat2 from "../assets/icons/Chat2.png";
-import Chat3 from "../assets/icons/Chat3.png";
-import Chat4 from "../assets/icons/Chat4.png";
 ---
 
 <section class="w-full py-16 px-4 flex flex-col items-center">
@@ -164,43 +162,63 @@ import Chat4 from "../assets/icons/Chat4.png";
     <!-- Tercer contenedor -->
     <div class="flex flex-col">
       <div
-        class="w-full min-h-[450px] bg-[#EDF8F6] rounded-lg border-[1px] border-[#1F714838]"
+        class="w-full min-h-[450px] bg-[#EDF8F6] rounded-lg border-[1px] border-[#1F714838] p-6"
       >
-        <div class="grid px-6 space-y-4 my-18">
-          <!-- Mensaje izquierda (Chat1) -->
+        <div class="space-y-4 h-full flex flex-col justify-center">
+          <!-- Mensaje del usuario -->
           <div class="flex justify-start">
-            <Image
-              src={Chat1}
-              alt="Chat 1"
-              class="max-w-[70%] object-contain"
-            />
+            <div class="relative max-w-[80%]">
+              <Image
+                src={Chat1}
+                alt="Chat usuario"
+                class="w-full object-contain"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <p class="eb-garamond font-medium text-sm leading-[84%] tracking-[-0.04em] text-[#0C3D25]">¿Puedes hacer un contrato? porfa 😭</p>
+              </div>
+            </div>
           </div>
 
-          <!-- Mensaje derecha (Chat2) -->
+          <!-- Mensaje de la IA -->
           <div class="flex justify-end">
-            <Image
-              src={Chat2}
-              alt="Chat 2"
-              class="max-w-[70%] object-contain"
-            />
+            <div class="relative max-w-[80%]">
+              <Image
+                src={Chat2}
+                alt="Chat IA"
+                class="w-full object-contain"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <p class="eb-garamond font-medium text-sm leading-[84%] tracking-[-0.04em] text-[#DEFFC0]">¡Claro que sí! ahora lo hago...</p>
+              </div>
+            </div>
           </div>
 
-          <!-- Mensaje izquierda (Chat3) -->
+          <!-- Mensaje del usuario -->
           <div class="flex justify-start">
-            <Image
-              src={Chat3}
-              alt="Chat 3"
-              class="max-w-[70%] object-contain"
-            />
+            <div class="relative max-w-[80%]">
+              <Image
+                src={Chat1}
+                alt="Chat usuario"
+                class="w-full object-contain"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <p class="eb-garamond font-medium text-sm leading-[84%] tracking-[-0.04em] text-[#0C3D25]">Enviaselo a Ivan, a su correo de empresa.</p>
+              </div>
+            </div>
           </div>
 
-          <!-- Mensaje derecha (Chat4) -->
+          <!-- Mensaje de la IA -->
           <div class="flex justify-end">
-            <Image
-              src={Chat4}
-              alt="Chat 4"
-              class="max-w-[70%] object-contain"
-            />
+            <div class="relative max-w-[80%]">
+              <Image
+                src={Chat2}
+                alt="Chat IA"
+                class="w-full object-contain"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <p class="eb-garamond font-medium text-sm leading-[84%] tracking-[-0.04em] text-[#DEFFC0]">¡Listo! En seguida lo hago.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
