@@ -128,19 +128,15 @@ export default function Navbar() {
         >
           {/* Logo */}
           <a href="/" className="text-green-800 font-extrabold italic">
-            <img src="../../public/K_logo.svg" alt="Logo" className="w-8 h-8" />
+            <img src="/K_logo.svg" alt="Logo" className="w-8 h-8" />
           </a>
 
           {/* Desktop nav */}
 
           <div className="hidden md:flex space-x-6 text-m text-gray-600 items-center">
-            <DropdownMenu
-              title="Soluciones"
-              options={[
-                { label: "Opción 1", href: "#opcion1" },
-                { label: "Opción 2", href: "#opcion2" },
-              ]}
-            />
+            <a href="#soluciones" className="hover:text-green-800">
+              Soluciones
+            </a>
 
             <a href="#clientes" className="hover:text-green-800">
               Clientes{" "}
@@ -167,13 +163,9 @@ export default function Navbar() {
         {/* Mobile nav */}
         <SlideDown isOpen={mobileMenuOpen}>
           <div className="md:hidden mt-0 bg-white border-x border-b border-green-100 rounded-b-lg shadow-sm px-2 py-4 space-y-3 text-sm text-gray-600">
-            <DropdownMenu
-              title="Soluciones"
-              options={[
-                { label: "Opción 1", href: "#opcion1" },
-                { label: "Opción 2", href: "#opcion2" },
-              ]}
-            />
+            <a href="#soluciones" className="block hover:text-green-800 px-4">
+              Soluciones
+            </a>
             <a href="#clientes" className="block hover:text-green-800 px-4">
               Clientes
             </a>
