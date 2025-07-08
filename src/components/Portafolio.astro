@@ -1,0 +1,111 @@
+---
+import "../styles/global.css";
+// Puedes editar los proyectos fácilmente cambiando este array
+const proyectos = [
+  {
+    img: '',
+    nombre: 'Landing Page para Startup',
+    desc: 'Desarrollamos una landing page moderna y responsiva para una startup tecnológica, enfocada en la captación de leads y optimizada para SEO.'
+  },
+  {
+    img: '',
+    nombre: 'E-commerce Personalizado',
+    desc: 'Creamos una tienda online con integración de pagos y panel de administración, adaptada a las necesidades del cliente y fácil de escalar.'
+  },
+  {
+    img: '',
+    nombre: 'Web Corporativa',
+    desc: 'Diseñamos y programamos la web institucional de una empresa, con secciones dinámicas y formulario de contacto automatizado.'
+  }
+];
+
+let indice = 0;
+let proyecto = proyectos[indice];
+
+function mostrarProyecto(nuevoIndice: number) {
+  if (nuevoIndice >= 0 && nuevoIndice < proyectos.length) {
+    indice = nuevoIndice;
+    proyecto = proyectos[indice];
+  }
+}
+
+function verMas() {
+  alert(`Detalles de: ${proyecto.nombre}`);
+}
+---
+<section class="w-full py-16 px-4 flex flex-col items-center">
+  <h2 class="text-[#1F7148] text-3xl md:text-4xl font-serif font-medium mb-2 text-center">Nuestro Portfolio</h2>
+  <p class="text-gray-700 text-center max-w-2xl mb-8 text-sm">
+    Aquí te mostramos algunos de los trabajos que hemos realizado para empresas que, como la tuya, buscan soluciones efectivas.
+  </p>
+  <div class="w-full max-w-6xl overflow-hidden flex flex-col">
+    <div class="w-full rounded-lg h-64 md:h-96 bg-[repeating-linear-gradient(135deg,#f3f3f3_0_40px,#e9e9e9_40px_80px)] flex items-center justify-center">
+      <div class="object-contain h-full max-h-80 max-w-full flex items-center justify-center text-gray-400 text-4xl">
+        (Sin imagen)
+      </div>
+    </div>
+    <div class="py-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <div>
+        <h3 id="portfolio-nombre" class="text-[#1F7148] font-serif text-xl mb-2">Landing Page para Startup</h3>
+        <p id="portfolio-desc" class="text-gray-700 text-sm max-w-xl">Desarrollamos una landing page moderna y responsiva para una startup tecnológica, enfocada en la captación de leads y optimizada para SEO.</p>
+      </div>
+      <div class="flex gap-2 mt-4 md:mt-0">
+        <button id="portfolio-vermas" class="px-5 py-2 rounded-[7.438px] border-[0.826px] border-[#9BFFB1] bg-gradient-to-b from-[#1F7148] to-[#0A3E24] shadow-[inset_0px_-5px_2.2px_0px_rgba(0,0,0,0.25)] text-white transition hover:brightness-110">Ver más</button>
+        <button id="portfolio-anterior" class="bg-gray-100 text-gray-400 px-4 py-2 rounded text-sm transition disabled:cursor-not-allowed">Anterior</button>
+        <button id="portfolio-siguiente" class="bg-green-50 border border-[#B9EEC7] text-[#1F7148] px-4 py-2 rounded text-sm hover:bg-green-100 transition">Siguiente</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+const proyectos = [
+  {
+    nombre: 'Landing Page para Startup',
+    desc: 'Desarrollamos una landing page moderna y responsiva para una startup tecnológica, enfocada en la captación de leads y optimizada para SEO.'
+  },
+  {
+    nombre: 'E-commerce Personalizado',
+    desc: 'Creamos una tienda online con integración de pagos y panel de administración, adaptada a las necesidades del cliente y fácil de escalar.'
+  },
+  {
+    nombre: 'Web Corporativa',
+    desc: 'Diseñamos y programamos la web institucional de una empresa, con secciones dinámicas y formulario de contacto automatizado.'
+  }
+];
+let indice = 0;
+
+const nombreEl = document.getElementById('portfolio-nombre');
+const descEl = document.getElementById('portfolio-desc');
+const btnAnterior = document.getElementById('portfolio-anterior');
+const btnSiguiente = document.getElementById('portfolio-siguiente');
+const btnVerMas = document.getElementById('portfolio-vermas');
+
+function actualizarProyecto(nuevoIndice) {
+  if (nuevoIndice < 0 || nuevoIndice >= proyectos.length || nuevoIndice === indice) return;
+  // animación suave
+  nombreEl.style.opacity = 0;
+  descEl.style.opacity = 0;
+  setTimeout(() => {
+    indice = nuevoIndice;
+    nombreEl.textContent = proyectos[indice].nombre;
+    descEl.textContent = proyectos[indice].desc;
+    nombreEl.style.opacity = 1;
+    descEl.style.opacity = 1;
+    btnAnterior.disabled = indice === 0;
+    btnSiguiente.disabled = indice === proyectos.length - 1;
+    btnAnterior.classList.toggle('text-gray-400', indice === 0);
+    btnSiguiente.classList.toggle('text-gray-400', indice === proyectos.length - 1);
+  }, 200);
+}
+
+nombreEl.style.transition = 'opacity 0.3s';
+descEl.style.transition = 'opacity 0.3s';
+
+btnAnterior.addEventListener('click', () => actualizarProyecto(indice - 1));
+btnSiguiente.addEventListener('click', () => actualizarProyecto(indice + 1));
+btnAnterior.disabled = true;
+btnVerMas.addEventListener('click', () => {
+  alert('Detalles de: ' + proyectos[indice].nombre);
+});
+</script>
