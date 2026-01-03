@@ -1,0 +1,14 @@
+.scrambled-text {
+    display: inline;
+}
+
+.char {
+    will-change: transform;
+    display: inline-block;
+    white-space: pre-wrap;
+}
+
+.char.highlight {
+    color: var(--accent);
+    font-weight: 700;
+}

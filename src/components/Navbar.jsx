@@ -1,183 +1,212 @@
-import "../styles/MenuHamburger.css";
-import { useRef, useState, useEffect } from "react";
+'use client';
 
-const Hamburger = () => {
-  const [isOpen, setIsOpen] = useState(false);
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  const toggleIcon = () => {
-    setIsOpen(!isOpen);
-  };
+gsap.registerPlugin(ScrollTrigger);
 
-  return (
-    <div
-      id="nav-icon4"
-      className={`nav-icon ${isOpen ? "open" : ""}`}
-      onClick={toggleIcon}
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  );
-};
-const DropdownMenu = ({ title = "Products", options = [] }) => {
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
- 
+const Navbar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef(null);
+    const linksRef = useRef([]);
+    const navContainerRef = useRef(null);
+    const dropdownRef = useRef(null);
+    const pathname = usePathname();
 
-  // Cerrar el dropdown al hacer clic fuera
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    // Scroll animation for navbar width
+    useEffect(() => {
+        if (!navContainerRef.current || !dropdownRef.current) return;
 
-  return (
-    <div className="relative inline-block text-left " ref={dropdownRef}>
-      <button
-        id="dropdown-nav"
-        type="button"
-        className={`flex items-center gap-1 px-4 py-2 rounded hover:bg-gray-100 focus:outline-none transition-colors ${
-          open ? "bg-green-50 text-green-700" : "text-gray-700"
-        }`}
-        aria-haspopup="menu"
-        aria-expanded={open}
-        onClick={() => {
-   
-          setOpen(!open);
-        }}
-      >
-        {title}
-        <svg
-          className={`w-4 h-4 transition-transform duration-300 ${
-            open ? "rotate-180" : ""
-          }`}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M6 9l6 6 6-6" />
-        </svg>
-      </button>
+        let lastScrollY = 0;
+        let isScrollingDown = false;
+        let ticking = false;
 
-      <ul
-        className={`absolute z-10 mt-2 w-48 bg-white  rounded-md shadow-md transform transition-all duration-300 origin-top opacity-0 scale-95 ${
-          open ? "opacity-100 scale-100" : "pointer-events-none"
-        }`}
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="dropdown-nav"
-      >
-        {options.map(({ label, href }, index) => (
-          <a
-            key={index}
-            href={href}
-            className="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100"
-          >
-            {label}
-          </a>
-        ))}
-      </ul>
-    </div>
-  );
-};
+        const updateNavbar = (scrollY) => {
+            const newIsScrollingDown = scrollY > lastScrollY && scrollY > 50;
 
-function SlideDown({ isOpen, children }) {
-  const ref = useRef(null);
-  const [height, setHeight] = useState(0);
+            if (newIsScrollingDown !== isScrollingDown) {
+                isScrollingDown = newIsScrollingDown;
 
-  useEffect(() => {
-    if (isOpen) {
-      setHeight(ref.current.scrollHeight);
-    } else {
-      setHeight(0);
-    }
-  }, [isOpen]);
+                if (isScrollingDown) {
+                    // Scroll down - reduce width
+                    gsap.to([navContainerRef.current, dropdownRef.current], {
+                        maxWidth: '32rem',
+                        duration: 0.6,
+                        ease: 'elastic.out(1, 0.5)'
+                    });
+                } else {
+                    // Scroll up - restore width
+                    gsap.to([navContainerRef.current, dropdownRef.current], {
+                        maxWidth: '56rem',
+                        duration: 0.6,
+                        ease: 'elastic.out(1, 0.5)'
+                    });
+                }
+            }
 
-  return (
-    <div
-      ref={ref}
-      style={{
-        height: height,
-        overflow: "hidden",
-        transition: "height 300ms ease",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+            lastScrollY = scrollY;
+            ticking = false;
+        };
 
-export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+        const handleScroll = () => {
+            // Get scroll position from multiple sources for Lenis compatibility
+            const scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-  return (
-    <nav className=" py-10">
-      <div className="max-w-5xl mx-auto px-4">
-        <div
-          className={`bg-white  px-7 py-6 flex items-center justify-between shadow-sm border border-green-100 ${
-            mobileMenuOpen ? " rounded-t-lg  border-b-0 " : "  rounded-lg "
-          }`}
-        >
-          {/* Logo */}
-          <a href="/" className="text-green-800 font-extrabold italic">
-            <img src="/K_logo.svg" alt="Logo" className="w-8 h-8" />
-          </a>
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateNavbar(scrollY);
+                });
+                ticking = true;
+            }
+        };
 
-          {/* Desktop nav */}
+        // Listen to both scroll and wheel for better Lenis compatibility
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        document.addEventListener('scroll', handleScroll, { passive: true });
 
-          <div className="hidden md:flex space-x-6 text-m text-gray-600 items-center">
-            <a href="#soluciones" className="hover:text-green-800">
-              Soluciones
-            </a>
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            document.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
-            <a href="#clientes" className="hover:text-green-800">
-              Clientes{" "}
-            </a>
-            <a href="#precios" className="hover:text-green-800">
-              Precios
-            </a>
-            <a href="#contacto" className="hover:text-green-800">
-              Contacto
-            </a>
-          </div>
+    // Menu open/close animation
+    useEffect(() => {
+        if (!menuRef.current) return;
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="focus:outline-none"
+        if (isMenuOpen) {
+            // Open animation
+            gsap.fromTo(menuRef.current,
+                {
+                    height: 0,
+                    opacity: 0,
+                    y: -10
+                },
+                {
+                    height: 'auto',
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.4,
+                    ease: 'power3.out'
+                }
+            );
+
+            // Stagger links animation
+            gsap.fromTo(linksRef.current,
+                {
+                    opacity: 0,
+                    x: -20
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.3,
+                    stagger: 0.08,
+                    delay: 0.1,
+                    ease: 'power2.out'
+                }
+            );
+        } else {
+            // Close animation
+            gsap.to(menuRef.current, {
+                height: 0,
+                opacity: 0,
+                y: -10,
+                duration: 0.3,
+                ease: 'power2.in'
+            });
+        }
+    }, [isMenuOpen]);
+
+    const isActive = (path) => pathname === path;
+
+    return (
+        <nav className="fixed top-4 left-4 right-4 z-[1000]">
+            <div ref={navContainerRef} className="bg-[#1a1a1a] rounded-2xl px-4 py-4 flex items-center justify-between max-w-4xl mx-auto">
+                {/* Hamburger menu */}
+                <button
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="text-white hover:opacity-80 transition-opacity"
+                    aria-label="Menu"
+                >
+                    {isMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
+                </button>
+
+                {/* Navigation buttons */}
+                <div className="flex items-center gap-2">
+                    <Link
+                        href="/servicios"
+                        className="relative px-6 py-4 rounded-full bg-white text-black font-medium text-sm hover:bg-gray-100 transition-colors flex items-center gap-2"
+                    >
+                        {isActive('/servicios') && (
+                            <span className="w-2 h-2 bg-black" />
+                        )}
+                        servicios
+                    </Link>
+                    <Link
+                        href="/contacto"
+                        className="relative px-6 py-4 rounded-sm bg-[#51B85F] text-white font-medium text-sm hover:bg-[#45a352] transition-colors flex items-center gap-2"
+                    >
+                        {isActive('/contacto') && (
+                            <span className="w-2 h-2 bg-white" />
+                        )}
+                        contacto
+                    </Link>
+
+                </div>
+            </div>
+
+            {/* Dropdown menu */}
+            <div
+                ref={(el) => {
+                    menuRef.current = el;
+                    dropdownRef.current = el;
+                }}
+                className="bg-[#1a1a1a] rounded-2xl mt-2 px-6 overflow-hidden max-w-4xl mx-auto"
+                style={{ height: 0, opacity: 0 }}
             >
-              <Hamburger />
-            </button>
-          </div>
-        </div>
+                <div className="flex flex-col gap-4 py-6">
+                    <Link
+                        ref={el => linksRef.current[0] = el}
+                        href="/"
+                        className="text-white hover:opacity-80 text-lg flex items-center gap-2"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        {isActive('/') && (
+                            <span className="w-2 h-2 bg-white" />
+                        )}
+                        inicio
+                    </Link>
+                    <Link
+                        ref={el => linksRef.current[0] = el}
+                        href="/sobre-nosotros"
+                        className="text-white hover:opacity-80 text-lg flex items-center gap-2"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        {isActive('/sobre-nosotros') && (
+                            <span className="w-2 h-2 bg-white" />
+                        )}
+                        sobre nosotros
+                    </Link>
+                    <Link
+                        ref={el => linksRef.current[1] = el}
+                        href="/como-funciona"
+                        className="text-white hover:opacity-80 text-lg flex items-center gap-2"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        {isActive('/como-funciona') && (
+                            <span className="w-2 h-2 bg-white" />
+                        )}
+                        como funciona
+                    </Link>
+                </div>
+            </div>
+        </nav>
+    );
+};
 
-        {/* Mobile nav */}
-        <SlideDown isOpen={mobileMenuOpen}>
-          <div className="md:hidden mt-0 bg-white border-x border-b border-green-100 rounded-b-lg shadow-sm px-2 py-4 space-y-3 text-sm text-gray-600">
-            <a href="#soluciones" className="block hover:text-green-800 px-4">
-              Soluciones
-            </a>
-            <a href="#clientes" className="block hover:text-green-800 px-4">
-              Clientes
-            </a>
-            <a href="#precios" className="block hover:text-green-800 px-4">
-              Precios
-            </a>
-            <a href="#contacto" className="block hover:text-green-800 px-4">
-              Contacto
-            </a>
-          </div>
-        </SlideDown>
-      </div>
-    </nav>
-  );
-}
+export default Navbar;
