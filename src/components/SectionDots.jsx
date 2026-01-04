@@ -50,7 +50,7 @@ const SectionDots = ({ sections = 6 }) => {
     };
 
     return (
-        <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-50">
+        <div className="fixed right-8 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-3 z-50">
             {Array.from({ length: sections }).map((_, index) => (
                 <button
                     key={index}

@@ -182,7 +182,7 @@ const Navbar = () => {
                         inicio
                     </Link>
                     <Link
-                        ref={el => linksRef.current[0] = el}
+                        ref={el => linksRef.current[1] = el}
                         href="/sobre-nosotros"
                         className="text-white hover:opacity-80 text-lg flex items-center gap-2"
                         onClick={() => setIsMenuOpen(false)}
@@ -192,8 +192,8 @@ const Navbar = () => {
                         )}
                         sobre nosotros
                     </Link>
-                    <Link
-                        ref={el => linksRef.current[1] = el}
+                    {/* <Link
+                        ref={el => linksRef.current[2] = el}
                         href="/como-funciona"
                         className="text-white hover:opacity-80 text-lg flex items-center gap-2"
                         onClick={() => setIsMenuOpen(false)}
@@ -202,7 +202,7 @@ const Navbar = () => {
                             <span className="w-2 h-2 bg-white" />
                         )}
                         como funciona
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </nav>

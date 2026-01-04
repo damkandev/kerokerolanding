@@ -4,7 +4,7 @@
 
 .char {
     will-change: transform;
-    display: inline-block;
+    display: inline;
     white-space: pre-wrap;
 }
 

@@ -300,14 +300,20 @@ export default function Servicios() {
             }
         };
 
-        row.addEventListener('mouseenter', handleMouseEnter);
-        row.addEventListener('mouseleave', handleMouseLeave);
+        const hasHover = window.matchMedia('(hover: hover)').matches;
+
+        if (hasHover) {
+            row.addEventListener('mouseenter', handleMouseEnter);
+            row.addEventListener('mouseleave', handleMouseLeave);
+        }
 
         return () => {
             clearTimeout(timer);
             animation1Ref.current?.kill();
-            row.removeEventListener('mouseenter', handleMouseEnter);
-            row.removeEventListener('mouseleave', handleMouseLeave);
+            if (hasHover) {
+                row.removeEventListener('mouseenter', handleMouseEnter);
+                row.removeEventListener('mouseleave', handleMouseLeave);
+            }
         };
     }, []);
 
@@ -351,14 +357,20 @@ export default function Servicios() {
             }
         };
 
-        row.addEventListener('mouseenter', handleMouseEnter);
-        row.addEventListener('mouseleave', handleMouseLeave);
+        const hasHover = window.matchMedia('(hover: hover)').matches;
+
+        if (hasHover) {
+            row.addEventListener('mouseenter', handleMouseEnter);
+            row.addEventListener('mouseleave', handleMouseLeave);
+        }
 
         return () => {
             clearTimeout(timer);
             animation2Ref.current?.kill();
-            row.removeEventListener('mouseenter', handleMouseEnter);
-            row.removeEventListener('mouseleave', handleMouseLeave);
+            if (hasHover) {
+                row.removeEventListener('mouseenter', handleMouseEnter);
+                row.removeEventListener('mouseleave', handleMouseLeave);
+            }
         };
     }, []);
 
@@ -407,7 +419,7 @@ export default function Servicios() {
             />
             <main className="min-h-screen bg-(--background)">
                 {/* Primera sección - Servicios principales */}
-                <section className="min-h-screen flex flex-col items-center justify-center px-4 py-16 gap-12" aria-labelledby="servicios-title">
+                <section className="min-h-screen flex flex-col items-center justify-center px-4 pt-36 pb-16 gap-12" aria-labelledby="servicios-title">
                     <h1 id="servicios-title" className="text-4xl font-medium text-(--foreground) text-center tracking-tight">
                         lo que más pide la gente
                     </h1>
