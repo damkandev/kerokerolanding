@@ -180,7 +180,7 @@ export default function KinkedinPage() {
 
                 {/* Plyr Video Player */}
                 <div className="mb-12 rounded-2xl overflow-hidden border border-[#333]">
-                    <PlyrVideo videoId="dQw4w9WgXcQ" />
+                    <PlyrVideo videoId="hW2uw0kdb6M" />
                 </div>
 
                 {/* Download Button */}
