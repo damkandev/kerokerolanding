@@ -17,6 +17,11 @@ const Navbar = () => {
     const dropdownRef = useRef(null);
     const pathname = usePathname();
 
+    // Hide navbar on kinkedin pages
+    if (pathname?.startsWith('/kinkedin') || pathname?.startsWith('/tos_kinkedin')) {
+        return null;
+    }
+
     // Scroll animation for navbar width
     useEffect(() => {
         if (!navContainerRef.current || !dropdownRef.current) return;
