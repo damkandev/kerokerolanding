@@ -189,11 +189,11 @@ export default function KinkedinPage() {
                         descarga la extensión
                     </h3>
                     <p className="text-gray-400 mb-6">
-                        Versión 0.1.1 • Compatible con Chrome y navegadores basados en Chromium
+                        Versión 0.1.2 • Compatible con Chrome y navegadores basados en Chromium
                     </p>
                     <a
-                        href="/kinkedin_0_1_1.zip"
-                        download="kinkedin_0_1_1.zip"
+                        href="/kinkedin_0_1_2.zip"
+                        download="kinkedin_0_1_2.zip"
                         className="inline-flex items-center gap-2 bg-green-500 text-black px-8 py-4 rounded-full text-lg font-medium hover:bg-green-400 transition-all"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -201,7 +201,7 @@ export default function KinkedinPage() {
                             <polyline points="7 10 12 15 17 10" />
                             <line x1="12" y1="15" x2="12" y2="3" />
                         </svg>
-                        descargar kinkedin v0.1.1
+                        descargar kinkedin v0.1.2
                     </a>
                     <p className="text-gray-500 text-sm mt-4">
                         Archivo ZIP • Instalación manual en modo desarrollador
