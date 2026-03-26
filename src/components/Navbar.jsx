@@ -130,22 +130,22 @@ const Navbar = () => {
     const isActive = (path) => pathname === path;
 
     return (
-        <nav className="fixed top-4 left-4 right-4 z-[1000]">
-            <div ref={navContainerRef} className="bg-[#1a1a1a] rounded-2xl px-4 py-4 flex items-center justify-between max-w-4xl mx-auto">
+        <nav className="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-[1000]">
+            <div ref={navContainerRef} className="bg-[#1a1a1a] rounded-2xl px-3 py-3 sm:px-4 sm:py-4 flex items-center justify-between max-w-4xl mx-auto gap-2">
                 {/* Hamburger menu */}
                 <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="text-white hover:opacity-80 transition-opacity"
+                    className="text-white hover:opacity-80 transition-opacity min-h-11 min-w-11 grid place-items-center"
                     aria-label="Menu"
                 >
                     {isMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
                 </button>
 
                 {/* Navigation buttons */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                     <Link
                         href="/servicios"
-                        className="relative px-6 py-4 rounded-full bg-white text-black font-medium text-sm hover:bg-gray-100 transition-colors flex items-center gap-2"
+                        className="relative px-4 sm:px-6 py-3 sm:py-4 min-h-11 rounded-full bg-white text-black font-medium text-sm hover:bg-gray-100 transition-colors flex items-center gap-2"
                     >
                         {isActive('/servicios') && (
                             <span className="w-2 h-2 bg-black" />
@@ -153,8 +153,8 @@ const Navbar = () => {
                         servicios
                     </Link>
                     <Link
-                        href="/contacto"
-                        className="relative px-6 py-4 rounded-sm bg-[#51B85F] text-white font-medium text-sm hover:bg-[#45a352] transition-colors flex items-center gap-2"
+                        href="/#contacto"
+                        className="relative px-4 sm:px-6 py-3 sm:py-4 min-h-11 rounded-sm bg-[#51B85F] text-white font-medium text-sm hover:bg-[#45a352] transition-colors flex items-center gap-2"
                     >
                         {isActive('/contacto') && (
                             <span className="w-2 h-2 bg-white" />
@@ -171,7 +171,7 @@ const Navbar = () => {
                     menuRef.current = el;
                     dropdownRef.current = el;
                 }}
-                className="bg-[#1a1a1a] rounded-2xl mt-2 px-6 overflow-hidden max-w-4xl mx-auto"
+                className="bg-[#1a1a1a] rounded-2xl mt-2 px-4 sm:px-6 overflow-hidden max-w-4xl mx-auto"
                 style={{ height: 0, opacity: 0 }}
             >
                 <div className="flex flex-col gap-4 py-6">
