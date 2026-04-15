@@ -27,7 +27,7 @@ export default function TOSKinkedin() {
                     <section>
                         <h3 className="text-xl font-semibold text-white mb-3">1) ACEPTACIÓN DE LOS TÉRMINOS</h3>
                         <p>
-                            Al instalar o usar la extensión "Kinkedin – LinkedIn Analytics" (la "Extensión"), aceptas estos Términos de Servicio (los "Términos"). Si no estás de acuerdo, no instales ni uses la Extensión.
+                            Al instalar o usar la extensión &quot;Kinkedin – LinkedIn Analytics&quot; (la &quot;Extensión&quot;), aceptas estos Términos de Servicio (los &quot;Términos&quot;). Si no estás de acuerdo, no instales ni uses la Extensión.
                         </p>
                     </section>
 

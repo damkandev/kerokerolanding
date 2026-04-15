@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
@@ -16,14 +16,13 @@ const Navbar = () => {
     const navContainerRef = useRef(null);
     const dropdownRef = useRef(null);
     const pathname = usePathname();
+    const router = useRouter();
 
-    // Hide navbar on kinkedin pages
-    if (pathname?.startsWith('/kinkedin') || pathname?.startsWith('/tos_kinkedin')) {
-        return null;
-    }
+    const shouldHideNavbar = pathname?.startsWith('/kinkedin') || pathname?.startsWith('/tos_kinkedin');
 
     // Scroll animation for navbar width
     useEffect(() => {
+        if (shouldHideNavbar) return;
         if (!navContainerRef.current || !dropdownRef.current) return;
 
         let lastScrollY = 0;
@@ -77,10 +76,11 @@ const Navbar = () => {
             window.removeEventListener('scroll', handleScroll);
             document.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [shouldHideNavbar]);
 
     // Menu open/close animation
     useEffect(() => {
+        if (shouldHideNavbar) return;
         if (!menuRef.current) return;
 
         if (isMenuOpen) {
@@ -125,9 +125,32 @@ const Navbar = () => {
                 ease: 'power2.in'
             });
         }
-    }, [isMenuOpen]);
+    }, [isMenuOpen, shouldHideNavbar]);
 
     const isActive = (path) => pathname === path;
+
+    const handleContactClick = (event) => {
+        event.preventDefault();
+        setIsMenuOpen(false);
+
+        if (pathname === '/') {
+            window.history.pushState(null, '', '/#contacto');
+            requestAnimationFrame(() => {
+                document.getElementById('contacto')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+            return;
+        }
+
+        router.push('/#contacto');
+    };
+
+    // Keep hooks order stable even when the navbar is hidden on special pages.
+    if (shouldHideNavbar) {
+        return null;
+    }
 
     return (
         <nav className="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-[1000]">
@@ -144,16 +167,15 @@ const Navbar = () => {
                 {/* Navigation buttons */}
                 <div className="flex items-center gap-1.5 sm:gap-2">
                     <Link
-                        href="/servicios"
+                        href="/#contacto"
+                        onClick={handleContactClick}
                         className="relative px-4 sm:px-6 py-3 sm:py-4 min-h-11 rounded-full bg-white text-black font-medium text-sm hover:bg-gray-100 transition-colors flex items-center gap-2"
                     >
-                        {isActive('/servicios') && (
-                            <span className="w-2 h-2 bg-black" />
-                        )}
                         servicios
                     </Link>
                     <Link
                         href="/#contacto"
+                        onClick={handleContactClick}
                         className="relative px-4 sm:px-6 py-3 sm:py-4 min-h-11 rounded-sm bg-[#51B85F] text-white font-medium text-sm hover:bg-[#45a352] transition-colors flex items-center gap-2"
                     >
                         {isActive('/contacto') && (

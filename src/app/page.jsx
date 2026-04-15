@@ -42,7 +42,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
-      <SectionDots sections={6} />
+      <SectionDots />
       <main className="">
         <HeroSection />
         <IngredientsSection />
