@@ -32,41 +32,42 @@ export default function ScrollReveal({
         const element = elementRef.current;
         if (!element) return;
 
-        // Set initial state
-        gsap.set(element, {
-            y,
-            x,
-            opacity,
-            scale,
-            rotation,
-        });
+        const ctx = gsap.context(() => {
+            gsap.set(element, {
+                y,
+                x,
+                opacity,
+                scale,
+                rotation,
+            });
 
-        // Create animation
-        const tween = gsap.to(element, {
-            y: 0,
-            x: 0,
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration,
-            ease,
-            delay,
-            scrollTrigger: {
-                trigger: element,
-                start,
-                end,
-                scrub: scrub === true ? 1 : scrub,
-                markers,
-            },
-        });
+            const tween = gsap.to(element, {
+                y: 0,
+                x: 0,
+                opacity: 1,
+                scale: 1,
+                rotation: 0,
+                duration,
+                ease,
+                delay,
+                scrollTrigger: {
+                    trigger: element,
+                    start,
+                    end,
+                    scrub: scrub === true ? 1 : scrub,
+                    markers,
+                },
+            });
 
-        triggerRef.current = tween.scrollTrigger;
+            triggerRef.current = tween.scrollTrigger;
+        }, element);
 
         return () => {
             if (triggerRef.current) {
                 triggerRef.current.kill();
+                triggerRef.current = null;
             }
-            tween.kill();
+            ctx.revert();
         };
     }, [y, x, opacity, scale, rotation, start, end, scrub, markers, duration, ease, delay]);
 

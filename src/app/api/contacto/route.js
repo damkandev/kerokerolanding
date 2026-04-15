@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request) {
     try {
-        const { nombre, correo, servicios, mensaje } = await request.json();
+        const { nombre, correo, servicios, mensaje, projectUrl } = await request.json();
 
         // Validación básica
         if (!nombre || !correo || !mensaje) {
@@ -19,6 +19,14 @@ export async function POST(request) {
         const serviciosTexto = servicios && servicios.length > 0
             ? servicios.join(', ')
             : 'No especificados';
+
+        const projectUrlHtml = projectUrl
+            ? `<p style="margin: 0 0 10px 0;"><strong>Proyecto Lovable/v0:</strong> <a href="${projectUrl}" target="_blank" rel="noopener noreferrer">${projectUrl}</a></p>`
+            : '';
+
+        const projectUrlUserHtml = projectUrl
+            ? `<p style="margin: 0 0 10px 0;"><strong>Proyecto compartido:</strong> <a href="${projectUrl}" target="_blank" rel="noopener noreferrer">${projectUrl}</a></p>`
+            : '';
 
         // Email de notificación para ti (damian@rodar.cl)
         await resend.emails.send({
@@ -35,6 +43,7 @@ export async function POST(request) {
                         <p style="margin: 0 0 10px 0;"><strong>Nombre:</strong> ${nombre}</p>
                         <p style="margin: 0 0 10px 0;"><strong>Correo:</strong> ${correo}</p>
                         <p style="margin: 0 0 10px 0;"><strong>Servicios:</strong> ${serviciosTexto}</p>
+                        ${projectUrlHtml}
                     </div>
                     
                     <div style="background: #1a1a1a; color: #fff; padding: 20px; border-radius: 8px;">
@@ -68,6 +77,7 @@ export async function POST(request) {
                     <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
                         <p style="margin: 0 0 10px 0; color: #666;"><strong>Lo que nos contaste:</strong></p>
                         <p style="margin: 0 0 10px 0;"><strong>Servicios de interés:</strong> ${serviciosTexto}</p>
+                        ${projectUrlUserHtml}
                         <p style="margin: 0; white-space: pre-wrap; color: #333;">${mensaje}</p>
                     </div>
                     

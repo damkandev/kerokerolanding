@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import ScrollReveal from '@/components/ScrollReveal';
 
@@ -13,17 +14,19 @@ const serviciosDisponibles = [
 
 export default function ContactSection() {
   const enviarBtnRef = useRef(null);
-  const truckRef = useRef(null);
-  const boxRef = useRef(null);
   const titleRef = useRef(null);
   const formFieldRefs = useRef([]);
   const buttonsRef = useRef(null);
+  const modalOverlayRef = useRef(null);
+  const modalPanelRef = useRef(null);
+  const importUrlInputRef = useRef(null);
 
   const [formData, setFormData] = useState({
     nombre: '',
     correo: '',
     servicios: [],
-    mensaje: ''
+    mensaje: '',
+    projectUrl: ''
   });
 
   const [submitStatus, setSubmitStatus] = useState({
@@ -32,8 +35,11 @@ export default function ContactSection() {
     error: null
   });
 
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [isClosingImportModal, setIsClosingImportModal] = useState(false);
+  const [importUrl, setImportUrl] = useState('');
+  const [importError, setImportError] = useState(null);
 
-  const [showTruck, setShowTruck] = useState(false);
 
   // Animación popup elástica al cargar
   useEffect(() => {
@@ -58,44 +64,6 @@ export default function ContactSection() {
         ease: 'elastic.out(1, 0.75)'
       });
     });
-  }, []);
-
-  // Animación del truck — se ejecuta cuando la imagen carga
-  const startTruckAnimation = useCallback(() => {
-    const truck = truckRef.current;
-    const box = boxRef.current;
-    if (!truck || !box) return;
-
-    const truckW = truck.offsetWidth;
-    const truckH = truck.offsetHeight;
-    let boxHidden = false;
-
-    const boxRect = box.getBoundingClientRect();
-    const boxCenterY = boxRect.top + boxRect.height / 2;
-    truck.style.top = `${boxCenterY - truckH / 2 + 120}px`;
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setShowTruck(false);
-      },
-      onUpdate: () => {
-        if (boxHidden) return;
-        const truckRect = truck.getBoundingClientRect();
-        const boxRect2 = box.getBoundingClientRect();
-        const truckCenter = truckRect.left + truckRect.width / 2;
-        const boxCenter = boxRect2.left + boxRect2.width / 2;
-        if (truckCenter <= boxCenter) {
-          boxHidden = true;
-          gsap.to(box, { opacity: 0, duration: 0.1 });
-        }
-      }
-    });
-
-    tl.fromTo(truck,
-      { x: window.innerWidth + truckW, opacity: 0 },
-      { x: -(truckW + 100), duration: 2, ease: "power2.inOut" }
-    );
-    tl.to(truck, { opacity: 1, duration: 0.3 }, "<");
   }, []);
 
   // Efecto 3D para botón enviar (verde)
@@ -130,6 +98,94 @@ export default function ContactSection() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!showImportModal) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [showImportModal]);
+
+  useEffect(() => {
+    if (!showImportModal) return;
+
+    const overlay = modalOverlayRef.current;
+    const panel = modalPanelRef.current;
+    if (!overlay || !panel) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    gsap.killTweensOf([overlay, panel]);
+
+    if (prefersReducedMotion) {
+      if (isClosingImportModal) {
+        setShowImportModal(false);
+        setIsClosingImportModal(false);
+        return;
+      }
+
+      gsap.set(overlay, { opacity: 1 });
+      gsap.set(panel, { opacity: 1, y: 0, scale: 1 });
+      importUrlInputRef.current?.focus();
+      return;
+    }
+
+    if (isClosingImportModal) {
+      const exitTl = gsap.timeline({
+        onComplete: () => {
+          setShowImportModal(false);
+          setIsClosingImportModal(false);
+        }
+      });
+
+      exitTl.to(panel, {
+        opacity: 0,
+        y: 24,
+        scale: 0.98,
+        duration: 0.18,
+        ease: 'power2.in'
+      });
+      exitTl.to(overlay, {
+        opacity: 0,
+        duration: 0.16,
+        ease: 'power1.out'
+      }, 0);
+
+      return () => {
+        exitTl.kill();
+      };
+    }
+
+    gsap.set(overlay, { opacity: 0 });
+    gsap.set(panel, { opacity: 0, y: 32, scale: 0.96 });
+
+    const enterTl = gsap.timeline({
+      onComplete: () => {
+        importUrlInputRef.current?.focus();
+      }
+    });
+
+    enterTl.to(overlay, {
+      opacity: 1,
+      duration: 0.22,
+      ease: 'power1.out'
+    });
+    enterTl.to(panel, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.28,
+      ease: 'power3.out'
+    }, 0.02);
+
+    return () => {
+      enterTl.kill();
+    };
+  }, [showImportModal, isClosingImportModal]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -156,6 +212,60 @@ export default function ContactSection() {
     }));
   };
 
+  const handleOpenImportModal = () => {
+    setImportUrl('');
+    setImportError(null);
+    setIsClosingImportModal(false);
+    setShowImportModal(true);
+  };
+
+  const handleCloseImportModal = useCallback(() => {
+    if (!showImportModal || isClosingImportModal) return;
+
+    setImportError(null);
+    setIsClosingImportModal(true);
+  }, [showImportModal, isClosingImportModal]);
+
+  useEffect(() => {
+    if (!showImportModal) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        handleCloseImportModal();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showImportModal, handleCloseImportModal]);
+
+  const handleImportProjectUrl = () => {
+    const normalizedUrl = importUrl.trim();
+
+    if (!normalizedUrl) {
+      setImportError('Pega un URL antes de importar.');
+      return;
+    }
+
+    try {
+      new URL(normalizedUrl);
+    } catch {
+      setImportError('Ingresa un URL valido.');
+      return;
+    }
+
+    setFormData(prev => ({
+      ...prev,
+      projectUrl: normalizedUrl
+    }));
+
+    setImportUrl('');
+    handleCloseImportModal();
+  };
+
   const getServicioNombre = (id) => {
     const servicio = serviciosDisponibles.find(s => s.id === id);
     return servicio ? servicio.nombre : id;
@@ -174,26 +284,40 @@ export default function ContactSection() {
     }
 
     setSubmitStatus({ loading: true, success: false, error: null });
-    setShowTruck(true);
-
     try {
       const response = await fetch('/api/contacto', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify({
           nombre: formData.nombre,
           correo: formData.correo,
           servicios: formData.servicios.map(id => getServicioNombre(id)),
-          mensaje: formData.mensaje
+          mensaje: formData.mensaje,
+          projectUrl: formData.projectUrl
         }),
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get('content-type') || '';
+      const rawBody = await response.text();
+      const data = contentType.includes('application/json')
+        ? JSON.parse(rawBody)
+        : null;
 
-      if (!response.ok) throw new Error(data.error || 'Error al enviar');
+      if (!response.ok) {
+        throw new Error(
+          data?.error || `Error al enviar el mensaje (${response.status})`
+        );
+      }
+
+      if (!data) {
+        throw new Error('La API devolvio una respuesta invalida.');
+      }
 
       setSubmitStatus({ loading: false, success: true, error: null });
-      setFormData({ nombre: '', correo: '', servicios: [], mensaje: '' });
+      setFormData({ nombre: '', correo: '', servicios: [], mensaje: '', projectUrl: '' });
 
     } catch (error) {
       setSubmitStatus({
@@ -307,42 +431,124 @@ export default function ContactSection() {
                 </div>
               )}
 
-              <div ref={buttonsRef} className="mt-4">
+              <div ref={buttonsRef} className="mt-4 flex flex-col gap-4 lg:flex-row">
+                <button
+                  type="button"
+                  onClick={handleOpenImportModal}
+                  className="w-full lg:w-auto flex-1 border-3 rounded py-2.5 px-4 text-base font-semibold transition-all duration-200 bg-white text-(--foreground) border-[#636363] cursor-pointer shadow-[0_8px_0_0_#636363] hover:translate-y-[4px] hover:shadow-[0_4px_0_0_#636363] flex items-center justify-center gap-2"
+                  aria-label="Importar desde Lovable y v0"
+                >
+                  <span>Importar</span>
+                  <img src="/logo_lovable.svg" alt="Lovable" className="h-8 w-auto shrink-0" />
+                  <span>/</span>
+                  <img src="/logo_v0.svg" alt="v0" className="h-8 w-auto shrink-0 rounded-[6px]" />
+                </button>
+
                 <button
                   ref={enviarBtnRef}
                   type="submit"
                   disabled={submitStatus.loading || submitStatus.success}
-                  className={`w-full border-3 rounded py-3.5 px-6 text-base font-semibold transition-all duration-200 ${submitStatus.loading || submitStatus.success
+                  className={`w-full lg:w-auto flex-1 border-3 rounded py-2.5 px-4 text-base font-semibold transition-all duration-200 ${submitStatus.loading || submitStatus.success
                     ? 'bg-gray-400 border-gray-500 text-gray-200 cursor-not-allowed shadow-[0_8px_0_0_#555]'
                     : 'bg-[#51B85F] text-white border-[#31813C] cursor-pointer shadow-[0_8px_0_0_#31813C]'
                     }`}
                 >
-                  {submitStatus.loading ? 'enviando...' : submitStatus.success ? '✓ enviado' : 'enviar'}
+                  {submitStatus.loading ? 'Enviando...' : submitStatus.success ? '✓ Enviado' : 'Enviar'}
                 </button>
               </div>
+
+              {formData.projectUrl && (
+                <div className="border-3 border-[#636363] bg-white px-4 py-3 text-sm text-(--foreground) shadow-[0_8px_0_0_#636363] break-all">
+                  Proyecto importado: <span className="font-medium">{formData.projectUrl}</span>
+                </div>
+              )}
             </form>
           </div>
 
           {/* Right Side: Image */}
           <div className="shrink-0 flex justify-center items-center px-4">
-            <img ref={boxRef} src="/box.png" alt="Pizza Box" className="w-[200px] sm:w-[280px] lg:w-[350px] max-w-[70vw] object-contain" />
+            <img src="/box.png" alt="Pizza Box" className="w-[200px] sm:w-[280px] lg:w-[350px] max-w-[70vw] object-contain" />
           </div>
 
-          {showTruck && (
-            <img
-              ref={truckRef}
-              src="/truck.png"
-              alt="Truck"
-              className="pointer-events-none"
-              style={{
-                position: 'fixed',
-                width: '85vw',
-                left: 0,
-                zIndex: 50,
-                opacity: 0
-              }}
-              onLoad={startTruckAnimation}
-            />
+          {showImportModal && typeof document !== 'undefined' && createPortal(
+            <div
+              ref={modalOverlayRef}
+              className="fixed inset-0 z-[999] flex min-h-screen w-screen items-end justify-center bg-black/55 px-4 py-4 sm:items-center"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="import-project-title"
+              onClick={handleCloseImportModal}
+            >
+              <div
+                ref={modalPanelRef}
+                className="w-full max-w-[560px] max-h-[calc(100vh-2rem)] overflow-y-auto bg-(--background) border-3 border-[#636363] shadow-[0_12px_0_0_#636363] p-5 sm:p-8"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div>
+                    <h3 id="import-project-title" className="font-jetbrains text-lg sm:text-xl text-(--foreground)">
+                      Importar desde Lovable/v0
+                    </h3>
+                    <p className="mt-2 text-sm sm:text-base text-(--foreground)">
+                      Pega el URL del proyecto y lo enviaremos junto a tu solicitud, sin modificar el mensaje que escribas.
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleCloseImportModal}
+                    className="shrink-0 border-3 border-[#636363] bg-white px-3 py-1.5 text-(--foreground) shadow-[0_4px_0_0_#636363] cursor-pointer"
+                    aria-label="Cerrar modal"
+                  >
+                    x
+                  </button>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="import-project-url" className="text-base font-medium text-(--foreground)">
+                    URL del proyecto
+                  </label>
+                  <input
+                    ref={importUrlInputRef}
+                    id="import-project-url"
+                    type="url"
+                    value={importUrl}
+                    onChange={(event) => {
+                      setImportUrl(event.target.value);
+                      if (importError) {
+                        setImportError(null);
+                      }
+                    }}
+                    placeholder="https://..."
+                    className="w-full bg-white border-3 border-[#636363] shadow-[0_8px_0_0_#636363] p-4 text-base text-(--foreground) outline-none focus:border-(--accent) transition-colors duration-200"
+                  />
+                </div>
+
+                {importError && (
+                  <div className="mt-4 bg-red-100 border-2 border-red-400 text-red-700 px-4 py-3 rounded">
+                    {importError}
+                  </div>
+                )}
+
+                <div className="mt-6 flex flex-col-reverse sm:flex-row justify-end gap-4">
+                  <button
+                    type="button"
+                    onClick={handleCloseImportModal}
+                    className="w-full sm:w-auto border-3 rounded py-3 px-5 text-base font-semibold bg-white text-(--foreground) border-[#636363] cursor-pointer shadow-[0_8px_0_0_#636363]"
+                  >
+                    cancelar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleImportProjectUrl}
+                    className="w-full sm:w-auto border-3 rounded py-3 px-5 text-base font-semibold bg-[#51B85F] text-white border-[#31813C] cursor-pointer shadow-[0_8px_0_0_#31813C]"
+                  >
+                    importar
+                  </button>
+                </div>
+              </div>
+            </div>,
+            document.body
           )}
 
         </ScrollReveal>

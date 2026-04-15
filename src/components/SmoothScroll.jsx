@@ -19,9 +19,22 @@ export default function SmoothScroll({ children }) {
 
         lenisRef.current = lenis;
 
-        // Scroll to top on page load/navigation
-        lenis.scrollTo(0, { immediate: true });
-        window.scrollTo(0, 0);
+        const scrollToHash = () => {
+            const hash = window.location.hash.replace('#', '');
+
+            if (!hash) {
+                lenis.scrollTo(0, { immediate: true });
+                window.scrollTo(0, 0);
+                return;
+            }
+
+            const target = document.getElementById(hash);
+            if (!target) return;
+
+            lenis.scrollTo(target, {
+                duration: 1.2
+            });
+        };
 
         // Sync Lenis with GSAP ScrollTrigger
         lenis.on('scroll', ScrollTrigger.update);
@@ -32,7 +45,13 @@ export default function SmoothScroll({ children }) {
 
         gsap.ticker.lagSmoothing(0);
 
+        requestAnimationFrame(() => {
+            requestAnimationFrame(scrollToHash);
+        });
+        window.addEventListener('hashchange', scrollToHash);
+
         return () => {
+            window.removeEventListener('hashchange', scrollToHash);
             lenis.destroy();
             gsap.ticker.remove(lenis.raf);
         };

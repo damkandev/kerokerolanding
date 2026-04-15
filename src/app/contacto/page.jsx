@@ -225,6 +225,7 @@ function ContactoContent() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
                 body: JSON.stringify({
                     nombre: formData.nombre,
@@ -234,10 +235,20 @@ function ContactoContent() {
                 }),
             });
 
-            const data = await response.json();
+            const contentType = response.headers.get('content-type') || '';
+            const rawBody = await response.text();
+            const data = contentType.includes('application/json')
+                ? JSON.parse(rawBody)
+                : null;
 
             if (!response.ok) {
-                throw new Error(data.error || 'Error al enviar el mensaje');
+                throw new Error(
+                    data?.error || `Error al enviar el mensaje (${response.status})`
+                );
+            }
+
+            if (!data) {
+                throw new Error('La API devolvio una respuesta invalida.');
             }
 
             setSubmitStatus({ loading: false, success: true, error: null });
