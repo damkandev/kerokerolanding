@@ -46,6 +46,15 @@ export default function CtaSection() {
 
   const handleButtonClick = () => {
     setIsVisible(false);
+    setButtonStyle({});
+  };
+
+  const handleContactClick = () => {
+    window.history.pushState(null, '', '/#contacto');
+    document.getElementById('contacto')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   };
 
   return (
@@ -56,17 +65,24 @@ export default function CtaSection() {
             Cuando todo haya terminado, solo tendrás que preocuparte de disfrutar lo que pediste y ahora si, dormir en paz.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <button className="bg-[#5fc568] hover:bg-[#52b15a] transition-colors text-white font-jetbrains px-6 py-3 min-h-[48px]">
+            <button
+              type="button"
+              onClick={handleContactClick}
+              className="bg-[#5fc568] hover:bg-[#52b15a] transition-colors text-white font-jetbrains px-6 py-3 min-h-[48px]"
+            >
              contacto
             </button>
-            <button
-              ref={buttonRef}
-              className="hidden lg:block bg-[#9e9e9e] hover:bg-[#8a8a8a] transition-colors text-white font-jetbrains px-6 py-3 cursor-default"
-              style={buttonStyle}
-              onClick={handleButtonClick}
-            >
-              no contactar
-            </button>
+            {isVisible && (
+              <button
+                ref={buttonRef}
+                type="button"
+                className="hidden lg:block bg-[#9e9e9e] hover:bg-[#8a8a8a] transition-colors text-white font-jetbrains px-6 py-3 cursor-default"
+                style={buttonStyle}
+                onClick={handleButtonClick}
+              >
+                no contactar
+              </button>
+            )}
           </div>
         </div>
         <div className="shrink-0">

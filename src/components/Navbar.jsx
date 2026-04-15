@@ -17,13 +17,11 @@ const Navbar = () => {
     const dropdownRef = useRef(null);
     const pathname = usePathname();
 
-    // Hide navbar on kinkedin pages
-    if (pathname?.startsWith('/kinkedin') || pathname?.startsWith('/tos_kinkedin')) {
-        return null;
-    }
+    const shouldHideNavbar = pathname?.startsWith('/kinkedin') || pathname?.startsWith('/tos_kinkedin');
 
     // Scroll animation for navbar width
     useEffect(() => {
+        if (shouldHideNavbar) return;
         if (!navContainerRef.current || !dropdownRef.current) return;
 
         let lastScrollY = 0;
@@ -77,10 +75,11 @@ const Navbar = () => {
             window.removeEventListener('scroll', handleScroll);
             document.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [shouldHideNavbar]);
 
     // Menu open/close animation
     useEffect(() => {
+        if (shouldHideNavbar) return;
         if (!menuRef.current) return;
 
         if (isMenuOpen) {
@@ -125,9 +124,14 @@ const Navbar = () => {
                 ease: 'power2.in'
             });
         }
-    }, [isMenuOpen]);
+    }, [isMenuOpen, shouldHideNavbar]);
 
     const isActive = (path) => pathname === path;
+
+    // Keep hooks order stable even when the navbar is hidden on special pages.
+    if (shouldHideNavbar) {
+        return null;
+    }
 
     return (
         <nav className="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-[1000]">
