@@ -28,10 +28,10 @@ export async function POST(request) {
             ? `<p style="margin: 0 0 10px 0;"><strong>Proyecto compartido:</strong> <a href="${projectUrl}" target="_blank" rel="noopener noreferrer">${projectUrl}</a></p>`
             : '';
 
-        // Email de notificación para ti (damian@rodar.cl)
+        // Email de notificación interna
         await resend.emails.send({
             from: 'KeroKero <noreply@email.keroke.ro>',
-            to: 'damian@rodar.cl',
+            to: 'ventas@keroke.ro',
             subject: `🐸 Nuevo contacto de ${nombre}`,
             html: `
                 <div style="font-family: 'JetBrains Mono', monospace; max-width: 600px; margin: 0 auto; padding: 20px;">
