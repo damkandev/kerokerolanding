@@ -26,5 +26,17 @@ export default function sitemap() {
             changeFrequency: "monthly",
             priority: 0.8,
         },
+        {
+            url: `${baseUrl}/kinkedin`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.7,
+        },
+        {
+            url: `${baseUrl}/tos_kinkedin`,
+            lastModified: new Date(),
+            changeFrequency: "yearly",
+            priority: 0.3,
+        },
     ];
 }

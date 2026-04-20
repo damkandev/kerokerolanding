@@ -2,7 +2,6 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
-import { PostHogProvider } from "@/components/PostHogProvider";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
@@ -14,6 +13,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://keroke.ro";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
+  applicationName: "KeroKero",
   title: {
     default: "KeroKero - Software Factory Automatizada",
     template: "%s | KeroKero",
@@ -35,6 +35,7 @@ export const metadata = {
   authors: [{ name: "KeroKero", url: siteUrl }],
   creator: "KeroKero",
   publisher: "KeroKero",
+  category: "technology",
   robots: {
     index: true,
     follow: true,
@@ -86,16 +87,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
-      <body
-        className={`${jetbrainsMono.variable} antialiased`}
-      >
-        <PostHogProvider>
-          <SmoothScroll>
-            <Navbar />
-            {children}
-          </SmoothScroll>
-        </PostHogProvider>
+    <html lang="es-CL">
+      <body className={`${jetbrainsMono.variable} antialiased`}>
+        <SmoothScroll>
+          <Navbar />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

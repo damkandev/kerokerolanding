@@ -1,6 +1,21 @@
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://keroke.ro";
+
 export const metadata = {
     title: "Términos de Servicio - Kinkedin",
     description: "Términos de Servicio para la extensión Kinkedin – LinkedIn Analytics",
+    alternates: {
+        canonical: "/tos_kinkedin",
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
+    openGraph: {
+        title: "Términos de Servicio - Kinkedin",
+        description: "Documento legal y términos de uso de la extensión Kinkedin.",
+        url: `${siteUrl}/tos_kinkedin`,
+        type: "article",
+    },
 };
 
 export default function TOSKinkedin() {

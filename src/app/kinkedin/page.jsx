@@ -2,9 +2,36 @@ import Image from "next/image";
 import Link from "next/link";
 import PlyrVideo from "./PlyrVideo";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://keroke.ro";
+
 export const metadata = {
     title: "Kinkedin - La mejor extensión para LinkedIn",
-    description: "Calcula el ER real de tus posts, visualiza tu calendario de publicaciones y descubre los mejores horarios para publicar con nuestro heatmap.",
+    description: "Calcula el ER real de tus posts, visualiza tu calendario de publicaciones y descubre los mejores horarios para publicar con Kinkedin.",
+    alternates: {
+        canonical: "/kinkedin",
+    },
+    openGraph: {
+        title: "Kinkedin - Extensión para optimizar tu LinkedIn",
+        description:
+            "Extensión para LinkedIn con ER real, calendario de posts y heatmap de horarios con mejores resultados.",
+        url: `${siteUrl}/kinkedin`,
+        type: "website",
+        images: [
+            {
+                url: "/opengraph-image.png",
+                width: 1200,
+                height: 630,
+                alt: "Kinkedin by KeroKero",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Kinkedin - Extensión para optimizar tu LinkedIn",
+        description:
+            "Mide engagement real, planifica contenido y publica en mejores horarios en LinkedIn.",
+        images: ["/opengraph-image.png"],
+    },
 };
 
 export default function KinkedinPage() {
