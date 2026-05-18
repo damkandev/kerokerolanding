@@ -1,0 +1,102 @@
+---
+/**
+ * Componente SEO reutilizable.
+ * Centraliza meta tags, Open Graph, Twitter Card, canonical y JSON-LD.
+ *
+ * Uso:
+ *   <SEO
+ *     title="Trabajos"
+ *     description="..."
+ *     image="/og-trabajos.png"
+ *     type="website"
+ *     jsonLd={{...}}
+ *   />
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path absoluto desde la raíz, ej "/og-default.png" */
+  image?: string;
+  /** Sobrescribe el path canonical (por defecto usa Astro.url) */
+  canonical?: string;
+  type?: "website" | "article" | "profile";
+  /** Estructura JSON-LD a inyectar como <script type="application/ld+json"> */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Si true, agrega noindex para entornos staging */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = "/logo.svg",
+  canonical,
+  type = "website",
+  jsonLd,
+  noindex = false,
+} = Astro.props as Props;
+
+const SITE_NAME = "KeroKero";
+const SITE_URL = Astro.site?.toString().replace(/\/$/, "") ?? "https://kerokero.dev";
+
+const canonicalUrl = canonical
+  ? new URL(canonical, SITE_URL).toString()
+  : new URL(Astro.url.pathname, SITE_URL).toString();
+
+const imageUrl = image.startsWith("http")
+  ? image
+  : new URL(image, SITE_URL).toString();
+
+const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+
+const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+---
+
+{/* Primary meta */}
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+)}
+<meta name="theme-color" content="#191919" />
+<meta name="author" content="KeroKero" />
+
+{/* Open Graph */}
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:locale" content="es_CL" />
+
+{/* Twitter Card */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+{/* Favicons */}
+<link rel="icon" type="image/svg+xml" href="/logo.svg" />
+<link rel="apple-touch-icon" href="/logo.svg" />
+
+{/* Performance hints */}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&family=Unbounded:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+
+{/* JSON-LD structured data */}
+{jsonLdArray.map((data) => (
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(data)}
+  />
+))}

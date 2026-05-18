@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import SEO from "../components/SEO.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import LinkedinIcon from "@tabler/icons/outline/brand-linkedin.svg?raw";
@@ -33,26 +34,52 @@ const team = [
     { initials: "IB", name: "Ivan Belasich", role: "Fullstack", image: "/ivan.png" },
     { initials: "MC", name: "Marilyn Cellis", role: "Fullstack", image: "/marilyn.png" },
 ];
+
+const title = "Sobre Nosotros | KeroKero";
+const description = "Conoce al equipo detrás de KeroKero. Somos un estudio de software a medida con foco en pocos clientes, donde los socios trabajan directo con cada cuenta.";
+
+const aboutPageLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Sobre Nosotros",
+    "url": "https://kerokero.dev/sobre-nosotros",
+    "description": description,
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "KeroKero",
+        "url": "https://kerokero.dev"
+    },
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "KeroKero",
+        "url": "https://kerokero.dev",
+        "employee": [
+            ...leadership.map(p => ({
+                "@type": "Person",
+                "name": p.name,
+                "jobTitle": p.role,
+                "sameAs": p.linkedin ? [p.linkedin] : []
+            })),
+            ...team.map(p => ({
+                "@type": "Person",
+                "name": p.name,
+                "jobTitle": p.role
+            }))
+        ]
+    }
+};
 ---
 
 <html lang="es">
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="generator" content={Astro.generator} />
-        <meta
-            name="description"
-            content="KeroKero es una consultora de software a medida formada por dos socios que trabajan directo con cada cliente."
+        <SEO
+            title={title}
+            description={description}
+            jsonLd={aboutPageLd}
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&family=Unbounded:wght@400;500&display=swap"
-            rel="stylesheet"
-        />
-        <title>Sobre Nosotros — KeroKero</title>
     </head>
     <body class="bg-bg text-white font-sans antialiased">
         <Navbar />
@@ -243,8 +270,12 @@ const team = [
                                         >
                                             <img
                                                 src={person.image}
-                                                alt={person.name}
+                                                alt={`${person.name}, ${person.role} de KeroKero`}
                                                 class="w-full h-full object-cover object-top"
+                                                width="56"
+                                                height="56"
+                                                loading="lazy"
+                                                decoding="async"
                                             />
                                         </div>
                                     ) : (
@@ -331,8 +362,12 @@ const team = [
                                             >
                                                 <img
                                                     src={member.image}
-                                                    alt={member.name}
+                                                    alt={`${member.name}, ${member.role} de KeroKero`}
                                                     class="w-full h-full object-cover object-top"
+                                                    width="36"
+                                                    height="36"
+                                                    loading="lazy"
+                                                    decoding="async"
                                                 />
                                             </div>
                                         ) : (
@@ -404,11 +439,11 @@ const team = [
                             </p>
                         </div>
                         <a
-                            href="/#contacto"
+                            href="/trabajos"
                             class="inline-flex items-center gap-2 text-accent text-base tracking-[-0.07em] px-8 h-[41px] w-fit transition-opacity duration-200 hover:opacity-80"
                             style="background-color: var(--color-bg)"
                         >
-                            Escribenos
+                            Ver trabajos
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="14"

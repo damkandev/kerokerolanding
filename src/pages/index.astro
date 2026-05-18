@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SEO from '../components/SEO.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import Onboarding from '../components/Onboarding.astro';
@@ -8,19 +9,61 @@ import Reglas from '../components/Reglas.astro';
 import Contacto from '../components/Contacto.astro';
 import Footer from '../components/Footer.astro';
 
+const title = "KeroKero | Software a medida para tu negocio";
+const description = "Estudio de software a medida en Latinoamérica. Construimos sistemas operativos críticos, integraciones y SaaS verticales con foco en pocos clientes a la vez.";
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "KeroKero",
+  "url": "https://kerokero.cl",
+  "logo": "https://kerokero.cl/logo.svg",
+  "description": description,
+  "founders": [
+    { "@type": "Person", "name": "Damián Panes", "jobTitle": "CEO" },
+    { "@type": "Person", "name": "Felipe Figueroa", "jobTitle": "CTO" }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/damianpanes/",
+    "https://www.linkedin.com/in/felipefigueroaf/"
+  ]
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "KeroKero",
+  "url": "https://kerokero.cl",
+  "inLanguage": "es"
+};
+
+const servicesLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "KeroKero",
+  "url": "https://kerokero.cl",
+  "areaServed": "Latinoamérica",
+  "serviceType": [
+    "Software a medida",
+    "Integraciones y APIs",
+    "SaaS Verticales",
+    "IA Aplicada",
+    "Consultoría de procesos",
+    "Mantenimiento y evolución"
+  ]
+};
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&family=Unbounded:wght@400;500&display=swap" rel="stylesheet" />
-    <title>KeroKero — Software a medida para tu negocio</title>
+    <SEO
+      title={title}
+      description={description}
+      jsonLd={[organizationLd, websiteLd, servicesLd]}
+    />
   </head>
   <body class="bg-bg text-white font-sans antialiased">
     <Navbar />
@@ -39,15 +82,16 @@ import Footer from '../components/Footer.astro';
 
       gsap.registerPlugin(ScrollTrigger);
 
-      if (!window.matchMedia('(pointer: coarse)').matches) {
-        const lenis = new Lenis({
-          duration: 0.8,
-          easing: (t) => 1 - Math.pow(1 - t, 3),
-        });
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => lenis.raf(time * 1000));
-        gsap.ticker.lagSmoothing(0);
-      }
+      const lenis = new Lenis({
+        duration: 0.8,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+        touchMultiplier: 1.5,
+      });
+
+      // Sync Lenis with GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
 
       // Handle anchor clicks for smooth scrolling
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -65,4 +109,3 @@ import Footer from '../components/Footer.astro';
     <Footer />
   </body>
 </html>
-

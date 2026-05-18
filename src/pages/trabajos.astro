@@ -1,46 +1,106 @@
 ---
 import "../styles/global.css";
+import SEO from "../components/SEO.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
 const ofertas = [
     {
+        id: "fullstack-typescript-2026-05",
         titulo: "Fullstack Developer · TypeScript",
         modalidad: "Remoto · Proyecto",
         sueldo: "1.2M – 1.6M CLP",
+        sueldoMin: 1200000,
+        sueldoMax: 1600000,
+        datePosted: "2026-05-18",
+        validThrough: "2026-08-16",
         descripcion:
             "Buscamos un dev con experiencia en TypeScript, React y Node para unirse a un proyecto de producto desde cero. Trabajarás directo con el cliente y con nuestro equipo técnico.",
         tags: ["TypeScript", "Node.js", "Bun", "PostgreSQL"],
     },
     {
+        id: "frontend-nextjs-2026-05",
         titulo: "Frontend Developer · Next.js",
         modalidad: "Remoto · Proyecto",
         sueldo: "1.0M – 1.4M CLP",
+        sueldoMin: 1000000,
+        sueldoMax: 1400000,
+        datePosted: "2026-05-18",
+        validThrough: "2026-08-16",
         descripcion:
             "Necesitamos alguien que domine interfaces complejas, buen ojo para el detalle y experiencia con diseño responsive. El proyecto involucra un dashboard con visualización de datos en tiempo real.",
         tags: ["Next.js", "TypeScript", "PostgreSQL", "Python"],
     },
 ];
+
+const title = "Trabajos | KeroKero";
+const description = "Posiciones abiertas en KeroKero. Trabajamos 100% remoto en proyectos de software a medida con equipos chicos y contacto directo con cada cliente.";
+
+const hiringOrg = {
+    "@type": "Organization",
+    "name": "KeroKero",
+    "sameAs": "https://kerokero.cl",
+    "logo": "https://kerokero.cl/logo.svg",
+};
+
+const applicantCountries = ["CL", "PE", "AR"].map((country) => ({
+    "@type": "Country",
+    "name": country,
+}));
+
+const jobPostingsLd = ofertas.map((o) => ({
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": o.titulo,
+    "description": o.descripcion,
+    "identifier": {
+        "@type": "PropertyValue",
+        "name": "KeroKero",
+        "value": o.id,
+    },
+    "datePosted": o.datePosted,
+    "validThrough": `${o.validThrough}T23:59:59-04:00`,
+    "employmentType": "CONTRACTOR",
+    "hiringOrganization": hiringOrg,
+    "jobLocationType": "TELECOMMUTE",
+    "applicantLocationRequirements": applicantCountries,
+    "baseSalary": {
+        "@type": "MonetaryAmount",
+        "currency": "CLP",
+        "value": {
+            "@type": "QuantitativeValue",
+            "minValue": o.sueldoMin,
+            "maxValue": o.sueldoMax,
+            "unitText": "MONTH",
+        },
+    },
+    "skills": o.tags.join(", "),
+}));
+
+const collectionPageLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Trabajos en KeroKero",
+    "url": "https://kerokero.cl/trabajos",
+    "description": description,
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "KeroKero",
+        "url": "https://kerokero.cl",
+    },
+};
 ---
 
 <html lang="es">
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="generator" content={Astro.generator} />
-        <meta
-            name="description"
-            content="Ofertas laborales en KeroKero. Sumate a construir software a medida con nosotros."
+        <SEO
+            title={title}
+            description={description}
+            jsonLd={[collectionPageLd, ...jobPostingsLd]}
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&family=Unbounded:wght@400;500&display=swap"
-            rel="stylesheet"
-        />
-        <title>Trabajos — KeroKero</title>
         <style>
             .postulacion-heading { opacity: 0; }
             .post-field { opacity: 0; }
@@ -413,12 +473,32 @@ const ofertas = [
                 },
             );
 
-            // Form submit handler
             const form = document.getElementById("postulacion-form") as HTMLFormElement;
-            form?.addEventListener("submit", (e) => {
+            const btn = form?.querySelector<HTMLButtonElement>(".submit-btn");
+
+            form?.addEventListener("submit", async (e) => {
                 e.preventDefault();
-                alert("¡Postulación recibida! Te contactaremos si hay match.");
-                form.reset();
+                if (!btn) return;
+
+                const originalText = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<span class="btn-text">Enviando…</span>';
+
+                try {
+                    const res = await fetch("/api/postulacion", { method: "POST", body: new FormData(form) });
+                    const json = await res.json();
+
+                    if (res.ok) {
+                        btn.innerHTML = '<span class="btn-text">¡Postulación enviada! ✓</span>';
+                        form.reset();
+                        setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 3000);
+                    } else {
+                        throw new Error(json.error || "Error desconocido");
+                    }
+                } catch (err) {
+                    btn.innerHTML = '<span class="btn-text">Error al enviar. Intentá de nuevo.</span>';
+                    setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 3000);
+                }
             });
         </script>
 

@@ -272,7 +272,7 @@ const countries = [
                 ))}
               </select>
             </div>
-            <input type="tel" name="telefono" placeholder="9 0000 0000" />
+            <input type="tel" name="telefono" placeholder="9 0000 0000" required />
           </div>
         </div>
 
@@ -340,12 +340,32 @@ const countries = [
     }
   );
 
-  // Placeholder submit
   const form = document.getElementById('contacto-form') as HTMLFormElement;
-  form?.addEventListener('submit', (e) => {
+  const btn = form?.querySelector<HTMLButtonElement>('.submit-btn');
+
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    alert('¡Mensaje recibido! Te contactaremos pronto.');
-    form.reset();
+    if (!btn) return;
+
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="btn-text">Enviando…</span>';
+
+    try {
+      const res = await fetch('/api/contacto', { method: 'POST', body: new FormData(form) });
+      const json = await res.json();
+
+      if (res.ok) {
+        btn.innerHTML = '<span class="btn-text">¡Mensaje enviado! ✓</span>';
+        form.reset();
+        setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 3000);
+      } else {
+        throw new Error(json.error || 'Error desconocido');
+      }
+    } catch (err) {
+      btn.innerHTML = '<span class="btn-text">Error al enviar. Intentá de nuevo.</span>';
+      setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 3000);
+    }
   });
 
   // Textarea: auto-resize al escribir
