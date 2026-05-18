@@ -39,16 +39,15 @@ import Footer from '../components/Footer.astro';
 
       gsap.registerPlugin(ScrollTrigger);
 
-      const lenis = new Lenis({
-        duration: 0.8,
-        easing: (t) => 1 - Math.pow(1 - t, 3),
-        touchMultiplier: 1.5,
-      });
-
-      // Sync Lenis with GSAP ScrollTrigger
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
+      if (!window.matchMedia('(pointer: coarse)').matches) {
+        const lenis = new Lenis({
+          duration: 0.8,
+          easing: (t) => 1 - Math.pow(1 - t, 3),
+        });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
 
       // Handle anchor clicks for smooth scrolling
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

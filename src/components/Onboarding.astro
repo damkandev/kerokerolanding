@@ -49,11 +49,11 @@ const steps = [
 
 <section
   id="proceso"
-  class="bg-accent max-w-[1019px] mx-auto border-x border-white grid grid-cols-[131px_1fr_131px]"
+  class="bg-accent max-w-[1019px] mx-auto border-x border-white grid grid-cols-1 md:grid-cols-[131px_1fr_131px]"
   style="background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
 >
   <!-- Gutter izquierdo: octograma sticky centrado en la columna -->
-  <div class="relative self-start">
+  <div class="hidden md:block relative self-start">
     <div id="star-wrapper" class="sticky top-[calc(50vh-32px)] flex justify-center pt-[72px]">
       <svg
         width="64"
@@ -85,7 +85,7 @@ const steps = [
   </div>
 
   <!-- Contenido: heading, párrafo y pasos en el mismo eje X -->
-  <div class="py-[72px] flex flex-col gap-12">
+  <div class="px-6 md:px-0 py-[72px] flex flex-col gap-12">
     <div class="flex flex-col gap-3">
       <h2 class="font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-bg">
         Del problema real a la solución que funciona.
@@ -113,7 +113,7 @@ const steps = [
   </div>
 
   <!-- Gutter derecho: vacío (simetría) -->
-  <div></div>
+  <div class="hidden md:block"></div>
 </section>
 
 <script>

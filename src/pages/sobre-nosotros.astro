@@ -60,7 +60,7 @@ const team = [
             <!-- HERO -->
             <section class="relative bg-bg pt-[66px]">
                 <div
-                    class="max-w-[1019px] mx-auto border-x border-white min-h-[480px] flex flex-col justify-center px-[131px] py-[72px]"
+                    class="max-w-[1019px] mx-auto border-x border-white min-h-[480px] flex flex-col justify-center px-6 md:px-[131px] py-[72px]"
                     style="background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 48px 48px;"
                 >
                     <p
@@ -126,7 +126,7 @@ const team = [
             <section>
                 <div class="max-w-[1019px] mx-auto border-x border-white">
                     <div class="h-px bg-white/10"></div>
-                    <div class="grid grid-cols-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
                         <!-- Left: filosofía -->
                         <div
                             class="manifesto-left px-[51px] py-[64px] flex flex-col gap-8"
@@ -225,7 +225,7 @@ const team = [
                             Liderazgo
                         </p>
                     </div>
-                    <div class="grid grid-cols-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
                         {
                             leadership.map((person, i) => (
                                 <div
@@ -304,7 +304,7 @@ const team = [
                             Equipo
                         </p>
                     </div>
-                    <div class="grid grid-cols-3">
+                    <div class="grid grid-cols-2 md:grid-cols-3">
                         {
                             team.map((member, i) => {
                                 const hasRight = i % 3 !== 2;
@@ -379,7 +379,7 @@ const team = [
                     >
                     </div>
                     <div
-                        class="cta-content px-[131px] py-[72px] flex flex-col gap-8"
+                        class="cta-content px-6 md:px-[131px] py-[72px] flex flex-col gap-8"
                     >
                         <div class="flex flex-col gap-4">
                             <p
@@ -436,15 +436,15 @@ const team = [
 
             gsap.registerPlugin(ScrollTrigger);
 
-            const lenis = new Lenis({
-                duration: 0.8,
-                easing: (t) => 1 - Math.pow(1 - t, 3),
-                touchMultiplier: 1.5,
-            });
-
-            lenis.on("scroll", ScrollTrigger.update);
-            gsap.ticker.add((time) => lenis.raf(time * 1000));
-            gsap.ticker.lagSmoothing(0);
+            if (!window.matchMedia('(pointer: coarse)').matches) {
+                const lenis = new Lenis({
+                    duration: 0.8,
+                    easing: (t) => 1 - Math.pow(1 - t, 3),
+                });
+                lenis.on("scroll", ScrollTrigger.update);
+                gsap.ticker.add((time) => lenis.raf(time * 1000));
+                gsap.ticker.lagSmoothing(0);
+            }
 
             // Stats — fade in + count-up
             gsap.utils.toArray<HTMLElement>(".stat-item").forEach((el, i) => {

@@ -1,13 +1,15 @@
 ---
 const services = [
-  { title: "Software a Medida", description: "Sistemas construidos desde cero para tu operación. Sin templates." },
-  { title: "Integraciones y APIs", description: "Conectamos tus herramientas para que funcionen como un solo sistema." },
-  { title: "SaaS Verticales", description: "Productos listos para escalar en industrias donde lo genérico no alcanza." },
-  { title: "IA Aplicada", description: "Automatizaciones inteligentes que eliminan trabajo repetitivo." },
+  { title: "Software a Medida", description: "Sistemas construidos desde cero para tu operación. Sin templates, sin compromisos." },
+  { title: "Integraciones y APIs", description: "Conectamos tus herramientas existentes para que trabajen como un solo sistema." },
+  { title: "SaaS Verticales", description: "Productos listos para escalar en industrias donde el software genérico no alcanza." },
+  { title: "IA Aplicada", description: "Automatizaciones inteligentes que eliminan trabajo repetitivo y reducen errores humanos." },
+  { title: "Consultoría de Procesos", description: "Antes de escribir código, entendemos tu negocio. Así construimos lo que realmente necesitás." },
+  { title: "Mantenimiento y Evolución", description: "El software no termina cuando se entrega. Lo hacemos crecer con tu negocio." },
 ];
 ---
 
-<nav id="navbar" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1019px] z-[100] h-[66px] border">
+<nav id="navbar" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1019px] z-[100] h-[66px] border border-white">
   <div class="h-full flex items-center gap-6 pl-8">
 
     <!-- Logo -->
@@ -16,49 +18,55 @@ const services = [
       <span class="font-display text-base text-white whitespace-nowrap tracking-normal">KeroKero</span>
     </a>
 
-    <!-- Nav links — left-aligned, no mx-auto -->
-    <ul class="flex items-center gap-0.5">
+    <!-- Nav links (desktop) -->
+    <ul class="hidden md:flex items-center gap-0.5">
+
       <!-- Servicios con dropdown -->
       <li id="services-trigger" class="relative h-full flex items-center">
         <a
           href="#servicios"
-          class="flex items-center gap-1.5 px-3 py-1.5 text-base text-white tracking-[-0.07em] rounded-md hover:bg-white/10 transition-colors duration-150"
+          class="flex items-center gap-1.5 px-3 py-1.5 text-base text-white tracking-[-0.07em] hover:bg-white/10 transition-colors duration-150"
         >
           Servicios
-          <!-- Lucide ChevronDown inline -->
           <svg
             id="services-chevron"
             xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
+            width="13"
+            height="13"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="opacity-50 transition-transform duration-200"
+            class="opacity-40 transition-transform duration-200"
           >
             <path d="m6 9 6 6 6-6" />
           </svg>
         </a>
 
-        <!-- Mega dropdown — same width as navbar -->
-        <div id="services-panel" class="dropdown-panel fixed top-[66px] left-1/2 -translate-x-1/2 w-full max-w-[1019px] opacity-0 invisible pointer-events-none transition-all duration-200 ease-out border border-t-0 border-white/10 shadow-2xl" style="background-color: var(--color-bg);">
-          <div class="grid grid-cols-[220px_1fr] min-h-[260px]">
+        <!-- Mega dropdown -->
+        <div
+          id="services-panel"
+          class="dropdown-panel fixed top-[66px] left-1/2 -translate-x-1/2 w-full max-w-[1019px] opacity-0 invisible pointer-events-none transition-all duration-200 ease-out border-x border-b border-white"
+          style="background-color: var(--color-bg);"
+        >
+          <div class="grid grid-cols-[220px_1fr]">
 
             <!-- Left panel -->
-            <div class="px-8 py-8 border-r border-white/10 flex flex-col justify-between gap-8">
-              <div>
-                <p class="text-white/35 text-[11px] uppercase tracking-widest mb-4 font-sans">Todos los Servicios</p>
-                <p class="text-white text-sm leading-relaxed">Soluciones de software para operaciones que requieren más que un template.</p>
+            <div class="px-8 py-8 border-r border-white flex flex-col justify-between gap-8">
+              <div class="flex flex-col gap-3">
+                <p class="text-white/35 text-[11px] uppercase tracking-widest font-sans">Servicios</p>
+                <p class="text-white text-sm leading-relaxed tracking-[-0.07em]">
+                  Soluciones para operaciones que requieren más que un template.
+                </p>
               </div>
-              <a href="#servicios" class="flex items-center gap-1.5 text-accent text-sm group/link w-fit">
+              <a href="#servicios" class="flex items-center gap-1.5 text-accent text-sm tracking-[-0.07em] group/link w-fit">
                 Ver todos
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
+                  width="13"
+                  height="13"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -73,32 +81,18 @@ const services = [
             </div>
 
             <!-- Right panel: service grid -->
-            <div class="grid grid-cols-2 p-4 gap-1 content-start">
-              {services.map((s) => (
+            <div class="grid grid-cols-2 border-t border-white/0">
+              {services.map((s, i) => (
                 <a
                   href="#servicios"
-                  class="p-4 rounded-lg hover:bg-white/5 transition-colors duration-150 group/item flex flex-col gap-1"
+                  class={`service-item p-5 flex flex-col gap-1.5 hover:bg-white/[0.04] transition-colors duration-150 group/item border-white/15 ${
+                    i % 2 === 0 ? 'border-r' : ''
+                  } ${i < 4 ? 'border-b' : ''}`}
                 >
-                  <div class="flex items-center justify-between">
-                    <p class="text-white text-sm font-medium group-hover/item:text-accent transition-colors duration-150">
-                      {s.title}
-                    </p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="opacity-0 group-hover/item:opacity-40 transition-opacity duration-150 shrink-0"
-                    >
-                      <path d="M7 17 17 7" /><path d="M7 7h10v10" />
-                    </svg>
-                  </div>
-                  <p class="text-white/35 text-xs leading-relaxed">{s.description}</p>
+                  <p class="text-white text-sm tracking-[-0.07em] group-hover/item:text-accent transition-colors duration-150">
+                    {s.title}
+                  </p>
+                  <p class="text-white/35 text-xs leading-relaxed tracking-[-0.04em]">{s.description}</p>
                 </a>
               ))}
             </div>
@@ -108,18 +102,13 @@ const services = [
       </li>
 
       <li>
-        <a href="/sobre-nosotros" class="block px-3 py-1.5 text-base text-white tracking-[-0.07em] rounded-md hover:bg-white/10 transition-colors duration-150">
+        <a href="/sobre-nosotros" class="block px-3 py-1.5 text-base text-white tracking-[-0.07em] hover:bg-white/10 transition-colors duration-150">
           Sobre Nosotros
         </a>
       </li>
       <li>
-        <a href="#noticias" class="block px-3 py-1.5 text-base text-white tracking-[-0.07em] rounded-md hover:bg-white/10 transition-colors duration-150">
-          Noticias
-        </a>
-      </li>
-      <li>
-        <a href="/trabajos" class="block px-3 py-1.5 text-base text-white tracking-[-0.07em] rounded-md hover:bg-white/10 transition-colors duration-150">
-          Trabaja con nosotros
+        <a href="/trabajos" class="block px-3 py-1.5 text-base text-white tracking-[-0.07em] hover:bg-white/10 transition-colors duration-150">
+          Trabajos
         </a>
       </li>
     </ul>
@@ -127,29 +116,74 @@ const services = [
     <!-- Spacer -->
     <div class="flex-1"></div>
 
-    <!-- CTA -->
+    <!-- CTA (desktop) -->
     <a
       href="#contacto"
-      class="flex items-center justify-center bg-accent text-bg text-base tracking-[-0.07em] h-[66px] px-8 whitespace-nowrap shrink-0 transition-opacity duration-200 ease-in-out hover:opacity-90"
+      class="hidden md:flex items-center justify-center bg-accent text-bg text-base tracking-[-0.07em] h-[66px] px-8 whitespace-nowrap shrink-0 transition-opacity duration-200 ease-in-out hover:opacity-90"
     >
       Contáctanos
     </a>
+
+    <!-- Hamburger (mobile) -->
+    <button
+      id="mobile-menu-btn"
+      aria-label="Abrir menú"
+      class="md:hidden flex items-center justify-center w-[66px] h-[66px] shrink-0 text-white"
+    >
+      <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+      <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="hidden">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu panel -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden absolute top-[66px] left-0 right-0 border-t border-white/20"
+    style="background-color: var(--color-bg);"
+  >
+    <ul class="flex flex-col">
+      <li>
+        <a href="#servicios" class="mobile-menu-link block px-8 py-4 text-base text-white tracking-[-0.07em] border-b border-white/10 hover:bg-white/5">
+          Servicios
+        </a>
+      </li>
+      <li>
+        <a href="/sobre-nosotros" class="mobile-menu-link block px-8 py-4 text-base text-white tracking-[-0.07em] border-b border-white/10 hover:bg-white/5">
+          Sobre Nosotros
+        </a>
+      </li>
+      <li>
+        <a href="/trabajos" class="mobile-menu-link block px-8 py-4 text-base text-white tracking-[-0.07em] border-b border-white/10 hover:bg-white/5">
+          Trabajos
+        </a>
+      </li>
+      <li>
+        <a href="#contacto" class="mobile-menu-link block px-8 py-5 text-base text-bg tracking-[-0.07em] bg-accent hover:opacity-90">
+          Contáctanos
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>
 
 <style>
   #navbar {
     background-color: var(--color-bg);
-    border-color: white;
     transition:
       background-color 0.35s ease,
-      backdrop-filter 0.35s ease;
+      backdrop-filter 0.35s ease,
+      border-color 0.35s ease;
   }
 
   #navbar.scrolled {
-    background-color: rgba(25, 25, 25, 0.6);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background-color: var(--color-bg);
   }
 </style>
 
@@ -167,7 +201,27 @@ const services = [
   window.addEventListener("scroll", syncScroll, { passive: true });
   syncScroll();
 
-  // Services mega menu with hide delay
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const closeIconEl = document.getElementById("close-icon");
+
+  mobileBtn?.addEventListener("click", () => {
+    const isOpen = !mobileMenu!.classList.contains("hidden");
+    mobileMenu!.classList.toggle("hidden", isOpen);
+    hamburgerIcon!.classList.toggle("hidden", !isOpen);
+    closeIconEl!.classList.toggle("hidden", isOpen);
+  });
+
+  document.querySelectorAll(".mobile-menu-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu!.classList.add("hidden");
+      hamburgerIcon!.classList.remove("hidden");
+      closeIconEl!.classList.add("hidden");
+    });
+  });
+
   const trigger = document.getElementById("services-trigger");
   const panel = document.getElementById("services-panel");
   const chevron = document.getElementById("services-chevron");
@@ -175,15 +229,15 @@ const services = [
 
   function openMenu() {
     if (hideTimer) clearTimeout(hideTimer);
-    panel!.classList.remove("opacity-0", "invisible", "pointer-events-none", "-translate-y-1");
-    panel!.classList.add("opacity-100", "visible", "pointer-events-auto", "translate-y-0");
+    panel!.classList.remove("opacity-0", "invisible", "pointer-events-none");
+    panel!.classList.add("opacity-100", "visible", "pointer-events-auto");
     chevron!.classList.add("rotate-180");
   }
 
   function scheduleClose() {
     hideTimer = setTimeout(() => {
-      panel!.classList.add("opacity-0", "invisible", "pointer-events-none", "-translate-y-1");
-      panel!.classList.remove("opacity-100", "visible", "pointer-events-auto", "translate-y-0");
+      panel!.classList.add("opacity-0", "invisible", "pointer-events-none");
+      panel!.classList.remove("opacity-100", "visible", "pointer-events-auto");
       chevron!.classList.remove("rotate-180");
     }, 150);
   }
