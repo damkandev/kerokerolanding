@@ -1,0 +1,429 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const ofertas = [
+    {
+        titulo: "Fullstack Developer · TypeScript",
+        modalidad: "Remoto · Proyecto",
+        sueldo: "1.2M – 1.6M CLP",
+        descripcion:
+            "Buscamos un dev con experiencia en TypeScript, React y Node para sumarse a un proyecto de producto desde cero. Vas a trabajar directo con el cliente y con nuestro equipo técnico.",
+        tags: ["TypeScript", "Node.js", "Bun", "PostgreSQL"],
+    },
+    {
+        titulo: "Frontend Developer · Next.js",
+        modalidad: "Remoto · Proyecto",
+        sueldo: "1.0M – 1.4M CLP",
+        descripcion:
+            "Necesitamos alguien que domine interfaces complejas, buen ojo para el detalle y experiencia con diseño responsive. El proyecto involucra un dashboard con visualización de datos en tiempo real.",
+        tags: ["Next.js", "TypeScript", "PostgreSQL", "Python"],
+    },
+];
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={Astro.generator} />
+        <meta
+            name="description"
+            content="Ofertas laborales en KeroKero. Sumate a construir software a medida con nosotros."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&family=Unbounded:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <title>Trabajos — KeroKero</title>
+        <style>
+            .postulacion-heading { opacity: 0; }
+            .post-field { opacity: 0; }
+
+            .field-inner {
+                position: relative;
+                padding-top: 22px;
+            }
+
+            .field-inner input,
+            .field-inner textarea {
+                width: 100%;
+                background: transparent;
+                outline: none;
+                border: none;
+                border-bottom: 1.5px solid rgba(25, 25, 25, 0.55);
+                padding: 8px 0;
+                color: #191919;
+                font-family: "Work Sans", sans-serif;
+                font-size: 1rem;
+                letter-spacing: -0.07em;
+                resize: none;
+                display: block;
+                transition: border-color 0.25s ease;
+            }
+
+            .field-inner::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1.5px;
+                background: #191919;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                pointer-events: none;
+            }
+
+            .field-inner:focus-within::after {
+                transform: scaleX(1);
+            }
+
+            .field-inner label {
+                position: absolute;
+                left: 0;
+                top: 30px;
+                font-family: "Work Sans", sans-serif;
+                font-size: 1rem;
+                letter-spacing: -0.07em;
+                color: rgba(25, 25, 25, 0.7);
+                pointer-events: none;
+                transform-origin: left top;
+                transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                            color 0.25s ease;
+            }
+
+            .field-inner input:focus ~ label,
+            .field-inner input:not(:placeholder-shown) ~ label,
+            .field-inner textarea:focus ~ label,
+            .field-inner textarea:not(:placeholder-shown) ~ label {
+                transform: translateY(-22px) scale(0.72);
+                color: rgba(25, 25, 25, 0.9);
+            }
+
+            .cv-label {
+                font-family: "Work Sans", sans-serif;
+                font-size: 0.72rem;
+                text-transform: uppercase;
+                letter-spacing: -0.02em;
+                color: rgba(25, 25, 25, 0.85);
+            }
+
+            .cv-dropzone {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 24px;
+                border: 1.5px dashed rgba(25, 25, 25, 0.5);
+                cursor: pointer;
+                transition: border-color 0.25s ease, background 0.25s ease;
+                color: rgba(25, 25, 25, 0.7);
+                font-family: "Work Sans", sans-serif;
+                font-size: 0.875rem;
+                letter-spacing: -0.07em;
+            }
+
+            .cv-dropzone:hover {
+                border-color: rgba(25, 25, 25, 0.8);
+                background: rgba(25, 25, 25, 0.05);
+            }
+
+            .submit-btn {
+                position: relative;
+                background: #191919;
+                color: #c5f09a;
+                font-family: "Work Sans", sans-serif;
+                font-size: 1rem;
+                letter-spacing: -0.07em;
+                padding: 14px 40px;
+                border: none;
+                cursor: pointer;
+                overflow: hidden;
+                transition: transform 0.15s ease;
+            }
+
+            .submit-btn .btn-text {
+                position: relative;
+                z-index: 1;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                transition: gap 0.25s ease;
+            }
+
+            .submit-btn .btn-arrow {
+                display: inline-block;
+                transition: transform 0.25s ease;
+            }
+
+            .submit-btn:hover .btn-arrow {
+                transform: translateX(4px);
+            }
+
+            .submit-btn:hover .btn-text {
+                gap: 12px;
+            }
+
+            .submit-btn::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: rgba(197, 240, 154, 0.07);
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
+
+            .submit-btn:hover::before { opacity: 1; }
+            .submit-btn:active { transform: scale(0.97); }
+        </style>
+    </head>
+    <body class="bg-bg text-white font-sans antialiased">
+        <Navbar />
+        <main>
+            <!-- HERO -->
+            <section class="relative bg-bg pt-[66px]">
+                <div
+                    class="max-w-[1019px] mx-auto border-x border-white min-h-[400px] flex flex-col justify-center px-[131px] py-[72px]"
+                    style="background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+                >
+                    <p class="text-[11px] uppercase tracking-widest text-accent mb-4">
+                        Trabajos
+                    </p>
+                    <h1 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-white max-w-[520px] mb-6">
+                        Sumate a construir software que importa.
+                    </h1>
+                    <p class="text-base leading-relaxed tracking-[-0.07em] text-muted max-w-[440px]">
+                        Publicamos posiciones cuando hay un proyecto real que lo justifica. Si te interesa trabajar directo con clientes y con autonomía, acá van las oportunidades abiertas.
+                    </p>
+                </div>
+            </section>
+
+            <!-- OFERTAS -->
+            <section>
+                <div class="max-w-[1019px] mx-auto border-x border-white">
+                    <div class="h-px bg-white/10"></div>
+                    <div class="px-[51px] py-10" style="border-bottom: 1px solid rgba(255,255,255,0.10)">
+                        <p class="text-[11px] uppercase tracking-widest text-accent">
+                            Posiciones abiertas
+                        </p>
+                    </div>
+                    {ofertas.map((oferta, i) => (
+                        <div
+                            class="oferta-card px-[51px] py-[64px] flex flex-col gap-6"
+                            style={i < ofertas.length - 1 ? "border-bottom: 1px solid rgba(255,255,255,0.10)" : ""}
+                        >
+                            <div class="flex flex-col gap-2">
+                                <h2 class="text-white text-[20px] font-sans tracking-[-0.07em]">
+                                    {oferta.titulo}
+                                </h2>
+                                <div class="flex items-center gap-4">
+                                    <p class="text-[11px] uppercase tracking-widest" style="color: rgba(255,255,255,0.30)">
+                                        {oferta.modalidad}
+                                    </p>
+                                    <span style="color: rgba(255,255,255,0.15)">·</span>
+                                    <p class="text-[11px] uppercase tracking-widest text-accent">
+                                        {oferta.sueldo}
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="text-sm leading-relaxed tracking-[-0.07em] text-muted max-w-[560px]">
+                                {oferta.descripcion}
+                            </p>
+                            <div class="flex flex-wrap gap-2.5 mt-2">
+                                {oferta.tags.map((tag) => (
+                                    <span class="text-[10px] uppercase tracking-widest px-3 py-1.5" style="border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.50)">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                            <a
+                                href="#postulacion"
+                                class="inline-flex items-center gap-2 text-accent text-sm tracking-[-0.07em] mt-4 transition-opacity duration-200 hover:opacity-70"
+                            >
+                                Postularme
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <!-- FORMULARIO -->
+            <section
+                id="postulacion"
+                class="bg-accent max-w-[1019px] mx-auto border-x border-white grid grid-cols-[131px_1fr_131px]"
+                style="background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+            >
+                <div></div>
+                <div class="py-[72px] flex flex-col gap-12">
+                    <!-- Header -->
+                    <div class="postulacion-heading flex flex-col gap-3">
+                        <h2 class="font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-bg">
+                            Dejá tus datos y te contactamos.
+                        </h2>
+                        <p class="text-base leading-relaxed tracking-[-0.07em] text-bg/80 max-w-[460px]">
+                            Adjuntá tu CV y un mensaje breve. Si hay match con algún proyecto activo o futuro, nos comunicamos.
+                        </p>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="postulacion-form" class="flex flex-col gap-8" enctype="multipart/form-data">
+                        <div class="grid grid-cols-2 gap-x-10 gap-y-8">
+                            <div class="post-field">
+                                <div class="field-inner">
+                                    <input type="text" name="nombre" placeholder=" " required />
+                                    <label>Nombre</label>
+                                </div>
+                            </div>
+                            <div class="post-field">
+                                <div class="field-inner">
+                                    <input type="email" name="email" placeholder=" " required />
+                                    <label>Email</label>
+                                </div>
+                            </div>
+                            <div class="post-field">
+                                <div class="field-inner">
+                                    <input type="url" name="linkedin" placeholder=" " />
+                                    <label>LinkedIn (opcional)</label>
+                                </div>
+                            </div>
+                            <div class="post-field">
+                                <div class="field-inner">
+                                    <input type="text" name="portfolio" placeholder=" " />
+                                    <label>Portfolio / GitHub (opcional)</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="post-field">
+                            <div class="field-inner">
+                                <textarea name="mensaje" rows="3" placeholder=" "></textarea>
+                                <label>¿Por qué te interesa trabajar con nosotros?</label>
+                            </div>
+                        </div>
+
+                        <div class="post-field flex flex-col gap-2">
+                            <span class="cv-label">CV (PDF)</span>
+                            <label for="cv-upload" class="cv-dropzone">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line>
+                                </svg>
+                                <span>Hacé click para subir tu CV</span>
+                            </label>
+                            <input type="file" id="cv-upload" name="cv" accept=".pdf" required class="hidden" />
+                        </div>
+
+                        <div class="post-field">
+                            <button type="submit" class="submit-btn">
+                                <span class="btn-text">
+                                    Enviar postulación
+                                    <span class="btn-arrow">→</span>
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div></div>
+            </section>
+        </main>
+
+        <script>
+            import Lenis from "lenis";
+            import { gsap } from "gsap";
+            import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            const lenis = new Lenis({
+                duration: 0.8,
+                easing: (t) => 1 - Math.pow(1 - t, 3),
+                touchMultiplier: 1.5,
+            });
+
+            lenis.on("scroll", ScrollTrigger.update);
+            gsap.ticker.add((time) => lenis.raf(time * 1000));
+            gsap.ticker.lagSmoothing(0);
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", (e) => {
+                    const href = (e.currentTarget as HTMLAnchorElement).getAttribute("href");
+                    if (!href || href === "#") return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        lenis.scrollTo(target as HTMLElement);
+                    }
+                });
+            });
+
+            // Animate oferta cards
+            gsap.utils.toArray<HTMLElement>(".oferta-card").forEach((el, i) => {
+                gsap.fromTo(
+                    el,
+                    { opacity: 0, y: 16 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        ease: "power2.out",
+                        delay: i * 0.1,
+                        scrollTrigger: { trigger: el, start: "top 88%" },
+                    },
+                );
+            });
+
+            // Animate postulacion heading
+            gsap.fromTo(
+                ".postulacion-heading",
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#postulacion",
+                        start: "top 80%",
+                    },
+                },
+            );
+
+            // Animate form fields
+            gsap.fromTo(
+                ".post-field",
+                { opacity: 0, y: 18 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out",
+                    stagger: 0.08,
+                    scrollTrigger: {
+                        trigger: "#postulacion",
+                        start: "top 75%",
+                    },
+                },
+            );
+
+            // Form submit handler
+            const form = document.getElementById("postulacion-form") as HTMLFormElement;
+            form?.addEventListener("submit", (e) => {
+                e.preventDefault();
+                alert("¡Postulación recibida! Te contactaremos si hay match.");
+                form.reset();
+            });
+        </script>
+
+        <Footer />
+    </body>
+</html>

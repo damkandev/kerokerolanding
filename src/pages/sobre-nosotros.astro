@@ -264,16 +264,9 @@ const team = [
                                         <p class="text-white text-[17px] font-sans tracking-[-0.07em]">
                                             {person.name}
                                         </p>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2">
-                                        {person.tags.map((tag) => (
-                                            <span
-                                                class="text-[10px] uppercase tracking-widest px-2.5 py-1"
-                                                style="border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.45)"
-                                            >
-                                                {tag}
-                                            </span>
-                                        ))}
+                                        <p class="text-[11px] uppercase tracking-widest text-accent">
+                                            {person.role}
+                                        </p>
                                     </div>
                                     <p class="text-sm leading-relaxed tracking-[-0.07em] text-muted">
                                         {person.bio}
