@@ -1,0 +1,191 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Pre-consultoría",
+    description:
+      "Entre 1 y 3 reuniones donde evaluamos contigo el tamaño y naturaleza del problema. No cobramos nada: queremos entender si realmente podemos ayudarte antes de ofrecerte algo. Al final de esta etapa ya tenés una primera hipótesis de solución.",
+  },
+  {
+    number: "02",
+    title: "Inmersión en el problema",
+    description:
+      "Nos sumergimos de verdad. Si tu operación lo requiere, un miembro del equipo va a tu empresa por una semana a vivir el proceso desde adentro, hablar con tu gente y entender lo que ningún documento puede explicar. Esta etapa ya tiene costo.",
+  },
+  {
+    number: "03",
+    title: "MVP funcional",
+    description:
+      "Construimos la primera versión del sistema: lo justo para que lo puedas usar y palpar. Nada de esperar meses para ver algo. El MVP te permite validar si vamos en la dirección correcta antes de invertir más.",
+  },
+  {
+    number: "04",
+    title: "Evolución continua",
+    description:
+      "Con el MVP en tus manos, empezamos a añadir funcionalidades en ciclos cortos según lo que vos y tu equipo vayan pidiendo. El software crece con tu negocio durante toda la duración del contrato.",
+  },
+  {
+    number: "05",
+    title: "Extensión del contrato",
+    description:
+      "Al término del contrato, si querés seguir evolucionando el sistema, cotizamos una extensión personalizada según las nuevas necesidades. Sin ataduras: vos decidís si continuás.",
+  },
+];
+---
+
+<style>
+  .onboarding-star .sq1,
+  .onboarding-star .sq2 {
+    fill: none;
+    stroke-dasharray: 678;
+    stroke-dashoffset: 678;
+  }
+
+  /* GSAP setea opacity via JS; esto evita flash antes de que cargue */
+  .onboarding-step {
+    opacity: 0;
+  }
+</style>
+
+<section
+  id="proceso"
+  class="bg-accent max-w-[1019px] mx-auto border-x border-white grid grid-cols-[131px_1fr_131px]"
+  style="background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+>
+  <!-- Gutter izquierdo: octograma sticky centrado en la columna -->
+  <div class="relative self-start">
+    <div id="star-wrapper" class="sticky top-[calc(50vh-32px)] flex justify-center pt-[72px]">
+      <svg
+        width="64"
+        height="64"
+        viewBox="0 0 244 244"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="onboarding-star"
+        aria-hidden="true"
+      >
+        <polygon
+          class="sq1"
+          points="241.813,121.94 121.94,2.0666 2.06666,121.94 121.94,241.813"
+          stroke="#191919"
+          stroke-width="5"
+          stroke-linejoin="miter"
+          pathLength="678"
+        />
+        <polygon
+          class="sq2"
+          points="206.701,37.176 37.177,37.1769 37.176,206.701 206.702,206.702"
+          stroke="#191919"
+          stroke-width="5"
+          stroke-linejoin="miter"
+          pathLength="678"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Contenido: heading, párrafo y pasos en el mismo eje X -->
+  <div class="py-[72px] flex flex-col gap-12">
+    <div class="flex flex-col gap-3">
+      <h2 class="font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-bg">
+        Del problema real a la solución que funciona.
+      </h2>
+      <p class="text-base leading-relaxed tracking-[-0.07em] text-bg/70 max-w-[460px]">
+        Un proceso honesto, sin promesas vacías. Primero entendemos, después construimos.
+      </p>
+    </div>
+
+    <ol class="flex flex-col gap-10">
+      {steps.map((step, i) => (
+        <li class="onboarding-step flex flex-col gap-1" data-step-index={i.toString()}>
+          <span class="font-sans text-[78px] leading-none tracking-[-0.07em] text-bg select-none">
+            {step.number}
+          </span>
+          <h3 class="font-sans font-semibold text-base tracking-[-0.07em] text-bg">
+            {step.title}
+          </h3>
+          <p class="text-sm leading-relaxed tracking-[-0.07em] text-bg/70 max-w-[520px]">
+            {step.description}
+          </p>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <!-- Gutter derecho: vacío (simetría) -->
+  <div></div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const sq1 = document.querySelector<SVGPolygonElement>('.onboarding-star .sq1')!;
+  const sq2 = document.querySelector<SVGPolygonElement>('.onboarding-star .sq2')!;
+  const stepEls = document.querySelectorAll<HTMLElement>('.onboarding-step');
+
+  // Octograma: scrub continuo mapeado al scroll de la sección
+  // sq1 se dibuja en la primera mitad, sq2 en la segunda
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '#proceso',
+      start: 'top center',
+      endTrigger: stepEls[stepEls.length - 1],
+      end: 'top 82%',
+      scrub: 1,
+    },
+  })
+    .to(sq1, { strokeDashoffset: 0, ease: 'none' })
+    .to(sq2, { strokeDashoffset: 0, ease: 'none' });
+
+  // Detener el sticky a la altura del centro del paso 05
+  // Limitamos la altura del contenedor padre para que el sticky se atore ahí
+  const starWrapper = document.getElementById('star-wrapper')!;
+  const lastStep = stepEls[stepEls.length - 1];
+  const stickyParent = starWrapper.parentElement!;
+  const section = document.getElementById('proceso')!;
+
+  function setStickyHeight() {
+    // Distancia desde el top de la sección hasta el centro del número "05"
+    const numberEl = lastStep.querySelector('span')!;
+    const sectionRect = section.getBoundingClientRect();
+    const numberRect = numberEl.getBoundingClientRect();
+    const numberCenter = (numberRect.top + numberRect.height / 2) - sectionRect.top;
+    // El sticky top es calc(50vh - 32px), el SVG está a +72 (padding) +32 (mitad SVG) del top del wrapper
+    // Para que el SVG se detenga alineado al centro del "05":
+    // parentHeight = numberCenter + (50vh - 32px) + 72 + 32 - pero en scroll...
+    // Más simple: la altura del padre debe ser tal que cuando el sticky toca el fondo,
+    // el centro del SVG coincida con numberCenter.
+    // Sticky se atora cuando: parentHeight - wrapperHeight = scrolled past top of parent
+    // En ese punto, el SVG center en la sección = parentHeight - (wrapperHeight - 72 - 32)
+    // = parentHeight - wrapperHeight + 104
+    // Queremos eso = numberCenter
+    // => parentHeight = numberCenter + wrapperHeight - 104
+    const wrapperHeight = starWrapper.offsetHeight;
+    stickyParent.style.height = `${numberCenter + wrapperHeight - 104}px`;
+  }
+
+  setStickyHeight();
+  window.addEventListener('resize', setStickyHeight);
+
+  // Fade + slide por cada paso (unidireccional)
+  stepEls.forEach((el) => {
+    gsap.fromTo(
+      el,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 82%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    );
+  });
+</script>

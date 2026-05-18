@@ -1,0 +1,336 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const leadership = [
+  {
+    initials: 'DP',
+    name: 'Damián Panes',
+    role: 'CEO',
+    tags: ['Producto', 'Arquitectura', 'Comercial'],
+    bio: 'Lleva la estrategia de producto, la relación con clientes y el lado comercial de la consultora. Más de diez años haciendo producto antes de fundar KeroKero.',
+  },
+  {
+    initials: 'FF',
+    name: 'Felipe Figueroa',
+    role: 'CTO',
+    tags: ['Arquitectura', 'Infraestructura', 'TypeScript'],
+    bio: 'Define la arquitectura y los criterios técnicos de cada proyecto. Acompaña el desarrollo desde el diseño hasta producción.',
+  },
+];
+
+const team = [
+  { initials: 'MR', name: 'Matías Rodríguez', role: 'Fullstack', tags: ['React', 'Node.js', 'PostgreSQL'] },
+  { initials: 'LF', name: 'Lucía Fernández', role: 'Frontend', tags: ['Angular', 'TypeScript', 'Figma'] },
+  { initials: 'SG', name: 'Santiago Gómez', role: 'Backend', tags: ['Go', 'Docker', 'Redis'] },
+  { initials: 'VL', name: 'Valentina López', role: 'Fullstack', tags: ['Next.js', 'Prisma', 'AWS'] },
+  { initials: 'AH', name: 'Agustín Herrera', role: 'DevOps', tags: ['Terraform', 'AWS', 'CI/CD'] },
+  { initials: 'CT', name: 'Camila Torres', role: 'Fullstack', tags: ['React', 'Python', 'FastAPI'] },
+];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="KeroKero es una consultora de software a medida formada por dos socios que trabajan directo con cada cliente." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&family=Unbounded:wght@400;500&display=swap" rel="stylesheet" />
+    <title>Sobre Nosotros — KeroKero</title>
+  </head>
+  <body class="bg-bg text-white font-sans antialiased">
+    <Navbar />
+    <main>
+
+      <!-- HERO -->
+      <section class="relative bg-bg pt-[66px]">
+        <div
+          class="max-w-[1019px] mx-auto border-x border-white min-h-[480px] flex flex-col justify-center px-[131px] py-[72px]"
+          style="background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+        >
+          <p class="text-[11px] uppercase tracking-widest text-accent mb-4">Sobre nosotros</p>
+          <h1 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-white max-w-[520px] mb-6">
+            Construimos software como si fuera nuestro propio negocio.
+          </h1>
+          <p class="text-base leading-relaxed tracking-[-0.07em] text-muted max-w-[440px]">
+            KeroKero es un estudio de software a medida. Trabajamos por
+            proyecto, con foco en pocos clientes a la vez.
+          </p>
+          <!-- Stats -->
+          <div
+            class="stats-row flex items-start mt-8 pt-6"
+            style="border-top: 1px solid rgba(255,255,255,0.10)"
+          >
+            <div class="stat-item flex-1 flex flex-col gap-1.5">
+              <span class="text-[30px] font-sans tracking-[-0.07em] text-white leading-none">12+</span>
+              <span class="text-[11px] uppercase tracking-widest text-muted">Proyectos lanzados</span>
+            </div>
+            <div class="w-px self-stretch mx-8" style="background-color: rgba(255,255,255,0.10)"></div>
+            <div class="stat-item flex-1 flex flex-col gap-1.5">
+              <span class="text-[30px] font-sans tracking-[-0.07em] text-white leading-none">4</span>
+              <span class="text-[11px] uppercase tracking-widest text-muted">Años en el mercado</span>
+            </div>
+            <div class="w-px self-stretch mx-8" style="background-color: rgba(255,255,255,0.10)"></div>
+            <div class="stat-item flex-1 flex flex-col gap-1.5">
+              <span class="text-[30px] font-sans tracking-[-0.07em] text-white leading-none">3</span>
+              <span class="text-[11px] uppercase tracking-widest text-muted">Países con clientes</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MANIFIESTO -->
+      <section>
+        <div class="max-w-[1019px] mx-auto border-x border-white">
+          <div class="h-px bg-white/10"></div>
+          <div class="grid grid-cols-2">
+            <!-- Left: filosofía -->
+            <div
+              class="manifesto-left px-[51px] py-[64px] flex flex-col gap-8"
+              style="border-right: 1px solid rgba(255,255,255,0.10)"
+            >
+              <p class="text-[11px] uppercase tracking-widest text-accent">Filosofía</p>
+              <p class="text-base leading-relaxed tracking-[-0.07em] text-muted">
+                Trabajamos directo con quien decide en cada proyecto, sin intermediarios ni equipos rotativos. Cada decisión técnica tiene contexto del negocio detrás, y cada conversación con el cliente la tiene alguien con criterio para tomar decisiones.
+              </p>
+            </div>
+            <!-- Right: non-negotiables -->
+            <div class="px-[51px] py-[64px] flex flex-col">
+              <p class="text-[11px] uppercase tracking-widest mb-6" style="color: rgba(255,255,255,0.30)">Lo que no negociamos</p>
+              <div class="manifesto-item flex flex-col gap-1.5 pb-6">
+                <p class="text-white text-sm font-sans tracking-[-0.07em]">Sin templates</p>
+                <p class="text-sm tracking-[-0.07em] leading-relaxed text-muted">Cada sistema se diseña para el problema del cliente, no a partir de un boilerplate reciclado.</p>
+              </div>
+              <div
+                class="manifesto-item flex flex-col gap-1.5 py-6"
+                style="border-top: 1px solid rgba(255,255,255,0.10)"
+              >
+                <p class="text-white text-sm font-sans tracking-[-0.07em]">Sin horas facturadas</p>
+                <p class="text-sm tracking-[-0.07em] leading-relaxed text-muted">Cobramos por proyecto o por hito. Así el incentivo queda alineado con entregar algo que funcione.</p>
+              </div>
+              <div
+                class="manifesto-item flex flex-col gap-1.5 pt-6"
+                style="border-top: 1px solid rgba(255,255,255,0.10)"
+              >
+                <p class="text-white text-sm font-sans tracking-[-0.07em]">Sin over-engineering</p>
+                <p class="text-sm tracking-[-0.07em] leading-relaxed text-muted">La solución más simple que resuelva el problema y aguante el crecimiento esperado del próximo año.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIDERAZGO -->
+      <section>
+        <div class="max-w-[1019px] mx-auto border-x border-white">
+          <div class="h-px bg-white/10"></div>
+          <div class="px-[51px] py-8" style="border-bottom: 1px solid rgba(255,255,255,0.10)">
+            <p class="text-[11px] uppercase tracking-widest text-accent">Liderazgo</p>
+          </div>
+          <div class="grid grid-cols-2">
+            {leadership.map((person, i) => (
+              <div
+                class="leader-card px-[51px] py-[56px] flex flex-col gap-8"
+                style={i === 0 ? 'border-right: 1px solid rgba(255,255,255,0.10)' : ''}
+              >
+                <div
+                  class="w-14 h-14 flex items-center justify-center"
+                  style="border: 1px solid rgba(255,255,255,0.20)"
+                >
+                  <span class="text-xs font-sans tracking-wider" style="color: rgba(255,255,255,0.35)">{person.initials}</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <p class="text-white text-[17px] font-sans tracking-[-0.07em]">{person.name}</p>
+                  <p class="text-[11px] uppercase tracking-widest text-accent">{person.role}</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  {person.tags.map(tag => (
+                    <span
+                      class="text-[10px] uppercase tracking-widest px-2.5 py-1"
+                      style="border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.45)"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <p class="text-sm leading-relaxed tracking-[-0.07em] text-muted">{person.bio}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- EQUIPO -->
+      <section>
+        <div class="max-w-[1019px] mx-auto border-x border-white">
+          <div class="h-px bg-white/10"></div>
+          <div class="px-[51px] py-8" style="border-bottom: 1px solid rgba(255,255,255,0.10)">
+            <p class="text-[11px] uppercase tracking-widest text-accent">Equipo</p>
+          </div>
+          <div class="grid grid-cols-3">
+            {team.map((member, i) => {
+              const hasRight = i % 3 !== 2;
+              const hasBottom = i < 3;
+              const borderStyle = [
+                hasRight ? 'border-right: 1px solid rgba(255,255,255,0.10)' : '',
+                hasBottom ? 'border-bottom: 1px solid rgba(255,255,255,0.10)' : '',
+              ].filter(Boolean).join('; ');
+              return (
+                <div
+                  class="team-card px-8 py-10 flex flex-col gap-4 transition-colors duration-300 hover:bg-white/[0.03]"
+                  style={borderStyle}
+                >
+                  <div
+                    class="w-9 h-9 flex items-center justify-center"
+                    style="border: 1px solid rgba(255,255,255,0.18)"
+                  >
+                    <span class="text-[10px] font-sans tracking-wider" style="color: rgba(255,255,255,0.35)">{member.initials}</span>
+                  </div>
+                  <div>
+                    <p class="text-white text-sm font-sans tracking-[-0.07em]">{member.name}</p>
+                    <p class="text-[10px] uppercase tracking-widest mt-0.5" style="color: rgba(255,255,255,0.30)">{member.role}</p>
+                  </div>
+                  <div class="flex flex-wrap gap-1.5">
+                    {member.tags.map(tag => (
+                      <span
+                        class="text-[10px] uppercase tracking-widest px-2 py-0.5"
+                        style="border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.40)"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA: TRABAJA CON NOSOTROS -->
+      <section id="trabaja">
+        <div
+          class="max-w-[1019px] mx-auto border-x border-white"
+          style="background-color: var(--color-accent); background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: 48px 48px;"
+        >
+          <div class="h-px" style="background-color: rgba(0,0,0,0.10)"></div>
+          <div class="cta-content px-[131px] py-[72px] flex flex-col gap-8">
+            <div class="flex flex-col gap-4">
+              <p class="text-[11px] uppercase tracking-widest" style="color: rgba(25,25,25,0.50)">Sumáte</p>
+              <h2 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-bg max-w-[480px]">
+                Si querés trabajar con nosotros, escribinos.
+              </h2>
+              <p class="text-base leading-relaxed tracking-[-0.07em] max-w-[400px]" style="color: rgba(25,25,25,0.65)">
+                Abrimos posiciones cuando hay un proyecto que lo justifica. Si tenés experiencia construyendo producto y querés trabajar directo con clientes, escribinos y vemos si hay match.
+              </p>
+            </div>
+            <a
+              href="/#contacto"
+              class="inline-flex items-center gap-2 text-accent text-base tracking-[-0.07em] px-8 h-[41px] w-fit transition-opacity duration-200 hover:opacity-80"
+              style="background-color: var(--color-bg)"
+            >
+              Escribinos
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 0.8,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+        touchMultiplier: 1.5,
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      // Stats
+      gsap.utils.toArray<HTMLElement>('.stat-item').forEach((el, i) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 12 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+            delay: i * 0.1,
+            scrollTrigger: { trigger: '.stats-row', start: 'top 85%' },
+          }
+        );
+      });
+
+      // Manifesto left
+      gsap.fromTo('.manifesto-left',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', scrollTrigger: { trigger: '.manifesto-left', start: 'top 85%' } }
+      );
+
+      // Manifesto items (right column)
+      gsap.utils.toArray<HTMLElement>('.manifesto-item').forEach((el, i) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 14 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.45,
+            ease: 'power2.out',
+            delay: i * 0.1,
+            scrollTrigger: { trigger: el, start: 'top 88%' },
+          }
+        );
+      });
+
+      // Leader cards
+      gsap.utils.toArray<HTMLElement>('.leader-card').forEach((el, i) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.55,
+            ease: 'power2.out',
+            delay: i * 0.12,
+            scrollTrigger: { trigger: el, start: 'top 85%' },
+          }
+        );
+      });
+
+      // Team cards
+      gsap.utils.toArray<HTMLElement>('.team-card').forEach((el, i) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.45,
+            ease: 'power2.out',
+            delay: (i % 3) * 0.08,
+            scrollTrigger: { trigger: el, start: 'top 88%' },
+          }
+        );
+      });
+
+      // CTA
+      gsap.fromTo('.cta-content',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', scrollTrigger: { trigger: '.cta-content', start: 'top 85%' } }
+      );
+    </script>
+
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,167 @@
+---
+const services = [
+  {
+    title: "Software a Medida",
+    description: "Sistemas construidos desde cero para tu operación. Sin templates, sin compromisos.",
+  },
+  {
+    title: "Integraciones y APIs",
+    description: "Conectamos tus herramientas existentes para que trabajen como un solo sistema.",
+  },
+  {
+    title: "SaaS verticales",
+    description: "Productos listos para escalar en industrias donde el software genérico no alcanza.",
+  },
+  {
+    title: "Consultoría de procesos",
+    description: "Antes de escribir código, entendemos tu negocio. Así construimos lo que realmente necesitás.",
+  },
+  {
+    title: "IA aplicada a operaciones",
+    description: "Automatizaciones inteligentes que eliminan trabajo repetitivo y reducen errores humanos.",
+  },
+  {
+    title: "Mantenimiento y evolución",
+    description: "El software no termina cuando se entrega. Lo hacemos crecer con tu negocio.",
+  },
+];
+
+const grays = ["#d6d2cd", "#c9c5c0", "#ddd9d4", "#ccc8c3", "#d1cdc8", "#e0dcd7"];
+---
+
+<style>
+  /* entrada scroll */
+  .service-card {
+    opacity: 0;
+    transition: background-color 0.35s ease;
+  }
+
+  /* contenido: siempre pegado abajo */
+  .card-inner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .card-title {
+    color: #191919;
+    transform: translateY(0);
+    transition: color 0.35s ease, transform 0.35s ease;
+  }
+
+  /* descripción oculta abajo con max-height */
+  .card-desc {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    color: rgba(255, 255, 255, 0.8);
+    transition: max-height 0.35s ease, opacity 0.35s ease;
+  }
+
+  /* hover */
+  .service-card:hover {
+    background-color: #191919;
+  }
+
+  .service-card:hover .card-title {
+    color: #ffffff;
+    transform: translateY(-4px);
+  }
+
+  .service-card:hover .card-desc {
+    max-height: 80px;
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+</style>
+
+<section
+  id="servicios"
+  class="bg-[#e2dfdb] w-full"
+  style="background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: 48px 48px;"
+>
+  <div class="max-w-[1019px] mx-auto border border-[#b5b5b5] border-solid">
+    <!-- Header -->
+    <div class="px-[55px] pt-[72px] pb-10 flex flex-col gap-3">
+      <h2 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-[#191919]">
+        Lo que construimos para tu negocio
+      </h2>
+      <p class="text-base leading-relaxed tracking-[-0.07em] text-black/70 max-w-[511px]">
+        Cada servicio está pensado para crear ventajas que tu competencia no puede replicar fácilmente.
+      </p>
+    </div>
+
+    <!-- Grid de servicios -->
+    <div class="grid grid-cols-3 gap-2 px-[55px] pb-[55px]">
+      {services.map((service, i) => (
+        <div
+          class="service-card relative h-[157px] overflow-hidden cursor-default"
+          style={`background-color: ${grays[i]};`}
+          data-service-index={i.toString()}
+        >
+          <div class="card-inner">
+            <span class="card-title font-sans font-normal text-[20px] leading-[1.2] tracking-[-0.07em]">
+              {service.title}
+            </span>
+            <p class="card-desc font-sans font-normal text-[12px] leading-[1.4] tracking-[-0.04em]">
+              {service.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const cards = document.querySelectorAll<HTMLElement>('.service-card');
+
+  const grays = ["#d6d2cd", "#c9c5c0", "#ddd9d4", "#ccc8c3", "#d1cdc8", "#e0dcd7"];
+
+  cards.forEach((card, i) => {
+    gsap.fromTo(
+      card,
+      { opacity: 0, y: 16 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        delay: (i % 3) * 0.08,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    );
+
+    // Ciclo suave de grises tipo mural de commits
+    const sequence = [...grays.slice(i), ...grays.slice(0, i)];
+    const tl = gsap.to(card, {
+      keyframes: sequence.map(c => ({ backgroundColor: c, duration: 3, ease: 'sine.inOut' })),
+      repeat: -1,
+      delay: i * 0.6,
+    });
+
+    card.addEventListener('mouseenter', () => {
+      tl.pause();
+      gsap.killTweensOf(card, "backgroundColor");
+      gsap.to(card, { backgroundColor: '#191919', duration: 0.15, ease: 'power1.out', overwrite: true });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.killTweensOf(card, "backgroundColor");
+      gsap.to(card, { backgroundColor: grays[i], duration: 0.35, ease: 'power1.out', onComplete: () => tl.resume() });
+    });
+  });
+</script>

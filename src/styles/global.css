@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #191919;
+  --color-accent: #c5f09a;
+  --color-muted: rgba(255, 255, 255, 0.68);
+  --font-sans: "Work Sans", sans-serif;
+  --font-display: "Unbounded", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: auto;
+  }
+}

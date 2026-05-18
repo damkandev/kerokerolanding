@@ -1,0 +1,86 @@
+---
+const principles = [
+  {
+    title: "Tú eres el dueño",
+    description:
+      "El código, las bases de datos, los diseños y la documentación te pertenecen en su totalidad desde el primer día. No retenemos ningún derecho sobre lo que creamos para ti. Si el día de mañana querés modificarlo, distribuirlo o venderlo, esa decisión es completamente tuya.",
+  },
+  {
+    title: "Cero dependencia",
+    description:
+      "No creemos en los clientes cautivos. Si decidís continuar con otro equipo, te entregamos todo: código limpio, documentación completa y asistencia para que la transición sea sin fricciones. Tu negocio no puede depender de que nosotros sigamos ahí.",
+  },
+  {
+    title: "Tu idea es un secreto",
+    description:
+      "Tu problema, tu proceso y la solución que construimos juntos son información estrictamente confidencial. Firmamos un acuerdo de confidencialidad antes de cualquier conversación que lo requiera. Lo que nos contás, se queda entre nosotros.",
+  },
+];
+---
+
+<style>
+  .regla-item {
+    opacity: 0;
+  }
+</style>
+
+<section
+  id="reglas"
+  class="bg-[#191919] w-full"
+  style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 48px 48px;"
+>
+  <div class="max-w-[1019px] mx-auto border border-white/30 border-solid">
+    <!-- Header -->
+    <div class="px-[51px] pt-[72px] pb-10 border-b border-white/20 flex flex-col gap-3">
+      <h2 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-white">
+        Tú solución, tus reglas.
+      </h2>
+      <p class="text-base leading-relaxed tracking-[-0.07em] text-white/70 max-w-[511px]">
+        Un proceso honesto, sin promesas vacías. Primero entendemos, después construimos.
+      </p>
+    </div>
+
+    <!-- Grid 2 cols -->
+    <div class="grid grid-cols-2">
+      {principles.map((p) => (
+        <div class="regla-item px-[51px] py-10 flex flex-col gap-3">
+          <h3 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-white">
+            {p.title}
+          </h3>
+          <p class="text-base leading-relaxed tracking-[-0.07em] text-white/70">
+            {p.description}
+          </p>
+        </div>
+      ))}
+      {principles.length % 2 !== 0 && <div></div>}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const items = document.querySelectorAll<HTMLElement>('.regla-item');
+
+  items.forEach((item, i) => {
+    gsap.fromTo(
+      item,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        delay: (i % 2) * 0.12,
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    );
+  });
+</script>

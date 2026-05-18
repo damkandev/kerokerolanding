@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Onboarding from '../components/Onboarding.astro';
+import Services from '../components/Services.astro';
+import Reglas from '../components/Reglas.astro';
+import Contacto from '../components/Contacto.astro';
+import Footer from '../components/Footer.astro';
+
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&family=Unbounded:wght@400;500&display=swap" rel="stylesheet" />
+    <title>KeroKero — Software a medida para tu negocio</title>
+  </head>
+  <body class="bg-bg text-white font-sans antialiased">
+    <Navbar />
+    <main>
+      <Hero />
+      <Onboarding />
+      <Services />
+      <Reglas />
+      <Contacto />
+    </main>
+
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 0.8,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+        touchMultiplier: 1.5,
+      });
+
+      // Sync Lenis with GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      // Handle anchor clicks for smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+          const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+          if (!href || href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            lenis.scrollTo(target as HTMLElement);
+          }
+        });
+      });
+    </script>
+    <Footer />
+  </body>
+</html>
+

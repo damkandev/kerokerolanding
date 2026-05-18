@@ -1,0 +1,79 @@
+---
+---
+
+<style>
+  .hero-star .sq1,
+  .hero-star .sq2 {
+    fill: none;
+    stroke-dasharray: 678;
+  }
+
+  /* Ciclo de 10s:
+     0-2s   → cuadrado 1 se traza
+     2-4s   → cuadrado 2 se traza
+     4-7s   → ambos visibles (hold)
+     7-8.5s → ambos se desvanecen
+     8.5-10s→ invisible, reset silencioso
+  */
+  .hero-star .sq1 {
+    animation: draw-sq 2s ease-in-out forwards;
+  }
+
+  .hero-star .sq2 {
+    opacity: 0;
+    animation: draw-sq 2s ease-in-out 2s forwards;
+  }
+
+  @keyframes draw-sq {
+    from { stroke-dashoffset: 678; opacity: 1; }
+    to   { stroke-dashoffset: 0;   opacity: 1; }
+  }
+</style>
+
+<section
+  class="pt-[66px] bg-bg min-h-[580px] max-w-[1019px] mx-auto border-x border-white"
+  style="background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+>
+  <div class="px-[131px] min-h-[514px] flex items-center justify-between gap-8">
+    <div class="shrink-0 max-w-[511px] flex flex-col gap-5">
+      <h1 class="font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-white">
+        Construimos la ventaja competitiva que tu competencia no puede comprar.
+      </h1>
+      <p class="text-base leading-relaxed tracking-[-0.07em] text-muted max-w-[460px]">
+        Desarrollamos software a medida para los procesos operativos que realmente definen tu negocio.
+      </p>
+      <a href="#contacto" class="inline-flex items-center justify-center bg-accent text-bg text-base tracking-[-0.07em] w-[140px] h-[41px] transition-opacity duration-200 ease-in-out hover:opacity-[0.88]">Contactanos</a>
+    </div>
+
+    <div class="shrink-0 flex items-center justify-center pr-8">
+      <svg
+        width="244"
+        height="244"
+        viewBox="0 0 244 244"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="rotate-180 opacity-90 hero-star"
+        aria-hidden="true"
+      >
+        <!-- Cuadrado 1: diamante — puntos en los ejes cardinales -->
+        <polygon
+          class="sq1"
+          points="241.813,121.94 121.94,2.0666 2.06666,121.94 121.94,241.813"
+          stroke="#C5F09A"
+          stroke-width="3.30729"
+          stroke-linejoin="miter"
+          pathLength="678"
+        />
+        <!-- Cuadrado 2: axial — puntos en las diagonales (cóncavos del octagrama) -->
+        <polygon
+          class="sq2"
+          points="206.701,37.176 37.177,37.1769 37.176,206.701 206.702,206.702"
+          stroke="#C5F09A"
+          stroke-width="3.30729"
+          stroke-linejoin="miter"
+          pathLength="678"
+        />
+      </svg>
+    </div>
+  </div>
+</section>

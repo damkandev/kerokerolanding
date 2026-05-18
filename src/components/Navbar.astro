@@ -1,0 +1,195 @@
+---
+const services = [
+  { title: "Software a Medida", description: "Sistemas construidos desde cero para tu operación. Sin templates." },
+  { title: "Integraciones y APIs", description: "Conectamos tus herramientas para que funcionen como un solo sistema." },
+  { title: "SaaS Verticales", description: "Productos listos para escalar en industrias donde lo genérico no alcanza." },
+  { title: "IA Aplicada", description: "Automatizaciones inteligentes que eliminan trabajo repetitivo." },
+];
+---
+
+<nav id="navbar" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1019px] z-[100] h-[66px] border">
+  <div class="h-full flex items-center gap-6 pl-8">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 shrink-0">
+      <img src="/logo.svg" alt="" class="w-[22px] h-[22px]" />
+      <span class="font-display text-base text-white whitespace-nowrap tracking-normal">KeroKero</span>
+    </a>
+
+    <!-- Nav links — left-aligned, no mx-auto -->
+    <ul class="flex items-center gap-0.5">
+      <!-- Servicios con dropdown -->
+      <li id="services-trigger" class="relative h-full flex items-center">
+        <a
+          href="#servicios"
+          class="flex items-center gap-1.5 px-3 py-1.5 text-base text-white tracking-[-0.07em] rounded-md hover:bg-white/10 transition-colors duration-150"
+        >
+          Servicios
+          <!-- Lucide ChevronDown inline -->
+          <svg
+            id="services-chevron"
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="opacity-50 transition-transform duration-200"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </a>
+
+        <!-- Mega dropdown — same width as navbar -->
+        <div id="services-panel" class="dropdown-panel fixed top-[66px] left-1/2 -translate-x-1/2 w-full max-w-[1019px] opacity-0 invisible pointer-events-none transition-all duration-200 ease-out border border-t-0 border-white/10 shadow-2xl" style="background-color: var(--color-bg);">
+          <div class="grid grid-cols-[220px_1fr] min-h-[260px]">
+
+            <!-- Left panel -->
+            <div class="px-8 py-8 border-r border-white/10 flex flex-col justify-between gap-8">
+              <div>
+                <p class="text-white/35 text-[11px] uppercase tracking-widest mb-4 font-sans">Todos los Servicios</p>
+                <p class="text-white text-sm leading-relaxed">Soluciones de software para operaciones que requieren más que un template.</p>
+              </div>
+              <a href="#servicios" class="flex items-center gap-1.5 text-accent text-sm group/link w-fit">
+                Ver todos
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="transition-transform duration-150 group-hover/link:translate-x-1"
+                >
+                  <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Right panel: service grid -->
+            <div class="grid grid-cols-2 p-4 gap-1 content-start">
+              {services.map((s) => (
+                <a
+                  href="#servicios"
+                  class="p-4 rounded-lg hover:bg-white/5 transition-colors duration-150 group/item flex flex-col gap-1"
+                >
+                  <div class="flex items-center justify-between">
+                    <p class="text-white text-sm font-medium group-hover/item:text-accent transition-colors duration-150">
+                      {s.title}
+                    </p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="opacity-0 group-hover/item:opacity-40 transition-opacity duration-150 shrink-0"
+                    >
+                      <path d="M7 17 17 7" /><path d="M7 7h10v10" />
+                    </svg>
+                  </div>
+                  <p class="text-white/35 text-xs leading-relaxed">{s.description}</p>
+                </a>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <a href="/sobre-nosotros" class="block px-3 py-1.5 text-base text-white tracking-[-0.07em] rounded-md hover:bg-white/10 transition-colors duration-150">
+          Sobre Nosotros
+        </a>
+      </li>
+      <li>
+        <a href="#noticias" class="block px-3 py-1.5 text-base text-white tracking-[-0.07em] rounded-md hover:bg-white/10 transition-colors duration-150">
+          Noticias
+        </a>
+      </li>
+      <li>
+        <a href="/sobre-nosotros#trabaja" class="block px-3 py-1.5 text-base text-white tracking-[-0.07em] rounded-md hover:bg-white/10 transition-colors duration-150">
+          Trabaja con nosotros
+        </a>
+      </li>
+    </ul>
+
+    <!-- Spacer -->
+    <div class="flex-1"></div>
+
+    <!-- CTA -->
+    <a
+      href="#contacto"
+      class="flex items-center justify-center bg-accent text-bg text-base tracking-[-0.07em] h-[66px] px-8 whitespace-nowrap shrink-0 transition-opacity duration-200 ease-in-out hover:opacity-90"
+    >
+      Contáctanos
+    </a>
+  </div>
+</nav>
+
+<style>
+  #navbar {
+    background-color: var(--color-bg);
+    border-color: white;
+    transition:
+      background-color 0.35s ease,
+      backdrop-filter 0.35s ease;
+  }
+
+  #navbar.scrolled {
+    background-color: rgba(25, 25, 25, 0.6);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById("navbar");
+
+  function syncScroll() {
+    if (window.scrollY > 8) {
+      navbar?.classList.add("scrolled");
+    } else {
+      navbar?.classList.remove("scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", syncScroll, { passive: true });
+  syncScroll();
+
+  // Services mega menu with hide delay
+  const trigger = document.getElementById("services-trigger");
+  const panel = document.getElementById("services-panel");
+  const chevron = document.getElementById("services-chevron");
+  let hideTimer: ReturnType<typeof setTimeout> | null = null;
+
+  function openMenu() {
+    if (hideTimer) clearTimeout(hideTimer);
+    panel!.classList.remove("opacity-0", "invisible", "pointer-events-none", "-translate-y-1");
+    panel!.classList.add("opacity-100", "visible", "pointer-events-auto", "translate-y-0");
+    chevron!.classList.add("rotate-180");
+  }
+
+  function scheduleClose() {
+    hideTimer = setTimeout(() => {
+      panel!.classList.add("opacity-0", "invisible", "pointer-events-none", "-translate-y-1");
+      panel!.classList.remove("opacity-100", "visible", "pointer-events-auto", "translate-y-0");
+      chevron!.classList.remove("rotate-180");
+    }, 150);
+  }
+
+  trigger!.addEventListener("mouseenter", openMenu);
+  trigger!.addEventListener("mouseleave", scheduleClose);
+  panel!.addEventListener("mouseenter", openMenu);
+  panel!.addEventListener("mouseleave", scheduleClose);
+</script>
