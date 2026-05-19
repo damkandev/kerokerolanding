@@ -1,0 +1,238 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const portfolio = [
+  {
+    index: "01",
+    empresa: "Axion Energy",
+    pais: "Argentina",
+    logo: "/companies-logos/axion-energy.png",
+    descripcion: "Desarrollamos un sistema de gestión integral para red de estaciones de servicio, integrando inventario de combustible, ventas en tiempo real y logística de abastecimiento.",
+    logros: ["Reducción del 35% en tiempos de reposición de combustible", "Visibilidad en tiempo real de 120+ estaciones operativas"],
+  },
+  {
+    index: "02",
+    empresa: "Rodar",
+    pais: "Argentina",
+    logo: "/companies-logos/rodar.svg",
+    descripcion: "Plataforma de gestión de flota y optimización de rutas para transporte de cargas, con seguimiento GPS en tiempo real y automatización de documentación.",
+    logros: ["Aumento del 28% en eficiencia de rutas de entrega", "Reducción del 40% en papelera administrativa"],
+  },
+  {
+    index: "03",
+    empresa: "Segui Group SRL",
+    pais: "Argentina",
+    logo: "/companies-logos/segui-group-srl.webp",
+    descripcion: "Sistema unificado de gestión empresarial para holding multi-rubro, integrando finanzas, RRHH y operaciones de 8 unidades de negocio diferentes.",
+    logros: ["Consolidación financiera en tiempo real de todas las subsidiarias", "Reducción del 60% en tiempo de cierre mensual"],
+  },
+  {
+    index: "04",
+    empresa: "YPF",
+    pais: "Argentina",
+    logo: "/companies-logos/ypf.png",
+    descripcion: "Plataforma de análisis y visualización de datos de producción y exploración, conectando múltiples fuentes de datos operativos en dashboards ejecutivos.",
+    logros: ["Procesamiento de 2.5M+ registros diarios de sensores", "Dashboards con latencia menor a 30 segundos"],
+  },
+  {
+    index: "05",
+    empresa: "Zurich",
+    pais: "Argentina",
+    logo: "/companies-logos/zurich.png",
+    descripcion: "Sistema digital de gestión de siniestros y pólizas, automatizando flujos de aprobación y brindando autoservicio a asegurados y productores.",
+    logros: ["Reducción del 45% en tiempos de resolución de siniestros", "+85% de satisfacción en atención digital"],
+  },
+];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Portfolio de proyectos de KeroKero. Software a medida que resuelve problemas reales." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&family=Unbounded:wght@400;500&display=swap" rel="stylesheet" />
+    <title>Portfolio — KeroKero</title>
+  </head>
+  <body class="bg-bg text-white font-sans antialiased">
+    <Navbar />
+    <main>
+      <!-- HERO -->
+      <section class="relative pt-[66px]">
+        <div
+          class="max-w-[1019px] mx-auto border-x border-white min-h-[400px] flex flex-col justify-center px-6 md:px-[131px] py-[72px]"
+          style="background-color: #e2dfdb; background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+        >
+          <p class="text-[11px] uppercase tracking-widest mb-4" style="color: rgba(25,25,25,0.50)">Portfolio</p>
+          <h1 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-bg max-w-[520px] mb-6">
+            Software que resuelve problemas reales.
+          </h1>
+          <p class="text-base leading-relaxed tracking-[-0.07em] max-w-[440px]" style="color: rgba(25,25,25,0.65)">
+            Cada proyecto es un sistema construido a medida. Sin templates, sin atajos.
+          </p>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO GRID -->
+      <section>
+        <div class="max-w-[1019px] mx-auto border-x border-white">
+          {portfolio.map((item, i) => {
+            const isDark = i % 2 === 0;
+            const bgClass = isDark ? "bg-bg" : "bg-accent";
+            const indexColor = isDark ? "text-white/10" : "text-bg/15";
+            const titleColor = isDark ? "text-white" : "text-bg";
+            const metaColor = isDark ? "text-accent" : "text-bg/60";
+            const descColor = isDark ? "text-muted" : "text-bg/70";
+            const logrosColor = isDark ? "text-muted" : "text-bg/70";
+            const bulletColor = isDark ? "bg-accent" : "bg-bg";
+            const gridColor = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)";
+            const wireframeBorder = isDark ? "border-white/10" : "border-bg/10";
+            const logoBorder = isDark ? "border-white/15" : "border-bg/20";
+            const logoBg = isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)";
+            const cardBorder = isDark ? "border-white/10" : "border-bg/10";
+            return (
+              <div
+                class={`portfolio-card relative ${bgClass} px-6 md:px-[51px] py-[64px] border-b ${cardBorder} overflow-hidden`}
+                style={`background-image: linear-gradient(${gridColor} 1px, transparent 1px), linear-gradient(90deg, ${gridColor} 1px, transparent 1px); background-size: 48px 48px;`}
+              >
+                <!-- Wireframe accent -->
+                <div class={`absolute top-6 right-6 w-16 h-16 border ${wireframeBorder}`}></div>
+                
+                <div class="relative z-10 flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-start">
+                  <!-- Left column: Content -->
+                  <div class="flex-1 flex flex-col gap-6">
+                    <!-- Meta info -->
+                    <div class="flex flex-col gap-1">
+                      <p class={`text-[11px] uppercase tracking-widest ${metaColor}`}>
+                        {item.empresa} · {item.pais}
+                      </p>
+                    </div>
+                    
+                    <!-- Description -->
+                    <p class={`text-base leading-relaxed tracking-[-0.07em] max-w-[520px] ${descColor}`}>
+                      {item.descripcion}
+                    </p>
+                    
+                    <!-- Logros -->
+                    <div class={`flex flex-col gap-2 ${logrosColor}`}>
+                      <p class={`text-[11px] uppercase tracking-widest ${metaColor}`}>Logros</p>
+                      {item.logros.map((logro) => (
+                        <div class="flex items-start gap-3" key={logro}>
+                          <span class={`w-1.5 h-1.5 mt-2 ${bulletColor}`}></span>
+                          <span class="text-base leading-relaxed tracking-[-0.07em]">{logro}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <!-- Right column: Index + Logo -->
+                  <div class="flex flex-col items-end gap-2 shrink-0 w-full md:w-auto">
+                    <!-- Index number (alineado a la derecha con padding simétrico) -->
+                    <span class={`text-[64px] md:text-[96px] font-sans font-normal tracking-[-0.07em] leading-none pr-4 md:pr-6 ${indexColor}`}>
+                      {item.index}
+                    </span>
+                    
+                    <!-- Logo enmarcado (larger) -->
+                    <div class={`w-48 h-48 md:w-56 md:h-56 flex items-center justify-center p-6 md:p-8 border ${logoBorder}`} style={`background-color: ${logoBg}`}>
+                      <img src={item.logo} alt={item.empresa} class="w-full h-full object-contain" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <!-- CTA FINAL -->
+      <section>
+        <div
+          class="max-w-[1019px] mx-auto border-x border-white"
+          style="background-color: #e2dfdb; background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+        >
+          <div class="h-px" style="background-color: rgba(0,0,0,0.10)"></div>
+          <div class="cta-content px-6 md:px-[131px] py-[72px] flex flex-col gap-8">
+            <div class="flex flex-col gap-4">
+              <p class="text-[11px] uppercase tracking-widest" style="color: rgba(25,25,25,0.50)">¿Querés ser el próximo?</p>
+              <h2 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-bg max-w-[480px]">
+                Tu proyecto puede estar acá.
+              </h2>
+              <p class="text-base leading-relaxed tracking-[-0.07em] max-w-[400px]" style="color: rgba(25,25,25,0.65)">
+                Nos especializamos en construir software a medida para operaciones complejas. Hablemos.
+              </p>
+            </div>
+            <a
+              href="/#contacto"
+              class="inline-flex items-center gap-2 text-accent text-base tracking-[-0.07em] px-8 h-[41px] w-fit transition-opacity duration-200 hover:opacity-80"
+              style="background-color: var(--color-bg)"
+            >
+              Contáctanos
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      import Lenis from "lenis";
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      if (!window.matchMedia('(pointer: coarse)').matches) {
+        const lenis = new Lenis({
+          duration: 0.8,
+          easing: (t) => 1 - Math.pow(1 - t, 3),
+        });
+        lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      // Portfolio cards animation
+      const cards = gsap.utils.toArray<HTMLElement>(".portfolio-card");
+      if (cards.length > 0) {
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: { trigger: cards[0], start: "top 88%" },
+          }
+        );
+      }
+
+      // CTA animation
+      if (document.querySelector(".cta-content")) {
+        gsap.fromTo(
+          ".cta-content",
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: { trigger: ".cta-content", start: "top 85%" },
+          }
+        );
+      }
+    </script>
+
+    <Footer />
+  </body>
+</html>
