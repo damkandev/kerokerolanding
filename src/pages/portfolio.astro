@@ -3,6 +3,7 @@ import "../styles/global.css";
 import SEO from "../components/SEO.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
 import LinkedinIcon from "@tabler/icons/outline/brand-linkedin.svg?raw";
 
 const portfolio = [
@@ -93,6 +94,7 @@ const description = "Portfolio de proyectos de KeroKero. Software a medida para 
       canonical={false}
       noindex
     />
+    <Analytics />
   </head>
   <body class="bg-bg text-white font-sans antialiased">
     <Navbar />

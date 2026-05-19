@@ -3,6 +3,7 @@ import "../styles/global.css";
 import SEO from "../components/SEO.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
 import LinkedinIcon from "@tabler/icons/outline/brand-linkedin.svg?raw";
 
 const leadership = [
@@ -80,6 +81,7 @@ const aboutPageLd = {
             description={description}
             jsonLd={aboutPageLd}
         />
+        <Analytics />
     </head>
     <body class="bg-bg text-white font-sans antialiased">
         <Navbar />

@@ -3,6 +3,7 @@ import "../styles/global.css";
 import SEO from "../components/SEO.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
 
 const ofertas = [
     {
@@ -101,6 +102,7 @@ const collectionPageLd = {
             description={description}
             jsonLd={[collectionPageLd, ...jobPostingsLd]}
         />
+        <Analytics />
         <style>
             .postulacion-heading { opacity: 0; }
             .post-field { opacity: 0; }

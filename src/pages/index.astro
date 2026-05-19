@@ -8,6 +8,7 @@ import Services from '../components/Services.astro';
 import Reglas from '../components/Reglas.astro';
 import Contacto from '../components/Contacto.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 
 const title = "KeroKero | Software a medida para tu negocio";
 const description = "Estudio de software a medida en Latinoamérica. Construimos sistemas operativos críticos, integraciones y SaaS verticales con foco en pocos clientes a la vez.";
@@ -64,6 +65,7 @@ const servicesLd = {
       description={description}
       jsonLd={[organizationLd, websiteLd, servicesLd]}
     />
+    <Analytics />
   </head>
   <body class="bg-bg text-white font-sans antialiased">
     <Navbar />
