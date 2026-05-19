@@ -1,10 +1,24 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import {
+  RESEND_FROM,
+  RESEND_TO,
+  escapeHtml,
+  getResendApiKey,
+  isValidEmail,
+  jsonResponse,
+  textToHtml,
+} from '../../lib/server/formEmail';
 
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
-  const resend = new Resend(import.meta.env.RESEND_API_KEY);
+  const apiKey = getResendApiKey();
+  if (!apiKey) {
+    return jsonResponse({ error: 'Falta configurar RESEND_API_KEY.' }, 500);
+  }
+
+  const resend = new Resend(apiKey);
   const data = await request.formData();
 
   const nombre = data.get('nombre')?.toString().trim();
@@ -21,19 +35,30 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
+  if (!isValidEmail(email)) {
+    return jsonResponse({ error: 'Email inválido.' }, 400);
+  }
+
+  const safeNombre = escapeHtml(nombre);
+  const safeEmail = escapeHtml(email);
+  const safeEmpresa = escapeHtml(empresa);
+  const safePais = escapeHtml(pais);
+  const safeTelefono = escapeHtml(telefono || '—');
+  const safeMensaje = textToHtml(mensaje);
+
   const { error } = await resend.emails.send({
-    from: 'KeroKero <contacto@web.kerokero.cl>',
-    to: ['damian@kerokero.cl'],
+    from: RESEND_FROM,
+    to: [RESEND_TO],
     replyTo: email,
     subject: `Nuevo contacto: ${nombre}`,
     html: `
-      <p><strong>Nombre:</strong> ${nombre}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Empresa:</strong> ${empresa}</p>
-      <p><strong>Teléfono:</strong> ${pais} ${telefono}</p>
+      <p><strong>Nombre:</strong> ${safeNombre}</p>
+      <p><strong>Email:</strong> ${safeEmail}</p>
+      <p><strong>Empresa:</strong> ${safeEmpresa}</p>
+      <p><strong>Teléfono:</strong> ${safePais} ${safeTelefono}</p>
       <hr />
       <p><strong>Mensaje:</strong></p>
-      <p>${mensaje.replace(/\n/g, '<br />')}</p>
+      <p>${safeMensaje}</p>
     `,
   });
 

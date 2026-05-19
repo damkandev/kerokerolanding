@@ -19,7 +19,7 @@ interface Props {
   /** Path absoluto desde la raíz, ej "/og-default.png" */
   image?: string;
   /** Sobrescribe el path canonical (por defecto usa Astro.url) */
-  canonical?: string;
+  canonical?: string | false;
   type?: "website" | "article" | "profile";
   /** Estructura JSON-LD a inyectar como <script type="application/ld+json"> */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
@@ -38,11 +38,13 @@ const {
 } = Astro.props as Props;
 
 const SITE_NAME = "KeroKero";
-const SITE_URL = Astro.site?.toString().replace(/\/$/, "") ?? "https://kerokero.dev";
+const SITE_URL = Astro.site?.toString().replace(/\/$/, "") ?? "https://kerokero.cl";
 
-const canonicalUrl = canonical
-  ? new URL(canonical, SITE_URL).toString()
-  : new URL(Astro.url.pathname, SITE_URL).toString();
+const canonicalUrl = canonical === false
+  ? null
+  : canonical
+    ? new URL(canonical, SITE_URL).toString()
+    : new URL(Astro.url.pathname, SITE_URL).toString();
 
 const imageUrl = image.startsWith("http")
   ? image
@@ -56,7 +58,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 {/* Primary meta */}
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonicalUrl} />
+{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 {noindex ? (
   <meta name="robots" content="noindex, nofollow" />
 ) : (
@@ -70,7 +72,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 <meta property="og:site_name" content={SITE_NAME} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={canonicalUrl} />
+{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
 <meta property="og:image" content={imageUrl} />
 <meta property="og:locale" content="es_CL" />
 

@@ -1,0 +1,440 @@
+---
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import LinkedinIcon from "@tabler/icons/outline/brand-linkedin.svg?raw";
+
+const portfolio = [
+  {
+    index: "01",
+    empresa: "Axion Energy",
+    pais: "Argentina",
+    logo: "/companies-logos/axion-energy.png",
+    descripcion: "Desarrollamos un sistema de gestión integral para red de estaciones de servicio, integrando inventario de combustible, ventas en tiempo real y logística de abastecimiento.",
+    logros: ["Visibilidad en tiempo real del inventario de combustible en 120+ estaciones desde una sola plataforma", "Eliminación del reporte manual diario entre estaciones y operaciones centrales"],
+  },
+  {
+    index: "02",
+    empresa: "Rodar",
+    pais: "Chile",
+    logo: "/companies-logos/rodar.svg",
+    descripcion: "Plataforma integral para automotoras que centraliza la operación, entrega financiamiento usando el inventario como garantía y cruza datos de vehículos y propietarios para cerrar mejores tratos.",
+    logros: ["Aprobación de crédito en menos de 24h usando el inventario como garantía, sin tasaciones externas", "Datos cruzados de vehículos, propietarios y antecedentes legales disponibles en tiempo real para cada operación"],
+  },
+  {
+    index: "03",
+    empresa: "Segui",
+    pais: "Chile",
+    logo: "/companies-logos/segui-group-srl.webp",
+    descripcion: "SaaS para clínicas veterinarias que centraliza el historial clínico de cada paciente, la gestión de tutores, el seguimiento de tratamientos y el control de medicación. Desarrollado de cero: desde el diseño hasta producción.",
+    logros: ["Visibilidad completa del estado de salud de cada mascota a lo largo del tiempo", "Adherencia a tratamientos mejorada con seguimiento activo de medicación y alertas a tutores"],
+  },
+  {
+    index: "04",
+    empresa: "YPF",
+    pais: "Argentina",
+    logo: "/companies-logos/ypf.png",
+    descripcion: "Plataforma de análisis y visualización de datos de producción y exploración, conectando múltiples fuentes de datos operativos en dashboards ejecutivos.",
+    logros: ["Consolidación de múltiples fuentes de datos operativos en dashboards accesibles para equipos ejecutivos", "Tiempo de acceso a datos de producción reducido de horas a menos de un minuto"],
+  },
+  {
+    index: "05",
+    empresa: "Zurich",
+    pais: "Argentina",
+    logo: "/companies-logos/zurich.png",
+    descripcion: "Sistema digital de gestión de siniestros y pólizas, automatizando flujos de aprobación y brindando autoservicio a asegurados y productores.",
+    logros: ["Automatización de los flujos de aprobación para siniestros de baja complejidad sin intervención manual", "Asegurados y productores con canal digital de autogestión por primera vez en la operación local"],
+  },
+];
+
+const leadership = [
+  {
+    initials: "DP",
+    name: "Damian Panes",
+    role: "CEO",
+    tags: ["Producto", "Arquitectura", "Comercial"],
+    bio: "Lleva la estrategia de producto, la relacion con clientes y el lado comercial de la consultora. Mas de diez anos haciendo producto antes de fundar KeroKero.",
+    image: "/team/damian-160.webp",
+    linkedin: "https://www.linkedin.com/in/damianpanes/",
+  },
+  {
+    initials: "FF",
+    name: "Felipe Figueroa",
+    role: "CTO",
+    tags: ["Arquitectura", "Infraestructura", "TypeScript"],
+    bio: "Define la arquitectura y los criterios tecnicos de cada proyecto. Acompana el desarrollo desde el diseno hasta produccion.",
+    image: "/team/felipe-160.webp",
+    linkedin: "https://www.linkedin.com/in/felipefigueroaf/",
+  },
+];
+
+const team = [
+  { initials: "LV", name: "Lautaro Villalba", role: "Tech Lead", image: "/team/lautaro-96.webp" },
+  { initials: "JP", name: "Josue Palma", role: "Fullstack", image: "/team/josue-96.webp" },
+  { initials: "AA", name: "Agustin Altamirano", role: "Fullstack", image: "/team/agustin-96.webp" },
+  { initials: "JR", name: "Jesus Rojas", role: "Fullstack", image: "/team/jesus-96.webp" },
+  { initials: "IB", name: "Ivan Belasich", role: "Fullstack", image: "/team/ivan-96.webp" },
+  { initials: "MC", name: "Marilyn Cellis", role: "Fullstack", image: "/team/marilyn-96.webp" },
+];
+
+const title = "Portfolio | KeroKero";
+const description = "Portfolio de proyectos de KeroKero. Software a medida para operaciones reales en energía, automotrices, seguros y salud.";
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={title}
+      description={description}
+      canonical={false}
+      noindex
+    />
+  </head>
+  <body class="bg-bg text-white font-sans antialiased">
+    <Navbar />
+    <main>
+      <!-- HERO -->
+      <section class="relative pt-[66px]">
+        <div
+          class="max-w-[1019px] mx-auto border-x border-white min-h-[400px] flex flex-col justify-center px-6 md:px-[131px] py-[72px]"
+          style="background-color: #e2dfdb; background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+        >
+          <p class="text-[11px] uppercase tracking-widest mb-4" style="color: rgba(25,25,25,0.50)">Portfolio</p>
+          <h1 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-bg max-w-[520px] mb-6">
+            Sistemas construidos a medida, corriendo en produccion.
+          </h1>
+          <p class="text-base leading-relaxed tracking-[-0.07em] max-w-[440px]" style="color: rgba(25,25,25,0.65)">
+            Cada proyecto resuelve un problema operativo real. Sin templates, sin atajos, sin código que no entiendemos.
+          </p>
+          <p class="text-[11px] tracking-[-0.03em] max-w-[440px] mt-2" style="color: rgba(25,25,25,0.55)">
+            Trabajamos bajo NDA con todos nuestros clientes. Lo que mostramos aqui es solo una descripcion general de cada proyecto.
+          </p>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO GRID -->
+      <section>
+        <div class="max-w-[1019px] mx-auto border-x border-white">
+          {portfolio.map((item, i) => {
+            const isDark = i % 2 === 0;
+            const bgClass = isDark ? "bg-bg" : "bg-accent";
+            const indexColor = isDark ? "text-white/25" : "text-bg/20";
+            const metaColor = isDark ? "text-accent" : "text-bg/60";
+            const descColor = isDark ? "text-muted" : "text-bg/70";
+            const logrosColor = isDark ? "text-muted" : "text-bg/70";
+            const bulletColor = isDark ? "bg-accent" : "bg-bg";
+            const gridColor = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)";
+            const logoBorder = isDark ? "border-white/15" : "border-bg/20";
+            const logoBg = isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)";
+            const cardBorder = isDark ? "border-white/10" : "border-bg/10";
+            const hoverIndexColor = isDark ? "group-hover:text-white/40" : "group-hover:text-bg/35";
+            return (
+              <div
+                class={`portfolio-card group relative ${bgClass} px-6 md:px-[51px] py-[64px] border-b ${cardBorder} overflow-hidden transition-all duration-500`}
+                style={`background-image: linear-gradient(${gridColor} 1px, transparent 1px), linear-gradient(90deg, ${gridColor} 1px, transparent 1px); background-size: 48px 48px;`}
+              >
+                <div class="portfolio-inner relative z-10 flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-start">
+                  <!-- Left column: Content -->
+                  <div class="flex-1 flex flex-col gap-6">
+                    <!-- Meta info -->
+                    <div class="flex flex-col gap-1">
+                      <p class={`text-[11px] uppercase tracking-widest ${metaColor} transition-opacity duration-300`}>
+                        {item.empresa} · {item.pais}
+                      </p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class={`text-base leading-relaxed tracking-[-0.07em] max-w-[520px] ${descColor}`}>
+                      {item.descripcion}
+                    </p>
+
+                    <!-- Logros -->
+                    <div class={`flex flex-col gap-2 ${logrosColor}`}>
+                      <p class={`text-[11px] uppercase tracking-widest ${metaColor}`}>Logros</p>
+                      {item.logros.map((logro) => (
+                        <div class="flex items-start gap-3 logro-item">
+                          <span class={`w-1.5 h-1.5 mt-2 shrink-0 ${bulletColor} transition-transform duration-300 group-hover:scale-125`}></span>
+                          <span class="text-base leading-relaxed tracking-[-0.07em]">{logro}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- Right column: Index + Logo -->
+                  <div class="flex flex-col items-end gap-2 shrink-0 w-full md:w-auto">
+                    <!-- Index number -->
+                    <span class={`text-[64px] md:text-[96px] font-sans font-normal tracking-[-0.07em] leading-none pr-4 md:pr-6 ${indexColor} ${hoverIndexColor} transition-all duration-500 select-none`}>
+                      {item.index}
+                    </span>
+
+                    <!-- Logo -->
+                    <div
+                      class={`w-48 h-48 md:w-56 md:h-56 flex items-center justify-center p-6 md:p-8 border ${logoBorder} transition-all duration-400 group-hover:scale-[1.03]`}
+                      style={`background-color: ${logoBg}`}
+                    >
+                      <img
+                        src={item.logo}
+                        alt={item.empresa}
+                        class="w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-90"
+                        width="224"
+                        height="224"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <!-- EQUIPO TITLE -->
+      <section>
+        <div class="max-w-[1019px] mx-auto border-x border-white">
+          <div class="h-px bg-white/10"></div>
+          <div class="px-6 md:px-[131px] py-[72px] flex flex-col gap-4">
+            <p class="text-[11px] uppercase tracking-widest text-accent">El equipo</p>
+            <h2 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-white max-w-[520px]">
+              Las personas que construirán tu solución.
+            </h2>
+            <p class="text-base leading-relaxed tracking-[-0.07em] text-muted max-w-[440px]">
+              No hay capas intermedias. El CEO y el CTO están en cada proyecto, desde el primer llamado hasta producción.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIDERAZGO -->
+      <section>
+        <div class="max-w-[1019px] mx-auto border-x border-white">
+          <div class="h-px bg-white/10"></div>
+          <div
+            class="px-6 md:px-[51px] py-8"
+            style="border-bottom: 1px solid rgba(255,255,255,0.10)"
+          >
+            <p class="text-[11px] uppercase tracking-widest text-accent">Liderazgo</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            {leadership.map((person, i) => (
+              <div
+                class={`leader-card px-6 py-10 md:px-[51px] md:py-[56px] flex flex-col gap-8 transition-colors duration-300 hover:bg-white/[0.02]${i === 0 ? " md:border-r border-white/10" : ""}`}
+              >
+                {person.image ? (
+                  <div
+                    class="w-14 h-14 overflow-hidden"
+                    style="border: 1px solid rgba(255,255,255,0.20)"
+                  >
+                    <img
+                      src={person.image}
+                      alt={`${person.name}, ${person.role} de KeroKero`}
+                      class="w-full h-full object-cover object-top"
+                      width="56"
+                      height="56"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    class="w-14 h-14 flex items-center justify-center"
+                    style="border: 1px solid rgba(255,255,255,0.20)"
+                  >
+                    <span class="text-xs font-sans tracking-wider" style="color: rgba(255,255,255,0.35)">
+                      {person.initials}
+                    </span>
+                  </div>
+                )}
+                <div class="flex flex-col gap-1">
+                  <p class="text-white text-[17px] font-sans tracking-[-0.07em]">{person.name}</p>
+                  <p class="text-[11px] uppercase tracking-widest text-accent">{person.role}</p>
+                </div>
+                <p class="text-sm leading-relaxed tracking-[-0.07em] text-muted">{person.bio}</p>
+                {person.linkedin && (
+                  <a
+                    href={person.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-[11px] uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
+                    style="color: rgba(255,255,255,0.35)"
+                  >
+                    <span class="[&>svg]:w-[14px] [&>svg]:h-[14px] [&>svg]:stroke-current [&>svg]:stroke-[1.5]" set:html={LinkedinIcon} />
+                    LinkedIn
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- EQUIPO -->
+      <section>
+        <div class="max-w-[1019px] mx-auto border-x border-white">
+          <div class="h-px bg-white/10"></div>
+          <div
+            class="px-6 md:px-[51px] py-8"
+            style="border-bottom: 1px solid rgba(255,255,255,0.10)"
+          >
+            <p class="text-[11px] uppercase tracking-widest text-accent">Equipo</p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3">
+            {team.map((member, i) => {
+              const mobileHasRight = i % 2 === 0;
+              const mobileHasBottom = i < team.length - 2;
+              const desktopHasRight = i % 3 !== 2;
+              const desktopHasBottom = i < 3;
+              const borderClasses = [
+                mobileHasRight ? "border-r" : "",
+                mobileHasBottom ? "border-b" : "",
+                desktopHasRight ? "md:border-r" : "md:border-r-0",
+                desktopHasBottom ? "md:border-b" : "md:border-b-0",
+              ].filter(Boolean).join(" ");
+              return (
+                <div
+                  class={`team-card px-5 py-8 md:px-8 md:py-10 flex flex-col gap-4 transition-colors duration-300 hover:bg-white/[0.03] border-white/10 ${borderClasses}`}
+                >
+                  {member.image ? (
+                    <div
+                      class="w-9 h-9 overflow-hidden transition-transform duration-300 hover:scale-105"
+                      style="border: 1px solid rgba(255,255,255,0.18)"
+                    >
+                      <img
+                        src={member.image}
+                        alt={`${member.name}, ${member.role} de KeroKero`}
+                        class="w-full h-full object-cover object-top"
+                        width="36"
+                        height="36"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      class="w-9 h-9 flex items-center justify-center"
+                      style="border: 1px solid rgba(255,255,255,0.18)"
+                    >
+                      <span
+                        class="text-[10px] font-sans tracking-wider"
+                        style="color: rgba(255,255,255,0.35)"
+                      >
+                        {member.initials}
+                      </span>
+                    </div>
+                  )}
+                  <div>
+                    <p class="text-white text-sm font-sans tracking-[-0.07em]">
+                      {member.name}
+                    </p>
+                    <p
+                      class="text-[10px] uppercase tracking-widest mt-0.5"
+                      style="color: rgba(255,255,255,0.30)"
+                    >
+                      {member.role}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA FINAL -->
+      <section>
+        <div
+          class="max-w-[1019px] mx-auto border-x border-white"
+          style="background-color: #e2dfdb; background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+        >
+          <div class="h-px" style="background-color: rgba(0,0,0,0.10)"></div>
+          <div class="cta-content px-6 md:px-[131px] py-[72px] flex flex-col gap-8">
+            <div class="flex flex-col gap-4">
+              <p class="text-[11px] uppercase tracking-widest" style="color: rgba(25,25,25,0.50)">Trabajemos juntos</p>
+              <h2 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-bg max-w-[480px]">
+                Si tenes un problema operativo que vale la pena resolver, hablemos.
+              </h2>
+              <p class="text-base leading-relaxed tracking-[-0.07em] max-w-[400px]" style="color: rgba(25,25,25,0.65)">
+                Asi empieza cada proyecto. Primero entendemos, despues construimos.
+              </p>
+            </div>
+            <a
+              href="/#contacto"
+              class="inline-flex items-center gap-2 text-accent text-base tracking-[-0.07em] px-8 h-[41px] w-fit transition-all duration-200 hover:opacity-80 hover:gap-3"
+              style="background-color: var(--color-bg)"
+            >
+              Contactanos
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200 group-hover:translate-x-1">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      import Lenis from "lenis";
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      if (!window.matchMedia('(pointer: coarse)').matches) {
+        const lenis = new Lenis({
+          duration: 0.8,
+          easing: (t) => 1 - Math.pow(1 - t, 3),
+        });
+        lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      // Portfolio cards — anima los hijos del wrapper interno, no la card
+      gsap.utils.toArray<HTMLElement>(".portfolio-card").forEach((card) => {
+        const inner = card.querySelector<HTMLElement>(".portfolio-inner");
+        if (!inner) return;
+        gsap.fromTo(
+          Array.from(inner.children),
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.1, scrollTrigger: { trigger: card, start: "top 85%" } }
+        );
+      });
+
+      // Leader cards — anima los hijos directos de cada card
+      gsap.utils.toArray<HTMLElement>(".leader-card").forEach((card) => {
+        gsap.fromTo(
+          Array.from(card.children),
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.08, scrollTrigger: { trigger: card, start: "top 85%" } }
+        );
+      });
+
+      // Team cards — anima los hijos directos de cada card con stagger global
+      gsap.utils.toArray<HTMLElement>(".team-card").forEach((card, i) => {
+        gsap.fromTo(
+          Array.from(card.children),
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", stagger: 0.06, delay: i * 0.04, scrollTrigger: { trigger: card, start: "top 85%" } }
+        );
+      });
+
+      // CTA — anima los hijos directos del contenedor
+      const ctaEl = document.querySelector<HTMLElement>(".cta-content");
+      if (ctaEl) {
+        gsap.fromTo(
+          Array.from(ctaEl.children),
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.1, scrollTrigger: { trigger: ctaEl, start: "top 85%" } }
+        );
+      }
+    </script>
+
+    <Footer />
+  </body>
+</html>

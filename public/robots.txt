@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kerokero.dev/sitemap.xml
+Sitemap: https://kerokero.cl/sitemap.xml

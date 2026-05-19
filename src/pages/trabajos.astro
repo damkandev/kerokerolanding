@@ -401,13 +401,16 @@ const collectionPageLd = {
 
             gsap.registerPlugin(ScrollTrigger);
 
+            let lenis: Lenis | null = null;
+
             if (!window.matchMedia('(pointer: coarse)').matches) {
-                const lenis = new Lenis({
+                lenis = new Lenis({
                     duration: 0.8,
                     easing: (t) => 1 - Math.pow(1 - t, 3),
                 });
-                lenis.on("scroll", ScrollTrigger.update);
-                gsap.ticker.add((time) => lenis.raf(time * 1000));
+                const activeLenis = lenis;
+                activeLenis.on("scroll", ScrollTrigger.update);
+                gsap.ticker.add((time) => activeLenis.raf(time * 1000));
                 gsap.ticker.lagSmoothing(0);
             }
 
@@ -419,7 +422,11 @@ const collectionPageLd = {
                     const target = document.querySelector(href);
                     if (target) {
                         e.preventDefault();
-                        lenis.scrollTo(target as HTMLElement);
+                        if (lenis) {
+                            lenis.scrollTo(target as HTMLElement);
+                        } else {
+                            (target as HTMLElement).scrollIntoView({ behavior: "smooth" });
+                        }
                     }
                 });
             });

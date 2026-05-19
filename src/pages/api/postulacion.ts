@@ -1,10 +1,27 @@
 import type { APIRoute } from 'astro';
+import { Buffer } from 'node:buffer';
 import { Resend } from 'resend';
+import {
+  RESEND_FROM,
+  RESEND_TO,
+  escapeHtml,
+  getResendApiKey,
+  isValidEmail,
+  jsonResponse,
+  textToHtml,
+} from '../../lib/server/formEmail';
 
 export const prerender = false;
 
+const MAX_CV_BYTES = 5 * 1024 * 1024;
+
 export const POST: APIRoute = async ({ request }) => {
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  const apiKey = getResendApiKey();
+  if (!apiKey) {
+    return jsonResponse({ error: 'Falta configurar RESEND_API_KEY.' }, 500);
+  }
+
+  const resend = new Resend(apiKey);
   const data = await request.formData();
 
   const nombre = data.get('nombre')?.toString().trim();
@@ -21,25 +38,47 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
+  if (!isValidEmail(email)) {
+    return jsonResponse({ error: 'Email inválido.' }, 400);
+  }
+
+  const cvName = cv.name?.trim() || '';
+  const isPdfName = cvName.toLowerCase().endsWith('.pdf');
+  const isPdfMime = cv.type === 'application/pdf';
+
+  if (!(cv instanceof File) || !isPdfName || !isPdfMime) {
+    return jsonResponse({ error: 'El CV debe ser un archivo PDF.' }, 400);
+  }
+
+  if (cv.size > MAX_CV_BYTES) {
+    return jsonResponse({ error: 'El CV no puede superar 5 MB.' }, 400);
+  }
+
+  const safeNombre = escapeHtml(nombre);
+  const safeEmail = escapeHtml(email);
+  const safeLinkedin = escapeHtml(linkedin);
+  const safePortfolio = escapeHtml(portfolio);
+  const safeMensaje = textToHtml(mensaje);
+
   const cvBuffer = await cv.arrayBuffer();
 
   const { error } = await resend.emails.send({
-    from: 'KeroKero <web@kerokero.cl>',
-    to: ['damian@kerokero.cl'],
+    from: RESEND_FROM,
+    to: [RESEND_TO],
     replyTo: email,
     subject: `Nueva postulación: ${nombre}`,
     html: `
-      <p><strong>Nombre:</strong> ${nombre}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>LinkedIn:</strong> ${linkedin}</p>
-      <p><strong>Portfolio / GitHub:</strong> ${portfolio}</p>
+      <p><strong>Nombre:</strong> ${safeNombre}</p>
+      <p><strong>Email:</strong> ${safeEmail}</p>
+      <p><strong>LinkedIn:</strong> ${safeLinkedin}</p>
+      <p><strong>Portfolio / GitHub:</strong> ${safePortfolio}</p>
       <hr />
       <p><strong>Mensaje:</strong></p>
-      <p>${mensaje.replace(/\n/g, '<br />')}</p>
+      <p>${safeMensaje}</p>
     `,
     attachments: [
       {
-        filename: cv.name || 'cv.pdf',
+        filename: cvName || 'cv.pdf',
         content: Buffer.from(cvBuffer),
       },
     ],
