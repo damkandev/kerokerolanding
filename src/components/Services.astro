@@ -30,10 +30,19 @@ const grays = ["#d6d2cd", "#c9c5c0", "#ddd9d4", "#ccc8c3", "#d1cdc8", "#e0dcd7"]
 ---
 
 <style>
-  /* entrada scroll */
   .service-card {
     opacity: 0;
-    transition: background-color 0.35s ease;
+    transform: translateY(16px);
+    background-color: var(--bg);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease,
+      background-color 0.35s ease;
+    transition-delay: var(--delay, 0ms);
+  }
+  .service-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* contenido: siempre pegado abajo */
@@ -63,22 +72,39 @@ const grays = ["#d6d2cd", "#c9c5c0", "#ddd9d4", "#ccc8c3", "#d1cdc8", "#e0dcd7"]
     transition: max-height 0.35s ease, opacity 0.35s ease;
   }
 
-  /* hover */
-  .service-card:hover {
+  /* hover + mobile tap */
+  .service-card:hover,
+  .service-card.is-hovered {
     background-color: #191919;
   }
 
-  .service-card:hover .card-title {
+  .service-card:hover .card-title,
+  .service-card.is-hovered .card-title {
     color: #ffffff;
     transform: translateY(-4px);
   }
 
-  .service-card:hover .card-desc {
+  .service-card:hover .card-desc,
+  .service-card.is-hovered .card-desc {
     max-height: 80px;
     opacity: 1;
     transform: translateY(-4px);
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.service-card').forEach((card) => {
+    let timer: ReturnType<typeof setTimeout>;
+    card.addEventListener('touchstart', () => {
+      clearTimeout(timer);
+      card.classList.add('is-hovered');
+    }, { passive: true });
+    card.addEventListener('touchend', () => {
+      timer = setTimeout(() => card.classList.remove('is-hovered'), 400);
+    });
+    card.addEventListener('touchcancel', () => card.classList.remove('is-hovered'));
+  });
+</script>
 
 <section
   id="servicios"
@@ -100,9 +126,8 @@ const grays = ["#d6d2cd", "#c9c5c0", "#ddd9d4", "#ccc8c3", "#d1cdc8", "#e0dcd7"]
     <div class="grid grid-cols-2 md:grid-cols-3 gap-2 px-6 md:px-[55px] pb-6 md:pb-[55px]">
       {services.map((service, i) => (
         <div
-          class="service-card relative h-[157px] overflow-hidden cursor-default"
-          style={`background-color: ${grays[i]};`}
-          data-service-index={i.toString()}
+          class="service-card animate-in relative h-[157px] overflow-hidden cursor-default"
+          style={`--bg: ${grays[i]}; --delay: ${(i % 3) * 80}ms`}
         >
           <div class="card-inner">
             <span class="card-title font-sans font-normal text-[20px] leading-[1.2] tracking-[-0.07em]">
@@ -118,50 +143,3 @@ const grays = ["#d6d2cd", "#c9c5c0", "#ddd9d4", "#ccc8c3", "#d1cdc8", "#e0dcd7"]
   </div>
 </section>
 
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const cards = document.querySelectorAll<HTMLElement>('.service-card');
-
-  const grays = ["#d6d2cd", "#c9c5c0", "#ddd9d4", "#ccc8c3", "#d1cdc8", "#e0dcd7"];
-
-  cards.forEach((card, i) => {
-    gsap.fromTo(
-      card,
-      { opacity: 0, y: 16 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: 'power2.out',
-        delay: (i % 3) * 0.08,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
-
-    // Ciclo suave de grises tipo mural de commits
-    const sequence = [...grays.slice(i), ...grays.slice(0, i)];
-    const tl = gsap.to(card, {
-      keyframes: sequence.map(c => ({ backgroundColor: c, duration: 3, ease: 'sine.inOut' })),
-      repeat: -1,
-      delay: i * 0.6,
-    });
-
-    card.addEventListener('mouseenter', () => {
-      tl.pause();
-      gsap.killTweensOf(card, "backgroundColor");
-      gsap.to(card, { backgroundColor: '#191919', duration: 0.15, ease: 'power1.out', overwrite: true });
-    });
-    card.addEventListener('mouseleave', () => {
-      gsap.killTweensOf(card, "backgroundColor");
-      gsap.to(card, { backgroundColor: grays[i], duration: 0.35, ease: 'power1.out', onComplete: () => tl.resume() });
-    });
-  });
-</script>
