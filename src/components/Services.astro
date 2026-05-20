@@ -93,7 +93,21 @@ const grays = ["#d6d2cd", "#c9c5c0", "#ddd9d4", "#ccc8c3", "#d1cdc8", "#e0dcd7"]
 </style>
 
 <script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
   document.querySelectorAll<HTMLElement>('.service-card').forEach((card) => {
+    observer.observe(card);
+
     let timer: ReturnType<typeof setTimeout>;
     card.addEventListener('touchstart', () => {
       clearTimeout(timer);
