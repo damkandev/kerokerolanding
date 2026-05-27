@@ -77,6 +77,19 @@ const servicesLd = {
       <Contacto />
     </main>
 
+    <script is:inline>
+      (function () {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              e.target.classList.toggle('is-visible', e.isIntersecting);
+            });
+          },
+          { threshold: 0.12 }
+        );
+        document.querySelectorAll('.animate-in').forEach(function (el) { io.observe(el); });
+      })();
+    </script>
     <script>
       import Lenis from 'lenis';
       import { gsap } from 'gsap';
@@ -90,12 +103,10 @@ const servicesLd = {
         touchMultiplier: 1.5,
       });
 
-      // Sync Lenis with GSAP ScrollTrigger
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
       gsap.ticker.lagSmoothing(0);
 
-      // Handle anchor clicks for smooth scrolling
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', (e) => {
           const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
