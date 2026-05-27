@@ -1,4 +1,11 @@
 ---
+const clientLogos = [
+  { name: "Axion Energy", src: "/companies-logos/axion-energy.png" },
+  { name: "Rodar", src: "/companies-logos/rodar.svg" },
+  { name: "Segui", src: "/companies-logos/SEGUI.png" },
+  { name: "YPF", src: "/companies-logos/ypf.png" },
+  { name: "Zurich", src: "/companies-logos/zurich.png" },
+];
 ---
 
 <style>
@@ -42,7 +49,22 @@
       <p class="text-base leading-relaxed tracking-[-0.07em] text-muted max-w-[460px]">
         Desarrollamos software a medida para los procesos operativos que realmente definen tu negocio.
       </p>
-      <a href="#contacto" class="inline-flex items-center justify-center bg-accent text-bg text-base tracking-[-0.07em] w-[140px] h-[41px] transition-opacity duration-200 ease-in-out hover:opacity-[0.88]">Contactanos</a>
+      <div class="flex flex-wrap items-center gap-2.5 max-w-[380px]" aria-label="Clientes destacados">
+        {clientLogos.map((logo) => (
+          <div class="h-8 w-[66px] flex items-center justify-center px-2 py-1.5">
+            <img
+              src={logo.src}
+              alt={logo.name}
+              class="max-h-full max-w-full object-contain brightness-0 invert"
+              width="66"
+              height="32"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        ))}
+      </div>
+      <a href="#contacto" class="inline-flex items-center justify-center bg-accent text-bg text-base tracking-[-0.07em] w-[140px] h-[41px] transition-opacity duration-200 ease-in-out hover:opacity-[0.88]">Contáctanos</a>
     </div>
 
     <div class="hidden md:flex shrink-0 items-center justify-center pr-8">
