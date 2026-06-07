@@ -1,6 +1,6 @@
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const RESEND_FROM = "KeroKero <web@kerokero.cl>";
+export const RESEND_FROM = "KeroKero <web@web.kerokero.cl>";
 export const RESEND_TO = "damian@kerokero.cl";
 
 export function getResendApiKey() {
