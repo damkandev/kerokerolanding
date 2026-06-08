@@ -100,18 +100,20 @@ const aboutPageLd = {
                     <h1
                         class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-white max-w-[520px] mb-6"
                     >
-                        Construimos software como si fuera nuestro propio
-                        negocio.
+                        Lo fundamos porque vimos cómo las agencias grandes
+                        fallaban a sus clientes.
                     </h1>
                     <p
                         class="text-base leading-relaxed tracking-[-0.07em] text-muted max-w-[440px]"
                     >
-                        KeroKero es un estudio de software a medida. Trabajamos
-                        por proyecto, con foco en pocos clientes a la vez.
+                        Demasiados intermediarios, poco criterio técnico,
+                        software que no sobrevivía el primer año. KeroKero es
+                        lo opuesto: un estudio pequeño donde los socios
+                        trabajan en cada proyecto.
                     </p>
                     <!-- Stats -->
-                    <div class="stats-row flex items-start mt-8 gap-12">
-                        <div class="stat-item flex-1 flex flex-col gap-1.5">
+                    <div class="stats-row flex flex-wrap items-start mt-8 gap-x-12 gap-y-6">
+                        <div class="stat-item flex flex-col gap-1.5">
                             <span
                                 class="stat-number text-[30px] font-sans tracking-[-0.07em] text-white leading-none"
                                 data-count="12"
@@ -123,7 +125,7 @@ const aboutPageLd = {
                                 >Proyectos lanzados</span
                             >
                         </div>
-                        <div class="stat-item flex-1 flex flex-col gap-1.5">
+                        <div class="stat-item flex flex-col gap-1.5">
                             <span
                                 class="stat-number text-[30px] font-sans tracking-[-0.07em] text-white leading-none"
                                 data-count="4"
@@ -135,7 +137,7 @@ const aboutPageLd = {
                                 >Años en el mercado</span
                             >
                         </div>
-                        <div class="stat-item flex-1 flex flex-col gap-1.5">
+                        <div class="stat-item flex flex-col gap-1.5">
                             <span
                                 class="stat-number text-[30px] font-sans tracking-[-0.07em] text-white leading-none"
                                 data-count="3"
@@ -145,6 +147,18 @@ const aboutPageLd = {
                             <span
                                 class="text-[11px] uppercase tracking-widest text-muted"
                                 >Países con clientes</span
+                            >
+                        </div>
+                        <div class="stat-item flex flex-col gap-1.5">
+                            <span
+                                class="stat-number text-[30px] font-sans tracking-[-0.07em] text-white leading-none"
+                                data-count="0"
+                                data-suffix=""
+                                >0</span
+                            >
+                            <span
+                                class="text-[11px] uppercase tracking-widest text-muted"
+                                >Intermediarios</span
                             >
                         </div>
                     </div>
@@ -169,12 +183,13 @@ const aboutPageLd = {
                             <p
                                 class="text-base leading-relaxed tracking-[-0.07em] text-muted"
                             >
-                                Trabajamos directo con quien decide en cada
-                                proyecto, sin intermediarios ni equipos
-                                rotativos. Cada decisión técnica tiene contexto
-                                del negocio detrás, y cada conversación con el
-                                cliente la tiene alguien con criterio para tomar
-                                decisiones.
+                                Desde el primer día, decidimos no crecer por
+                                crecer. Trabajamos con pocos clientes a la vez
+                                para que Damián y Felipe puedan estar en cada
+                                reunión y en cada decisión técnica. No hay
+                                account managers que traduzcan lo que el cliente
+                                quiere. El que entiende el negocio es el mismo
+                                que elige la arquitectura.
                             </p>
                         </div>
                         <!-- Right: non-negotiables -->
@@ -230,7 +245,7 @@ const aboutPageLd = {
                                 <p
                                     class="text-sm tracking-[-0.07em] leading-relaxed text-muted"
                                 >
-                                    No construimos más de lo que necesitás hoy.
+                                    No construimos más de lo que necesitas hoy.
                                     La solución tiene que resolver el problema
                                     y poder crecer con tu negocio.
                                 </p>
@@ -404,8 +419,8 @@ const aboutPageLd = {
                 </div>
             </section>
 
-            <!-- CTA: TRABAJA CON NOSOTROS -->
-            <section id="trabaja">
+            <!-- CTA: HABLEMOS -->
+            <section id="hablemos">
                 <div
                     class="max-w-[1019px] mx-auto border-x border-white"
                     style="background-color: var(--color-accent); background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: 48px 48px;"
@@ -423,44 +438,52 @@ const aboutPageLd = {
                                 class="text-[11px] uppercase tracking-widest"
                                 style="color: rgba(25,25,25,0.50)"
                             >
-                                Únete
+                                ¿Tienes un proyecto?
                             </p>
                             <h2
                                 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-bg max-w-[480px]"
                             >
-                                Si quieres trabajar con nosotros, escríbenos.
+                                Cuéntanos qué estás construyendo.
                             </h2>
                             <p
                                 class="text-base leading-relaxed tracking-[-0.07em] max-w-[400px]"
                                 style="color: rgba(25,25,25,0.65)"
                             >
-                                Abrimos posiciones cuando hay un proyecto que lo
-                                justifica. Si tienes experiencia construyendo
-                                producto y quieres trabajar directo con clientes,
-                                escríbenos y vemos si hay match.
+                                Trabajamos con pocos clientes a la vez. Si hay
+                                fit, lo sabemos rápido. La primera conversación
+                                no tiene costo.
                             </p>
                         </div>
-                        <a
-                            href="/trabajos"
-                            class="inline-flex items-center gap-2 text-accent text-base tracking-[-0.07em] px-8 h-[41px] w-fit transition-opacity duration-200 hover:opacity-80"
-                            style="background-color: var(--color-bg)"
-                        >
-                            Ver trabajos
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="14"
-                                height="14"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                        <div class="flex flex-wrap items-center gap-4">
+                            <a
+                                href="/#contacto"
+                                class="inline-flex items-center gap-2 text-accent text-base tracking-[-0.07em] px-8 h-[41px] w-fit transition-opacity duration-200 hover:opacity-80"
+                                style="background-color: var(--color-bg)"
                             >
-                                <path d="M5 12h14"></path><path
-                                    d="m12 5 7 7-7 7"></path>
-                            </svg>
-                        </a>
+                                Hablemos
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="M5 12h14"></path><path
+                                        d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </a>
+                            <a
+                                href="/trabajos"
+                                class="text-base tracking-[-0.07em] transition-opacity duration-200 hover:opacity-60"
+                                style="color: rgba(25,25,25,0.50)"
+                            >
+                                Ver posiciones abiertas
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
