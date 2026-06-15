@@ -1,0 +1,25 @@
+# KeroKero
+
+> KeroKero SpA es un estudio chileno de desarrollo de software a medida. Construimos sistemas operativos críticos, integraciones, SaaS verticales, IA aplicada y consultoría de procesos, trabajando con pocos clientes a la vez.
+
+## Empresa
+
+- Razón social: KeroKero SpA
+- RUT: 78.385.097-4
+- Domicilio: Luis Araneda 1206, Chillán Viejo, Chile
+- Correo de contacto: damian@kerokero.cl
+- Fundadores: Damián Panes (CEO), Felipe Figueroa (CTO)
+
+## Páginas
+
+- [Inicio](https://kerokero.cl/): qué hace KeroKero, servicios y cómo contactarnos.
+- [Sobre Nosotros](https://kerokero.cl/sobre-nosotros): equipo, filosofía y forma de trabajo.
+- [Portafolio](https://kerokero.cl/portfolio): proyectos realizados.
+- [Trabajos](https://kerokero.cl/trabajos): posiciones abiertas y postulación.
+- [Términos de Servicio](https://kerokero.cl/terminos): condiciones de los servicios.
+- [Política de Privacidad](https://kerokero.cl/privacidad): tratamiento de datos personales.
+
+## Notas
+
+- Trabajamos por proyecto, con precio cerrado y pagos por hitos, no por hora.
+- No tenemos intermediarios: los socios participan directamente en cada proyecto.

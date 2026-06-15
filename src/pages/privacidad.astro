@@ -1,0 +1,116 @@
+---
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
+
+const title = "Política de Privacidad | KeroKero";
+const description = "Cómo KeroKero SpA recopila, usa y protege los datos personales de quienes visitan kerokero.cl.";
+
+const legalLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Política de Privacidad",
+    "url": "https://kerokero.cl/privacidad",
+    "description": description,
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "KeroKero",
+        "url": "https://kerokero.cl"
+    }
+};
+
+const sections = [
+    {
+        title: "1. Responsable del tratamiento",
+        body: "KeroKero SpA (RUT 78.385.097-4), con domicilio en Luis Araneda 1206, Chillán Viejo, Chile, es responsable del tratamiento de los datos personales recopilados a través de kerokero.cl. Contacto: damian@kerokero.cl.",
+    },
+    {
+        title: "2. Datos que recopilamos",
+        body: "Formulario de contacto: nombre, correo electrónico, teléfono (opcional) y el mensaje enviado. Formulario de postulación: nombre, correo electrónico y currículum en PDF. Además, recopilamos datos de uso agregados y anónimos del sitio mediante Vercel Analytics, sin cookies de seguimiento publicitario.",
+    },
+    {
+        title: "3. Finalidad",
+        body: "Usamos estos datos exclusivamente para responder consultas comerciales, evaluar postulaciones laborales y entender cómo se usa el sitio para mejorarlo.",
+    },
+    {
+        title: "4. Cómo se procesan",
+        body: "Los formularios se envían directamente por correo electrónico a través de Resend hacia nuestra casilla de contacto; no almacenamos estos datos en una base de datos propia.",
+    },
+    {
+        title: "5. Conservación",
+        body: "Conservamos los correos recibidos mientras sean necesarios para gestionar la consulta o postulación, o según lo exija la ley.",
+    },
+    {
+        title: "6. Terceros",
+        body: "Compartimos datos únicamente con proveedores que nos ayudan a operar el sitio (Resend para el envío de correos, Vercel para hosting y analítica), bajo sus respectivas políticas de privacidad. No vendemos ni cedemos datos a terceros con fines comerciales.",
+    },
+    {
+        title: "7. Tus derechos",
+        body: "Podés solicitar acceso, rectificación o eliminación de tus datos personales escribiendo a damian@kerokero.cl.",
+    },
+    {
+        title: "8. Seguridad",
+        body: "Tomamos medidas razonables para proteger la información que nos compartís, incluyendo el uso de conexiones cifradas (HTTPS).",
+    },
+    {
+        title: "9. Cambios",
+        body: "Podemos actualizar esta política para reflejar cambios legales u operativos. La versión vigente siempre estará publicada en esta página, con su fecha de última actualización.",
+    },
+    {
+        title: "10. Contacto",
+        body: "Para cualquier consulta sobre esta política, escribinos a damian@kerokero.cl.",
+    },
+];
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={Astro.generator} />
+        <SEO title={title} description={description} jsonLd={legalLd} />
+        <Analytics />
+    </head>
+    <body class="bg-bg text-white font-sans antialiased">
+        <Navbar />
+        <main>
+            <section class="relative bg-bg pt-[66px]">
+                <div
+                    class="max-w-[1019px] mx-auto border-x border-white px-6 md:px-[131px] py-[72px]"
+                    style="background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+                >
+                    <p class="text-[11px] uppercase tracking-widest text-accent mb-4">
+                        Legal
+                    </p>
+                    <h1 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-white max-w-[520px] mb-4">
+                        Política de Privacidad
+                    </h1>
+                    <p class="text-sm tracking-[-0.04em] text-white/40">
+                        Última actualización: 15 de junio de 2026
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <div class="max-w-[1019px] mx-auto border-x border-white">
+                    <div class="h-px bg-white/10"></div>
+                    <div class="px-6 md:px-[51px] py-[64px] flex flex-col gap-10 max-w-[760px]">
+                        {sections.map((section) => (
+                            <div class="flex flex-col gap-2">
+                                <h2 class="text-white text-[17px] font-sans tracking-[-0.07em]">
+                                    {section.title}
+                                </h2>
+                                <p class="text-sm leading-relaxed tracking-[-0.07em] text-muted">
+                                    {section.body}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </main>
+        <Footer />
+    </body>
+</html>

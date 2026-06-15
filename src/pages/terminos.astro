@@ -1,0 +1,116 @@
+---
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
+
+const title = "Términos de Servicio | KeroKero";
+const description = "Términos y condiciones que rigen los servicios de desarrollo de software a medida de KeroKero SpA.";
+
+const legalLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Términos de Servicio",
+    "url": "https://kerokero.cl/terminos",
+    "description": description,
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "KeroKero",
+        "url": "https://kerokero.cl"
+    }
+};
+
+const sections = [
+    {
+        title: "1. Identificación",
+        body: "KeroKero SpA, RUT 78.385.097-4, con domicilio en Luis Araneda 1206, Chillán Viejo, Chile (\"KeroKero\", \"nosotros\"). Contacto: damian@kerokero.cl.",
+    },
+    {
+        title: "2. Servicios",
+        body: "KeroKero presta servicios de desarrollo de software a medida, integraciones y APIs, SaaS verticales, IA aplicada, consultoría de procesos y mantenimiento, bajo las condiciones acordadas en cada propuesta o contrato específico.",
+    },
+    {
+        title: "3. Propuestas y contratos",
+        body: "El alcance, los plazos, los entregables y el precio de cada proyecto se definen en una propuesta o contrato escrito firmado por ambas partes. Estos Términos aplican de forma complementaria a dicho contrato; en caso de conflicto, prevalece el contrato específico.",
+    },
+    {
+        title: "4. Propiedad intelectual",
+        body: "Salvo acuerdo distinto por escrito, una vez pagados los hitos correspondientes, el código fuente, diseños y documentación desarrollados específicamente para el cliente le pertenecen. KeroKero puede conservar y reutilizar conocimiento general, librerías propias y componentes no específicos del proyecto.",
+    },
+    {
+        title: "5. Pagos y facturación",
+        body: "Los pagos se realizan según el calendario de hitos definido en cada contrato, mediante factura o boleta emitida por KeroKero SpA. El atraso en los pagos puede suspender el desarrollo hasta su regularización.",
+    },
+    {
+        title: "6. Confidencialidad",
+        body: "Ambas partes se obligan a mantener confidencial la información sensible compartida durante el proyecto (código, datos, procesos de negocio), incluso después de finalizada la relación contractual.",
+    },
+    {
+        title: "7. Garantías y responsabilidad",
+        body: "KeroKero se compromete a desarrollar el software siguiendo buenas prácticas de la industria. KeroKero no garantiza resultados de negocio específicos derivados del uso del software, y su responsabilidad se limita a corregir errores reportados dentro de los plazos de soporte acordados.",
+    },
+    {
+        title: "8. Modificaciones",
+        body: "Podemos actualizar estos Términos para reflejar cambios legales u operativos. La versión vigente siempre estará publicada en esta página, con su fecha de última actualización.",
+    },
+    {
+        title: "9. Ley aplicable",
+        body: "Estos Términos se rigen por las leyes de la República de Chile. Cualquier controversia se someterá a los tribunales competentes de Chile, sin perjuicio de mecanismos de resolución alternativa que las partes puedan acordar.",
+    },
+    {
+        title: "10. Contacto",
+        body: "Para consultas sobre estos Términos, escríbenos a damian@kerokero.cl.",
+    },
+];
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={Astro.generator} />
+        <SEO title={title} description={description} jsonLd={legalLd} />
+        <Analytics />
+    </head>
+    <body class="bg-bg text-white font-sans antialiased">
+        <Navbar />
+        <main>
+            <section class="relative bg-bg pt-[66px]">
+                <div
+                    class="max-w-[1019px] mx-auto border-x border-white px-6 md:px-[131px] py-[72px]"
+                    style="background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+                >
+                    <p class="text-[11px] uppercase tracking-widest text-accent mb-4">
+                        Legal
+                    </p>
+                    <h1 class="font-sans font-normal text-[30px] leading-[1.15] tracking-[-0.07em] text-white max-w-[520px] mb-4">
+                        Términos de Servicio
+                    </h1>
+                    <p class="text-sm tracking-[-0.04em] text-white/40">
+                        Última actualización: 15 de junio de 2026
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <div class="max-w-[1019px] mx-auto border-x border-white">
+                    <div class="h-px bg-white/10"></div>
+                    <div class="px-6 md:px-[51px] py-[64px] flex flex-col gap-10 max-w-[760px]">
+                        {sections.map((section) => (
+                            <div class="flex flex-col gap-2">
+                                <h2 class="text-white text-[17px] font-sans tracking-[-0.07em]">
+                                    {section.title}
+                                </h2>
+                                <p class="text-sm leading-relaxed tracking-[-0.07em] text-muted">
+                                    {section.body}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </main>
+        <Footer />
+    </body>
+</html>

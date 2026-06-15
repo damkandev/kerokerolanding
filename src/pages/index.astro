@@ -17,9 +17,26 @@ const organizationLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "KeroKero",
+  "legalName": "KeroKero SpA",
+  "taxID": "78.385.097-4",
   "url": "https://kerokero.cl",
   "logo": "https://kerokero.cl/logo.svg",
   "description": description,
+  "email": "damian@kerokero.cl",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Luis Araneda 1206",
+    "addressLocality": "Chillán Viejo",
+    "addressRegion": "Ñuble",
+    "addressCountry": "CL"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "damian@kerokero.cl",
+    "contactType": "customer service",
+    "areaServed": "Latinoamérica",
+    "availableLanguage": ["es"]
+  },
   "founders": [
     { "@type": "Person", "name": "Damián Panes", "jobTitle": "CEO" },
     { "@type": "Person", "name": "Felipe Figueroa", "jobTitle": "CTO" }
