@@ -1,0 +1,99 @@
+---
+import '../../styles/global.css';
+import SEO from '../../components/SEO.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SEO
+      title="Blog"
+      description="Artículos sobre software, procesos y construcción de productos digitales por el equipo de KeroKero."
+    />
+  </head>
+  <body class="bg-bg text-white font-sans antialiased">
+    <Navbar />
+    <main class="pt-[66px]">
+      <section class="max-w-[1019px] mx-auto px-6 py-16 md:py-24">
+
+        <header class="mb-14 border-b border-white/10 pb-10">
+          <p class="text-white/35 text-[11px] uppercase tracking-widest font-sans mb-3">Blog</p>
+          <h1 class="font-display text-4xl md:text-5xl text-white tracking-[-0.07em] leading-tight">
+            Lo que pensamos
+          </h1>
+        </header>
+
+        {posts.length === 0 ? (
+          <p class="text-white/40 text-sm tracking-[-0.04em]">No hay artículos todavía.</p>
+        ) : (
+          <ul class="flex flex-col divide-y divide-white/10">
+            {posts.map(post => {
+              const formattedDate = post.data.date.toLocaleDateString('es-CL', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              });
+              return (
+                <li>
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="group flex flex-col md:flex-row md:items-start gap-4 md:gap-12 py-8 hover:bg-white/[0.02] transition-colors duration-150 -mx-6 px-6"
+                  >
+                    <time
+                      datetime={post.data.date.toISOString()}
+                      class="text-white/30 text-xs tracking-[-0.03em] md:w-36 shrink-0 pt-0.5"
+                    >
+                      {formattedDate}
+                    </time>
+                    <div class="flex-1">
+                      <h2 class="text-white text-lg tracking-[-0.07em] leading-snug mb-2 group-hover:text-accent transition-colors duration-150">
+                        {post.data.title}
+                      </h2>
+                      <p class="text-white/45 text-sm leading-relaxed tracking-[-0.04em]">
+                        {post.data.description}
+                      </p>
+                      {post.data.tags && post.data.tags.length > 0 && (
+                        <div class="flex flex-wrap gap-2 mt-4">
+                          {post.data.tags.map(tag => (
+                            <span class="text-[10px] uppercase tracking-widest text-accent/60 border border-accent/15 px-2 py-0.5">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="shrink-0 text-white/20 group-hover:text-accent group-hover:translate-x-1 transition-all duration-150 mt-1 hidden md:block"
+                    >
+                      <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+      </section>
+    </main>
+    <Footer />
+    <Analytics />
+  </body>
+</html>
