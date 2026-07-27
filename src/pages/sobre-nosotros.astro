@@ -27,17 +27,8 @@ const leadership = [
     },
 ];
 
-const team = [
-    { initials: "LV", name: "Lautaro Villalba", role: "Tech Lead", image: "/team/lautaro-96.webp" },
-    { initials: "JP", name: "Josue Palma", role: "Fullstack", image: "/team/josue-96.webp" },
-    { initials: "AA", name: "Agustin Altamirano", role: "Fullstack", image: "/team/agustin-96.webp" },
-    { initials: "JR", name: "Jesus Rojas", role: "Fullstack", image: "/team/jesus-96.webp" },
-    { initials: "IB", name: "Ivan Belasich", role: "Fullstack", image: "/team/ivan-96.webp" },
-    { initials: "MC", name: "Marilyn Cellis", role: "Fullstack", image: "/team/marilyn-96.webp" },
-];
-
 const title = "Sobre Nosotros | KeroKero";
-const description = "Conoce al equipo detrás de KeroKero. Somos un estudio de software a medida con foco en pocos clientes, donde los socios trabajan directo con cada cuenta.";
+const description = "Conoce a los fundadores de KeroKero. Somos un estudio de software a medida con foco en pocos clientes, donde los socios trabajan directo con cada cuenta.";
 
 const aboutPageLd = {
     "@context": "https://schema.org",
@@ -60,11 +51,6 @@ const aboutPageLd = {
                 "name": p.name,
                 "jobTitle": p.role,
                 "sameAs": p.linkedin ? [p.linkedin] : []
-            })),
-            ...team.map(p => ({
-                "@type": "Person",
-                "name": p.name,
-                "jobTitle": p.role
             }))
         ]
     }
@@ -338,87 +324,6 @@ const aboutPageLd = {
                 </div>
             </section>
 
-            <!-- EQUIPO -->
-            <section>
-                <div class="max-w-[1019px] mx-auto border-x border-white">
-                    <div class="h-px bg-white/10"></div>
-                    <div
-                        class="px-[51px] py-8"
-                        style="border-bottom: 1px solid rgba(255,255,255,0.10)"
-                    >
-                        <p
-                            class="text-[11px] uppercase tracking-widest text-accent"
-                        >
-                            Equipo
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2 md:grid-cols-3">
-                        {
-                            team.map((member, i) => {
-                                const hasRight = i % 3 !== 2;
-                                const hasBottom = i < 3;
-                                const borderStyle = [
-                                    hasRight
-                                        ? "border-right: 1px solid rgba(255,255,255,0.10)"
-                                        : "",
-                                    hasBottom
-                                        ? "border-bottom: 1px solid rgba(255,255,255,0.10)"
-                                        : "",
-                                ]
-                                    .filter(Boolean)
-                                    .join("; ");
-                                return (
-                                    <div
-                                        class="team-card px-8 py-10 flex flex-col gap-4 transition-colors duration-300 hover:bg-white/[0.03]"
-                                        style={borderStyle}
-                                    >
-                                        {member.image ? (
-                                            <div
-                                                class="w-9 h-9 overflow-hidden"
-                                                style="border: 1px solid rgba(255,255,255,0.18)"
-                                            >
-                                                <img
-                                                    src={member.image}
-                                                    alt={`${member.name}, ${member.role} de KeroKero`}
-                                                    class="w-full h-full object-cover object-top"
-                                                    width="36"
-                                                    height="36"
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                />
-                                            </div>
-                                        ) : (
-                                            <div
-                                                class="w-9 h-9 flex items-center justify-center"
-                                                style="border: 1px solid rgba(255,255,255,0.18)"
-                                            >
-                                                <span
-                                                    class="text-[10px] font-sans tracking-wider"
-                                                    style="color: rgba(255,255,255,0.35)"
-                                                >
-                                                    {member.initials}
-                                                </span>
-                                            </div>
-                                        )}
-                                        <div>
-                                            <p class="text-white text-sm font-sans tracking-[-0.07em]">
-                                                {member.name}
-                                            </p>
-                                            <p
-                                                class="text-[10px] uppercase tracking-widest mt-0.5"
-                                                style="color: rgba(255,255,255,0.30)"
-                                            >
-                                                {member.role}
-                                            </p>
-                                        </div>
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
-                </div>
-            </section>
-
             <!-- CTA: HABLEMOS -->
             <section id="hablemos">
                 <div
@@ -590,22 +495,6 @@ const aboutPageLd = {
                         ease: "power2.out",
                         delay: i * 0.12,
                         scrollTrigger: { trigger: el, start: "top 85%" },
-                    },
-                );
-            });
-
-            // Team cards
-            gsap.utils.toArray<HTMLElement>(".team-card").forEach((el, i) => {
-                gsap.fromTo(
-                    el,
-                    { opacity: 0, y: 16 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.45,
-                        ease: "power2.out",
-                        delay: (i % 3) * 0.08,
-                        scrollTrigger: { trigger: el, start: "top 88%" },
                     },
                 );
             });
